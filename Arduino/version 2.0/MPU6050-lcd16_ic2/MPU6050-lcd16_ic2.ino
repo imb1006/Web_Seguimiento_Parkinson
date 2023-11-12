@@ -137,8 +137,9 @@ void setup()
   delay(3000);
 
   // Mostrar la altura y convertirla a entero
-  leerSerial();
-  Serial.println(texto); 
+  //leerSerial(); // comentado para pruebas ----------------
+  texto = 155; // fijo para pruebas ------------------------
+  Serial.println(texto);
   altura = texto.toInt(); 
 
   // Introducir el sexo
@@ -146,7 +147,8 @@ void setup()
   delay(3000);
 
   // Mostrar el sexo
-  leerSerial();
+  //leerSerial();//comentado para pruebas ------------------
+  texto = "mujer"; // fijo para pruebas--------------------
   Serial.println(texto);
      
   // Si se trata de una mujer
