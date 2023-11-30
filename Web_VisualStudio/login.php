@@ -1,4 +1,8 @@
 <?php
+
+session_start(); // Iniciar sesión al comienzo del script
+
+
 // Conexión a la base de datos
 $servername = "localhost";
 $db_username = "root";
@@ -37,6 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             // Usuario encontrado
             $row = $result->fetch_assoc();
+            
+            // Almacenar información del usuario en la sesión
+            $_SESSION['user_id'] = $row['id_usuario'];
+            $_SESSION['nombre'] = $row['nombre'];
+            $_SESSION['apellidos'] = $row['apellidos'];
+            $_SESSION['user_email'] = $email;
+            $_SESSION['user_type'] = $row['tipo_usuario'];
+
+            //Redireccionar según el tipo de usuario
             switch ($row['tipo_usuario']) {
                 case 'administrador':
                     header('Location: admin/inicioAdminHTML.php');
@@ -49,8 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     break;
             }
         } else {
-            // Usuario no encontrado o credenciales incorrectas
-            echo "Usuario no encontrado o credenciales incorrectas.";
+            // Usuario no encontrado o credenciales incorrectas -> salta una notificación
+            echo "<script>alert('Usuario no encontrado o credenciales incorrectas.');</script>";
+            echo "<script>setTimeout(function(){window.location.href='login.html'},500);</script>";
         }
 
         $stmt->close();

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive" style="">
 
+
+
+
 <body>
     <section id="nav-bar">
         <nav class="navbar navbar-expand-lg bg-light">
@@ -22,11 +25,11 @@
                               <li><a class="dropdown-item" href="../actualizarCorreo.html">Actualizar correo</a></li>
                               <li><a class="dropdown-item" href="../cambioContraseña.html">Cambiar contraseña</a></li>
                               <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="forgot password.html">Eliminar cuenta</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="confirmarAccion('eliminarCuenta')">Eliminar cuenta</a></li>
                             </ul>
                           </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="About us.html">Cerrar sesión</a>
+                            <a class="nav-link" href="#" onclick="confirmarAccion('cerrarSesion')">Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -34,6 +37,14 @@
         </nav>
     </section>
 
+    <?php
+    session_start();
+    echo "<script type='text/javascript'>\n";
+    echo "var userType = '" . $_SESSION['user_type'] . "';\n";
+    echo "</script>\n";
+    ?>
+
+    <script src="../confirmacion.js"></script>
 
 </body>
 </html>
