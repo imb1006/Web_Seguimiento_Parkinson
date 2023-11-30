@@ -29,17 +29,97 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
-        /* Estilos adicionales si son necesarios */
+        
+
+        .info-paciente {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .botones-actividades button {
+            margin: 10px;
+            padding: 10px 20px;
+        }
+
     </style>
 </head>
+
 <body>
-    <?php include 'menu.php'; ?>
+    
+    <?php 
+    include 'menu.php';
+
+
+    // Conexión a la base de datos
+    $servername = "localhost";
+    $db_username = "root";
+    $db_password = "";
+    $db_name = "webparkinson";
+    $conn = new mysqli($servername, $db_username, $db_password, $db_name);
+
+    // Verificar conexión
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+}
+    // Obtener información del paciente
+    $id_paciente = $_SESSION['user_id'];
+
+    // Consulta SQL
+    $sql = "SELECT p.altura, p.sexo, u.correo_electronico, pp.id_profesional
+        FROM pacientes p
+        JOIN usuarios u ON p.id_paciente = u.id_usuario
+        LEFT JOIN profesional_paciente pp ON p.id_paciente = pp.id_paciente
+        WHERE p.id_paciente = $id_paciente";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Obtener datos del paciente
+        $row = $result->fetch_assoc();
+        $altura = $row['altura'];
+        $sexo = $row['sexo'];
+        $email = $row['correo_electronico'];
+        $profesionales = [];
+
+
+        // Obtener todos los profesionales asignados
+        do {
+            $id = $row['id_profesional'];
+            $profesionalQuery = "SELECT nombre, apellidos FROM usuarios WHERE id_usuario = $id";
+            $profesionalResult = $conn->query($profesionalQuery);
+
+            if ($profesionalResult->num_rows > 0) {
+                $profesionalRow = $profesionalResult->fetch_assoc();
+                $nombreCompleto = $profesionalRow['nombre'] . ' ' . $profesionalRow['apellidos'];
+                $profesionales[] = $nombreCompleto;
+            }
+        } while ($row = $result->fetch_assoc());
+    } else {
+        echo "No se encontraron datos del paciente.";
+    }
+
+    $conn->close();
+
+    ?>
 
     <div class="content">
         <div class="welcome-message">
-            Bienvenido a tu Página de Inicio - Paciente
+            Bienvenido - <?php echo $_SESSION['nombre']; ?> <?php echo $_SESSION['apellidos']; ?> 
         </div>
-        <!-- Aquí puedes agregar más contenido según sea necesario -->
+        <div class="info-paciente">
+            <h3>Información Personal</h3>
+            <p>Sexo: <?php echo $sexo; ?></p>
+            <p>Altura: <?php echo $altura; ?> cm</p>
+            <p>Email: <?php echo $email; ?></p>
+            <p>Profesional/es Asignado/s: <?php echo implode(", ", $profesionales); ?></p>
+        </div>
+        <div class="botones-actividades">
+            <button class="btn btn-primary" onclick="location.href='iniciarActividad.php'">Iniciar Actividad</button>
+            <button class="btn btn-secondary" onclick="location.href='actividadesEstadisticas.php'">Actividades y Estadísticas</button>
+        </div>
     </div>
 </body>
 </html>

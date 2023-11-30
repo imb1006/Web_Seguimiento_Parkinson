@@ -155,3 +155,6 @@ COMMIT;
 --
 INSERT INTO `Usuarios` (`id_usuario`, `nombre`, `apellidos`, `correo_electronico`, `contrasena`, `tipo_usuario`) 
 VALUES (NULL, 'Ines', 'Martos Barbero', 'imb1006@alu.ubu.es', 'gestion', 'administrador');
+
+INSERT INTO `Usuarios` (`id_usuario`, `nombre`, `apellidos`, `correo_electronico`, `contrasena`, `tipo_usuario`) 
+VALUES (6 , 'Celia', 'Martos Barbero', 'cemb1006@alu.ubu.es', 'prof', 'profesional');
