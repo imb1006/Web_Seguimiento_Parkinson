@@ -33,11 +33,11 @@
     </style>
 </head>
 <body>
-    <?php include 'menu.html'; ?>
+    <?php include 'menu.php'; ?>
 
     <div class="content">
         <div class="welcome-message">
-            Bienvenido a tu Página de Inicio
+            Bienvenido a tu Página de Inicio - Paciente
         </div>
         <!-- Aquí puedes agregar más contenido según sea necesario -->
     </div>

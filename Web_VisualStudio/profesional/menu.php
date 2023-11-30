@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive" style="">
 
-
 <body>
     <section id="nav-bar">
         <nav class="navbar navbar-expand-lg bg-light">
@@ -13,7 +12,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="inicioAdminHTML.php">Inicio</a>
+                            <a class="nav-link" href="inicioProfesionalHTML.php">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,6 +42,5 @@
     ?>
 
     <script src="../confirmacion.js"></script>
-
 </body>
 </html>

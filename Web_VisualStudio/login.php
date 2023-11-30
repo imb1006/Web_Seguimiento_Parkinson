@@ -55,10 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header('Location: admin/inicioAdminHTML.php');
                     break;
                 case 'profesional':
-                    header('Location: profesional/inicioProfesional.html');
+                    header('Location: profesional/inicioProfesionalHTML.php');
                     break;
                 case 'paciente':
-                    header('Location: paciente/inicioPaciente.html');
+                    header('Location: paciente/inicioPacienteHTML.php');
                     break;
             }
         } else {
