@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive" style="">
+
+    
+<head>
+    <!-- Asegúrate de que el documento esté utilizando UTF-8 -->
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Estilos adicionales para los elementos del formulario -->
+    <style>
+        /* Centrar verticalmente */
+        html, body {
+            height: 100%;
+            margin: 0; /* Asegúrese de que no haya márgenes adicionales */
+            background: linear-gradient(135deg, rgba(174, 214, 241, 0.3), rgba(250, 219, 216, 0.3), rgba(245, 183, 177, 0.3), rgba(210, 180, 222, 0.3));
+            background-blend-mode: overlay;
+        }
+
+        
+        .container {
+            width: 350px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Arial, sans-serif;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .title {
+            font-size: 20px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 50px; /* Espacio antes de los campos del formulario */
+        }
+
+        .form-field {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-field input, .form-field select {
+            width: calc(100% - 30px);
+            border: 0;
+            border-bottom: 2px solid lightgray;
+            outline: none;
+            padding: 5px 0;
+            background: transparent;
+            font-size: 16px; /* Ajustar según sea necesario */
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field input:not(:placeholder-shown),
+        .form-field select:not(:placeholder-shown) {
+            border-bottom: 2px solid gray;
+        }
+
+        .form-field label {
+            color: lightgray;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .form-field input:focus + label,
+        .form-field select:focus + label,
+        .form-field input:not(:placeholder-shown) + label,
+        .form-field select:not(:placeholder-shown) + label {
+            opacity: 0;
+        }
+
+        .form-field .password-icon {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .form-field .password-icon:focus {
+            outline: none;
+        }
+
+        .form-field select {
+            width: calc(100% - 30px);
+            border: 0;
+            border-bottom: 2px solid lightgray;
+            outline: none;
+            padding: 5px 0;
+            background: transparent;
+            font-size: 16px; /* Ajustar según sea necesario */
+        }
+
+        .form-field select.select-placeholder {
+            border-bottom: 2px solid lightgray; /* Color de línea para el placeholder */
+        }
+
+        /* Estilo adicional para la opción por defecto del select */
+        .form-field select option {
+            color: lightgray;
+        }
+
+        /* Estilo para que las opciones se vean normales al desplegar */
+        .form-field select option:not(:first-child) {
+            color: black;
+        }
+
+        .select-placeholder {
+            color: lightgray !important; /* Forzar el color gris claro */
+        }
+
+        /* Estilos para el botón */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #79c3f5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #D2B4DE;
+        }
+    </style>
+</head>
+<body style="" class="" id="Login.default.F.U">
+
+    <div class="container">
+        <div class="title">Marchando con Párkinson</div>
+        <form id="loginForm" action="login.php" method="post">
+            <div class="form-field">
+                <input type="email" id="email" name="email" placeholder=" " required>
+                <label for="email">Correo Electrónico</label>
+            </div>
+            <div class="form-field">
+                <input type="password" id="password" name="password" placeholder=" " required>
+                <label for="password">Contraseña</label>
+                <i class="fas fa-eye password-icon" id="togglePassword"></i>
+            </div>
+            <div class="form-field">
+                <select id="userType" name="userType" required onchange="updatePlaceholderStyle(this)">
+                    <option value="">Seleccione tipo de usuario</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="profesional">Profesional</option>
+                    <option value="paciente">Paciente</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        function updatePlaceholderStyle(selectElement) {
+            if (selectElement.selectedIndex === 0) {
+                selectElement.classList.add("select-placeholder");
+            } else {
+                selectElement.classList.remove("select-placeholder");
+            }
+        }
+
+        document.getElementById('togglePassword').addEventListener('click', function (e) {
+            const password = document.getElementById('password');
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updatePlaceholderStyle(document.getElementById('userType'));
+        });
+    </script>
+</body>
+</html>

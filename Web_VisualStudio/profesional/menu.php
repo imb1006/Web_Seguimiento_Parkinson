@@ -19,8 +19,8 @@
                               Mi cuenta
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="../actualizarCorreo.html">Actualizar correo</a></li>
-                              <li><a class="dropdown-item" href="../cambioContraseña.html">Cambiar contraseña</a></li>
+                              <li><a class="dropdown-item" href="../common/actualizarCorreo.html">Actualizar correo</a></li>
+                              <li><a class="dropdown-item" href="../common/cambiarContraseña.html">Cambiar contraseña</a></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="#" onclick="confirmarAccion('eliminarCuenta')">Eliminar cuenta</a></li>
                             </ul>
@@ -41,6 +41,6 @@
     echo "</script>\n";
     ?>
 
-    <script src="../confirmacion.js"></script>
+    <script src="../js/confirmacion.js"></script>
 </body>
 </html>
