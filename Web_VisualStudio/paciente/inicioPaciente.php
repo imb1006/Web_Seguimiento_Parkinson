@@ -39,10 +39,22 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .botones-actividades button {
+        button[type="submit"]  {
             margin: 10px;
             padding: 10px 20px;
+            border: none;
+            background-color: #79c3f5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+
+        button[type="submit"]:hover {
+            background-color: #D2B4DE;
+        }
+
 
     </style>
 </head>
@@ -117,8 +129,8 @@
             <p>Profesional/es Asignado/s: <?php echo implode(", ", $profesionales); ?></p>
         </div>
         <div class="botones-actividades">
-            <button class="btn btn-primary" onclick="location.href='../common/iniciarActividad.php'">Iniciar Actividad</button>
-            <button class="btn btn-secondary" onclick="location.href='../common/actividadesEstadisticas.php'">Actividades y Estadísticas</button>
+            <button type="submit" onclick="location.href='../common/iniciarActividad.php'">Iniciar Actividad</button>
+            <button type="submit" onclick="location.href='../common/actividadesEstadisticas.php'">Actividades y Estadísticas</button>
         </div>
     </div>
 </body>
