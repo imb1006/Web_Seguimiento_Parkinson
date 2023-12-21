@@ -2,6 +2,13 @@
 <html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive" style="">
 
 <body>
+    <?php
+    session_start();
+    echo "<script type='text/javascript'>\n";
+    echo "var userType = '" . $_SESSION['user_type'] . "';\n";
+    echo "</script>\n";
+    ?>
+
     <section id="nav-bar">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
@@ -33,13 +40,6 @@
             </div>
         </nav>
     </section>
-
-    <?php
-    session_start();
-    echo "<script type='text/javascript'>\n";
-    echo "var userType = '" . $_SESSION['user_type'] . "';\n";
-    echo "</script>\n";
-    ?>
 
     <script src="../js/confirmacion.js"></script>
 
