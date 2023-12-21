@@ -1,0 +1,83 @@
+
+/* Estilos generales */
+html, body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(135deg, rgba(174, 214, 241, 0.3), rgba(250, 219, 216, 0.3), rgba(245, 183, 177, 0.3), rgba(210, 180, 222, 0.3));
+    background-blend-mode: overlay;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para botones */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #79c3f5;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button[type="submit"]:hover {
+    background-color: #D2B4DE;
+}
+
+
+/* Estilos para contenedores y títulos */
+/*Se usa para mostrar al paciente su información*/
+.container, .info-paciente {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*Se usa en la pantalla de inicio*/
+.title, .welcome-message {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos adicionales para formularios y campos */
+.form-field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-field input, .form-field select {
+    width: calc(100% - 30px);
+    border: 0;
+    border-bottom: 2px solid lightgray;
+    outline: none;
+    padding: 5px 0;
+    background: transparent;
+    font-size: 16px;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field input:not(:placeholder-shown),
+.form-field select:not(:placeholder-shown) {
+    border-bottom: 2px solid gray;
+}
+
+.form-field label {
+    color: lightgray;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.form-field input:focus + label,
+.form-field select:focus + label,
+.form-field input:not(:placeholder-shown) + label,
+.form-field select:not(:placeholder-shown) + label {
+    opacity: 0;
+}
