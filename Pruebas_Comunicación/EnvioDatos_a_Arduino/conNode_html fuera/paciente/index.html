@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control Arduino</title>
+    <script>
+        function sendCommand(command) {
+            fetch('http://localhost:3000/command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ command: command }),
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('statusDisplay').innerText = data;
+            });
+        }
+
+        function getStatus() {
+            fetch('http://localhost:3000/status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('statusDisplay').innerText = `LED is currently ${data.ledStatus}`;
+                });
+        }
+
+        setInterval(getStatus, 1000); // Actualiza el estado del LED cada segundo
+    </script>
+</head>
+<body>
+    <button onclick="sendCommand('1')">Encender LED</button>
+    <button onclick="sendCommand('0')">Apagar LED</button>
+    <p id="statusDisplay">Estado del LED...</p>
+</body>
+</html>

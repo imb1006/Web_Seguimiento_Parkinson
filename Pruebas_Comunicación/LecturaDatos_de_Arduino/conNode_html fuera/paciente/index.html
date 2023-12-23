@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arduino Data Display</title>
+    <script>
+        function fetchData() {
+            fetch('http://localhost:3000/data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('dataDisplay').innerText = data.data;
+                });
+        }
+
+        setInterval(fetchData, 1000); // Actualiza los datos cada segundo
+    </script>
+</head>
+<body>
+    <h1>Arduino Data:</h1>
+    <p id="dataDisplay">Waiting for data...</p>
+</body>
+</html>
+
