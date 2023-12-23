@@ -5,7 +5,38 @@
     <title>Página de Inicio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+
+    <script>
+        //Prueba LED
+        function sendCommand(command) {
+            fetch('http://localhost:3000/command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ command: command }),
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('statusDisplay').innerText = data;
+            });
+        }
+
+        function getStatus() {
+            fetch('http://localhost:3000/status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('statusDisplay').innerText = `LED is currently ${data.ledStatus}`;
+                });
+        }
+
+        setInterval(getStatus, 1000); // Actualiza el estado del LED cada segundo
+
+    </script>
+
     <style>
         html, body {
             height: 100%;
@@ -31,6 +62,7 @@
         }
     </style>
 </head>
+
 <body>
     <?php include 'menu.php'; ?>
 
@@ -40,5 +72,12 @@
         </div>
         <!-- Aquí puedes agregar más contenido según sea necesario -->
     </div>
+    
+    <!-- Prueba LED -->
+    <button onclick="sendCommand('1')">Encender LED</button>
+    <button onclick="sendCommand('0')">Apagar LED</button>
+    <p id="statusDisplay">Estado del LED...</p>
+
 </body>
+
 </html>
