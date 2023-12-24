@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 // Inicializa variables para almacenar los datos del Arduino y los comandos a enviar
 let dataFromArduino = "No data";
 let commandToSend = "";
-
 let ledStatus = "off"; // Estado del LED
 
 // Ruta para recibir datos del Arduino
@@ -25,7 +24,8 @@ app.post('/data', (req, res) => {
 app.post('/command', (req, res) => {
     commandToSend = req.body.command;
     console.log(`Comando recibido: ${commandToSend}`); // Imprime el comando recibido
-    res.status(200).send(`LED turned ${commandToSend === '1' ? "on" : "off"}`);
+    ledStatus = commandToSend === '1' ? "on" : "off";
+    res.status(200).send(`LED turned ${ledStatus}`);
 });
 
 // Ruta para obtener los últimos datos del Arduino
