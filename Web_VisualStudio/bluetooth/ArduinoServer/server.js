@@ -43,5 +43,17 @@ app.get('/status', (req, res) => {
     res.json({ ledStatus: ledStatus });
 });
 
+// Ruta para iniciar la actividad (iniciar funcionamiento del MPU6050)
+app.post('/start-activity', (req, res) => {
+    commandToSend = 'START'; // Comando para iniciar actividad
+    res.status(200).send('Activity started');
+});
+
+// Ruta para finalizar la actividad (finalizar funcionamiento del MPU6050)
+app.post('/stop-activity', (req, res) => {
+    commandToSend = 'STOP'; // Comando para finalizar actividad
+    res.status(200).send('Activity stopped');
+});
+
 // Inicia el servidor en el puerto 3000
 app.listen(3000, () => console.log('Server running on port 3000'));

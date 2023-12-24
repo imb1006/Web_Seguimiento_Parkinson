@@ -4,6 +4,11 @@ import requests
 # Configura el puerto serie
 ser = serial.Serial('COM6', 9600)  # Ajusta el puerto COM y el baudrate
 
+def send_command_to_arduino(command):
+    """Envía un comando al Arduino."""
+    print(f"Enviando: {command}")  # Imprime el dato a enviar
+    ser.write(command.encode())
+
 while True:
     # Recibe datos de Arduino y los envía al servidor
     if ser.in_waiting:
@@ -15,5 +20,4 @@ while True:
     if response.status_code == 200:
         data = response.json()['command']
         if data:  # Verifica que data no esté vacío
-            print(f"Enviando: {data}")  # Imprime el dato a enviar
-            ser.write(data.encode())
+            send_command_to_arduino(data)
