@@ -3,7 +3,10 @@
 
 <body>
     <?php
-    session_start();
+    // Verifica si la sesión ya está iniciada
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    };
     echo "<script type='text/javascript'>\n";
     echo "var userType = '" . $_SESSION['user_type'] . "';\n";
     echo "</script>\n";

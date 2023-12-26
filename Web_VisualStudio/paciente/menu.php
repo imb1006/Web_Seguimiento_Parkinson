@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive" style="">
+<html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive">
 
 <body>
     <?php
-    session_start();
+    // Verifica si la sesión ya está iniciada
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    };
     echo "<script type='text/javascript'>\n";
     echo "var userType = '" . $_SESSION['user_type'] . "';\n";
     echo "</script>\n";

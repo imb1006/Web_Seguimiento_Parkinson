@@ -26,10 +26,10 @@
         }
 
         function getStatus() {
-            fetch('http://localhost:3000/status')
+            fetch('http://localhost:3000/data')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('statusDisplay').innerText = `LED is currently ${data.ledStatus}`;
+                    document.getElementById('statusDisplay').innerText = `Mensaje de Arduino: ${data.data}`;
                 });
         }
 

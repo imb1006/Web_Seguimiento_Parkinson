@@ -18,8 +18,8 @@ void setup() {
 
 void loop() {
   // Envía un mensaje constante
-  btSerial.println("Hola desde Arduino");
-  delay(2000);
+  //btSerial.println("Hola desde Arduino");
+  //delay(2000);
 
   // Escucha comandos para el LED
   if (btSerial.available()) {
@@ -29,8 +29,10 @@ void loop() {
 
     if (received == '1') {
       digitalWrite(LED_PIN, HIGH);
+      btSerial.println("LED Encendido");
     } else if (received == '0') {
       digitalWrite(LED_PIN, LOW);
+      btSerial.println("LED Apagado");
     }
   }
 }
