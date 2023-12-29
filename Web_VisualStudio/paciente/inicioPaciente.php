@@ -31,7 +31,6 @@
             margin-bottom: 20px;
         }
         
-
         .info-paciente {
             background-color: #fff;
             padding: 20px;

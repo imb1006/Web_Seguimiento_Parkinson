@@ -17,7 +17,17 @@ let bloqueos = 0;
 let Ptotal = 0;
 let actividadMin = 0;
 let velocidadMedia = 0;
+let estadoActividad = 'indefinido'; // Estado inicial de la actividad
 let commandToSend = "";
+
+app.post('/actividad', (req, res) => {
+    estadoActividad = req.body.estado;
+    res.status(200).send(`Estado de la actividad actualizado a ${estadoActividad}`);
+});
+
+app.get('/actividad', (req, res) => {
+    res.json({ estado: estadoActividad });
+});
 
 app.post('/command', (req, res) => {
     commandToSend = req.body.command;
@@ -78,48 +88,6 @@ app.get('/datos', (req, res) => {
         velocidadMedia: velocidadMedia
     });
 });
-
-// Ruta para recibir datos del Arduino
-/*/app.post('/data', (req, res) => {
-    dataFromArduino = req.body.data;
-    console.log(`Datos de Arduino: ${dataFromArduino}`); // Para depuración
-    res.status(200).send('Data received');
-});
-
-// Ruta para enviar datos al Arduino
-app.post('/command', (req, res) => {
-    commandToSend = req.body.command;
-    console.log(`Comando recibido: ${commandToSend}`); // Imprime el comando recibido
-    //ledStatus = commandToSend === '1' ? "on" : "off";
-    //res.status(200).send(`LED turned ${ledStatus}`);
-});
-
-// Ruta para obtener los últimos datos del Arduino
-app.get('/data', (req, res) => {
-    res.json({ data: dataFromArduino });
-});
-
-// Ruta para obtener el último comando para el Arduino
-app.get('/command', (req, res) => {
-    res.json({ command: commandToSend });
-    commandToSend = ""; //  resetear el comando después de enviarlo
-});
-
-app.get('/status', (req, res) => {
-    res.json({ ledStatus: ledStatus });
-});
-
-// Ruta para iniciar la actividad (iniciar funcionamiento del MPU6050)
-app.post('/start-activity', (req, res) => {
-    commandToSend = 'START'; // Comando para iniciar actividad
-    res.status(200).send('Activity started');
-});
-
-// Ruta para finalizar la actividad (finalizar funcionamiento del MPU6050)
-app.post('/stop-activity', (req, res) => {
-    commandToSend = 'STOP'; // Comando para finalizar actividad
-    res.status(200).send('Activity stopped');
-});*/
 
 // Inicia el servidor en el puerto 3000
 app.listen(3000, () => console.log('Server running on port 3000'));

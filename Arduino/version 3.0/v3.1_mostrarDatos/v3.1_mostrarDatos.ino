@@ -29,7 +29,7 @@ const float gyroEscala = 250.0 / 32768.0;
 char command; // Variable para almacenar el comando recibido
 
 String texto = "";  // texto de entrada
-int boton1 = 0;     // flag para el botón START
+int boton1 = 3;     // flag para el botón START
 float contP = 0;    // numero de pasos entre bloqueos
 float Ptotal = 0;   // numero total de pasos
 int bloqueos = 0;   // numero de bloqueos
@@ -73,6 +73,19 @@ void contarPasos(){
     }        
 }
 
+void resetActivity() {
+  // Reinicia todas las variables y estados relevantes
+  contP = 0;
+  tiempo = 0;
+  tiempo_actividad = 0;
+  bloqueos = 0;
+  sum_vel = 0.0;
+  cont_vel = 0;
+  mean_vel = 0.0;
+  cont_espera = 0;
+  Ptotal = 0;
+}
+
 ////////////////////////////////////////////////////////// CONFIGURACIÓN DEL ///////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////    PROGRAMA       ///////////////////////////////////////////////////////////
 
@@ -112,7 +125,7 @@ void setup(){
     cte = 0.415f; // si se trata de un hombre
   }
     
-  //Serial.println("Presionar START...");
+  Serial.println("Presionar START...");
   lcd.setCursor(0, 0);  
   lcd.print("Presionar START");
 }
@@ -142,11 +155,13 @@ void loop(){
    
   if (digitalRead(8) == HIGH){  // botón START presionado 
     boton1 = 1;                 // cambiar el estado del boton
+    btSerial.println('1');      // Enviar estado al script de Python
     tiempo1 = millis()/1000;    // inicializamos el tiempo
     lcd.clear();                // borrar el contenido del lcd   
   } 
   if (digitalRead(7) == HIGH){  // botón STOP presionado
     boton1 = 0;                 // cambiar el estado del boton
+    btSerial.println('0');      // Enviar estado al script de Python
     lcd.clear();                // borrar el contenido del lcd
   }
 
@@ -167,9 +182,11 @@ void loop(){
     lcd.setCursor(7, 1);  
     lcd.print(contP);
     
-    //ahora por bluetooth
-    btSerial.print("contP:"); 
-    btSerial.println(contP);  
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(contP) && !isinf(contP)) {
+        btSerial.print("contP:");
+        btSerial.println(contP);
+    }
     
     // TIEMPO
     Serial.print("Tiempo (s): ");
@@ -181,15 +198,22 @@ void loop(){
     lcd.setCursor(11, 0);  
     lcd.print("s");
 
-    //ahora por bluetooth
-    btSerial.print("tiempo:"); 
-    btSerial.println(tiempo);  
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(tiempo)&& !isinf(tiempo)) {
+        btSerial.print("tiempo:");
+        btSerial.println(tiempo);
+    }
     
     // FRECUENCIA
     frecuencia = (contP/tiempo);
 
     //VELOCIDAD (Km/h)
     velocidad = frecuencia*60*60*cte*altura/100000.;
+
+    // Validación para NaN y Inf
+    if (isnan(velocidad) || isinf(velocidad)) {
+        velocidad = 0.0; // Reemplazar NaN o Inf por 0.0
+    }
 
     lcd.setCursor(0, 0);  
     lcd.print("Velocidad:");
@@ -198,8 +222,11 @@ void loop(){
     lcd.setCursor(14, 0);  
     lcd.print("Km/h");
 
-    btSerial.print("velocidad:");
-    btSerial.println(velocidad);  //ahora por bluetooth
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(velocidad)&& !isinf(velocidad)) {
+        btSerial.print("velocidad:");
+        btSerial.println(velocidad);
+    }
     
     // mientras entre un paso y el siguiente haya menos de 5 segundos
     if (cont_espera < 5){
@@ -252,9 +279,11 @@ void loop(){
     lcd.setCursor(10, 0);  
     lcd.print(bloqueos);
 
-    
-    btSerial.print("bloqueos:");
-    btSerial.println(bloqueos);  //ahora por bluetooth
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(bloqueos)&& !isinf(bloqueos)) {
+        btSerial.print("bloqueos:");
+        btSerial.println(bloqueos);
+    }
     
     Serial.print(F("Número de bloqueos:\t"));
     Serial.println(bloqueos);
@@ -263,8 +292,11 @@ void loop(){
     Serial.print(F("Número de pasos:\t"));
     Serial.println(Ptotal);
 
-    btSerial.print("Ptotal:");
-    btSerial.println(Ptotal);  //ahora por bluetooth
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(Ptotal)&& !isinf(Ptotal)) {
+        btSerial.print("Ptotal:");
+        btSerial.println(Ptotal);
+    }
     
     // Tiempo total de actividad
     actividad_min = tiempo_actividad/60.;
@@ -273,8 +305,11 @@ void loop(){
     lcd.setCursor(4, 1);  
     lcd.print("min");
 
-    btSerial.print("actividad_min:");
-    btSerial.println(actividad_min);  //ahora por bluetooth
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(actividad_min)&& !isinf(actividad_min)) {
+        btSerial.print("actividad_min:");
+        btSerial.println(actividad_min);
+    }
     
     Serial.print(F("Tiempo de actividad:\t"));
     Serial.print(actividad_min); 
@@ -287,12 +322,17 @@ void loop(){
     lcd.setCursor(12, 1); 
     lcd.print("Km/h");
 
-    btSerial.print("mean_vel:");
-    btSerial.println(mean_vel);  //ahora por bluetooth
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(mean_vel)&& !isinf(mean_vel)) {
+        btSerial.print("mean_vel:");
+        btSerial.println(mean_vel);
+    }
     
     Serial.print(F("Velocidad media:\t"));
     Serial.print(mean_vel);
     Serial.print(" Km/h");
+
+    resetActivity(); // Llama a una función para resetear la actividad
   }
 
   delay(500); // leer cada medio segundo

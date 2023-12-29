@@ -10,6 +10,14 @@
 
 
     <script>
+        function actualizarEstado() {
+            fetch('http://localhost:3000/actividad')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('estadoActividad').innerText = data.estado;
+                });
+        }
+        
         function sendCommand(command) {
             fetch('http://localhost:3000/command', {
                 method: 'POST',
@@ -39,16 +47,8 @@
                 });
         }    
 
-        /*function getStatus() {
-            fetch('http://localhost:3000/data')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('arduinoData').innerText = `Mensaje de Arduino: ${data.data}`;
-                });
-        }*/
-
         setInterval(getArduinoData, 1000); // Actualiza los datos cada segundo
-        //setInterval(getStatus, 1000); 
+        setInterval(actualizarEstado, 1000); // Actualiza el estado de la actividad cada segundo
 
     </script>
 
@@ -114,7 +114,6 @@
         </div>
         <!-- Aquí puedes agregar más contenido según sea necesario -->
         <div id="arduinoMessage" class="info-actividad">
-           <!--  Mensaje de Arduino: <span id="arduinoData">Esperando datos...</span>-->
             <p>Pasos: <span id="contPData">Cargando...</span></p>
             <p>Tiempo: <span id="tiempoData">Cargando...</span></p>
             <p>Velocidad: <span id="velocidadData">Cargando...</span></p>
@@ -125,7 +124,6 @@
         </div>
         <button type="submit" onclick="sendCommand('1')">Iniciar Actividad</button>
         <button type="submit" onclick="sendCommand('0')">Finalizar Actividad</button>
-        <!--<p id="statusDisplay">Estado del LED...</p>-->
     </div>
 
 </body>
