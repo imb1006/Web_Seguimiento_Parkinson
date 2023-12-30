@@ -16,7 +16,7 @@ function confirmarAccion(accion) {
     } else if (accion === 'cerrarSesion') {
         mensaje = "¿Quieres cerrar sesión?";
         urlRedireccion = '../common/logout.php';
-    } else if (accion === 'finalizarActividad')
+    } else if (accion === 'finalizarActividad') {
         mensaje = "¿Quieres finalizar la actividad?";
         if (confirm(mensaje)) {
             // Pregunta adicional para guardar o descartar los datos
@@ -31,8 +31,9 @@ function confirmarAccion(accion) {
             }
             return; // Importante para evitar que se ejecute el último confirm
         }
+    }
 
-    if (confirm(mensaje)) {
+    if (mensaje && confirm(mensaje)) {
         window.location.href = urlRedireccion;
     }
 }
