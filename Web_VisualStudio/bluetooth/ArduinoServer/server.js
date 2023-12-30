@@ -17,8 +17,9 @@ let bloqueos = 0;
 let Ptotal = 0;
 let actividadMin = 0;
 let velocidadMedia = 0;
-let estadoActividad = 'indefinido'; // Estado inicial de la actividad
+let estadoActividad = 'esperando'; // Estado inicial de la actividad
 let commandToSend = "";
+let izquierdaFlag = false; // Manejar bloqueos "IZQUIERDA"
 
 app.post('/actividad', (req, res) => {
     estadoActividad = req.body.estado;
@@ -26,7 +27,7 @@ app.post('/actividad', (req, res) => {
 });
 
 app.get('/actividad', (req, res) => {
-    res.json({ estado: estadoActividad });
+    res.json({ estado: estadoActividad, izquierda: izquierdaFlag });
 });
 
 app.post('/command', (req, res) => {
@@ -76,6 +77,11 @@ app.post('/velocidadMedia', (req, res) => {
     res.status(200).send('Velocidad Media recibida');
 });
 
+app.post('/izquierda', (req, res) => {
+    izquierdaFlag = req.body.izquierda; // Recibe y actualiza el estado de "IZQUIERDA"
+    res.status(200).send('Estado IZQUIERDA actualizado');
+});
+
 // Ruta para obtener todos los datos
 app.get('/datos', (req, res) => {
     res.json({
@@ -85,7 +91,8 @@ app.get('/datos', (req, res) => {
         bloqueos: bloqueos,
         Ptotal: Ptotal,
         actividadMin: actividadMin,
-        velocidadMedia: velocidadMedia
+        velocidadMedia: velocidadMedia,
+        izquierda: izquierdaFlag
     });
 });
 

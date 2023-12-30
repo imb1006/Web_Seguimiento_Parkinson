@@ -46,7 +46,10 @@
         
         function actualizarDatosRecuadro(data) {
             let htmlContent = "";
-            if (estadoActividad === 'iniciada') {
+            if (data.izquierda) {
+                // Mostrar mensaje parpadeante
+                htmlContent = "<p class='parpadeante'>IZQUIERDA</p>";
+            } else if (estadoActividad === 'iniciada') {
                 // Mostrar datos de actividad en curso
                 htmlContent = 
                     `<p>Pasos: ${data.contP}</p>
@@ -120,6 +123,13 @@
             text-align: center; /* Centra el texto */
         }
 
+        .parpadeante {
+            animation: parpadeo 1s infinite;
+        }
+
+        @keyframes parpadeo {  
+            50% { opacity: 0; }
+        }
 
     </style>
 </head>

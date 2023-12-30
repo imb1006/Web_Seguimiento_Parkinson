@@ -25,6 +25,12 @@ while True:
     if ser.in_waiting:
         line = ser.readline().decode('utf-8').rstrip()
         print(f"Recibido de Arduino: {line}")
+        
+        if line == "IZQUIERDA":
+            send_data_to_server('izquierda', True)  # Enviar el estado de "IZQUIERDA" al servidor
+        else:
+            # Siempre que se recibe algo que no es IZQUIERDA, se desactiva este estado
+            send_data_to_server('izquierda', False)
 
         if line in ['0', '1']:  # Si es un mensaje de inicio/fin de actividad
             send_data_to_server('actividad', {'estado': 'detenida' if line == '0' else 'iniciada'})

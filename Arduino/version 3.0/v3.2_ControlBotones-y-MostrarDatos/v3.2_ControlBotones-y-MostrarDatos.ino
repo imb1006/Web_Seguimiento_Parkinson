@@ -219,8 +219,8 @@ void loop(){
   }
 
   // Funcionamiento según el estado del botón
+  
   if (boton1 == 1){ // INICIO DE LA MARCHA
-    
     // Leer el tiempo en ese instante y dividirlo entre 1000 para obtener el tiempo en segundos
     tiempo2 = millis()/1000;
     mpu.getAcceleration(&ax, &ay, &az); // leer ejes del acelerometro
@@ -233,8 +233,8 @@ void loop(){
     lcd.setCursor(7, 1);  
     lcd.print(contP);
     
-    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
-    if (!isnan(contP) && !isinf(contP)) {
+    // Enviar datos por Bluetooth, solo si no son 0, NaN ni Inf
+    if (contP > 0 && !isnan(contP) && !isinf(contP)) {
         btSerial.print("contP:");
         btSerial.println(contP);
     }
@@ -247,8 +247,8 @@ void loop(){
     lcd.setCursor(11, 0);  
     lcd.print("s");
 
-    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
-    if (!isnan(tiempo)&& !isinf(tiempo)) {
+    // Enviar datos por Bluetooth, solo si no son 0, NaN ni Inf
+    if (tiempo > 0 && !isnan(tiempo)&& !isinf(tiempo)) {
         btSerial.print("tiempo:");
         btSerial.println(tiempo);
     }
@@ -260,9 +260,9 @@ void loop(){
     velocidad = frecuencia*60*60*cte*altura/100000.;
 
     // Validación para NaN y Inf
-    if (isnan(velocidad) || isinf(velocidad)) {
-        velocidad = 0.0; // Reemplazar NaN o Inf por 0.0
-    }
+   // if (isnan(velocidad) || isinf(velocidad)) {
+     //   velocidad = 0.0; // Reemplazar NaN o Inf por 0.0
+    //}
 
     lcd.setCursor(0, 0);  
     lcd.print("Velocidad:");
@@ -271,8 +271,8 @@ void loop(){
     lcd.setCursor(14, 0);  
     lcd.print("Km/h");
 
-    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
-    if (!isnan(velocidad)&& !isinf(velocidad)) {
+    // Enviar datos por Bluetooth, solo si no son 0, NaN ni Inf
+    if (velocidad > 0 && !isnan(velocidad)&& !isinf(velocidad)) {
         btSerial.print("velocidad:");
         btSerial.println(velocidad);
     }
