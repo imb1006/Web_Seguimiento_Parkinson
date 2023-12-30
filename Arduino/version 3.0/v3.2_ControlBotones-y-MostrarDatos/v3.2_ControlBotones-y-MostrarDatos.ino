@@ -47,9 +47,9 @@ float cte = 0.000f;     // constante para obtener la longitud del paso
 float velocidad = 0.0;  // velocidad
 float sum_vel = 0.0;    // sumatorio de la velocidad
 int cont_vel = 0;       // contador de lecturas de la velocidad
-float mean_vel = 0.0;   // velocidad media
+float velocidadMedia = 0.0;   // velocidad media
 float frecuencia;       // frecuencia
-float actividad_min;    // tiempo de actividad en minutos
+float actividadMin;    // tiempo de actividad en minutos
 
 
 ////////////////////////////////// FUNCIONES ///////////////////////////////////// 
@@ -81,9 +81,63 @@ void resetActivity() {
   bloqueos = 0;
   sum_vel = 0.0;
   cont_vel = 0;
-  mean_vel = 0.0;
+  velocidadMedia = 0.0;
   cont_espera = 0;
   Ptotal = 0;
+}
+
+void finalizarActividad(){
+  // Número de bloqueos
+    lcd.setCursor(0,0);
+    lcd.print("Bloqueos:");
+    lcd.setCursor(10, 0);  
+    lcd.print(bloqueos);
+
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(bloqueos)&& !isinf(bloqueos)) {
+        btSerial.print("bloqueos:");
+        btSerial.println(bloqueos);
+    }
+
+    // Número total de pasos
+
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(Ptotal)&& !isinf(Ptotal)) {
+        btSerial.print("Ptotal:");
+        btSerial.println(Ptotal);
+    }
+    
+    // Tiempo total de actividad
+    actividadMin = tiempo_actividad/60.;
+    lcd.setCursor(0, 1); 
+    lcd.print(actividadMin);
+    lcd.setCursor(4, 1);  
+    lcd.print("min");
+
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(actividadMin)&& !isinf(actividadMin)) {
+        btSerial.print("actividadMin:");
+        btSerial.println(actividadMin);
+    }
+
+    // Velocidad media
+    lcd.setCursor(8, 1);  
+    // Cálculo de la velocidad media solo si cont_vel > 0
+    if (cont_vel > 0) {
+        velocidadMedia = sum_vel / cont_vel;
+    }
+    lcd.print(velocidadMedia);
+    lcd.setCursor(12, 1); 
+    lcd.print("Km/h");
+
+    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
+    if (!isnan(velocidadMedia)&& !isinf(velocidadMedia)) {
+        btSerial.print("velocidadMedia:");
+        btSerial.println(velocidadMedia);
+    }
+
+    //boton1 = 3;
+    resetActivity(); // Llama a una función para resetear la actividad
 }
 
 ////////////////////////////////////////////////////////// CONFIGURACIÓN DEL ///////////////////////////////////////////////////////////
@@ -125,7 +179,6 @@ void setup(){
     cte = 0.415f; // si se trata de un hombre
   }
     
-  Serial.println("Presionar START...");
   lcd.setCursor(0, 0);  
   lcd.print("Presionar START");
 }
@@ -137,17 +190,16 @@ void loop(){
   
   // Verificar si hay un comando disponible a través de Bluetooth
   if (btSerial.available()) {
-    //command = btSerial.readStringUntil('\n');
     char command = btSerial.read();
-    Serial.print("Recibido: "); //PRUEBA
-    Serial.println(command);
+
     if (command == '1') {
       boton1 = 1; // Iniciar la actividad como si se presionara el botón físico
       tiempo1 = millis() / 1000;
       lcd.clear();
     } else if (command == '0') {
       boton1 = 0; // Finalizar la actividad como si se presionara el botón físico
-      // Aquí puedes agregar cualquier lógica adicional necesaria para finalizar la actividad
+      lcd.clear();
+      finalizarActividad();
     }
   }
 
@@ -163,6 +215,7 @@ void loop(){
     boton1 = 0;                 // cambiar el estado del boton
     btSerial.println('0');      // Enviar estado al script de Python
     lcd.clear();                // borrar el contenido del lcd
+    finalizarActividad();
   }
 
   // Funcionamiento según el estado del botón
@@ -175,8 +228,6 @@ void loop(){
       
     // PASOS
     contarPasos(); // contamos los pasos
-    Serial.print("Pasos: ");
-    Serial.println(contP);
     lcd.setCursor(0, 1);  
     lcd.print("Pasos:");
     lcd.setCursor(7, 1);  
@@ -189,8 +240,6 @@ void loop(){
     }
     
     // TIEMPO
-    Serial.print("Tiempo (s): ");
-    Serial.println(tiempo);
     lcd.setCursor(0, 0);  
     lcd.print("Tiempo:"); 
     lcd.setCursor(8, 0);  
@@ -238,11 +287,6 @@ void loop(){
       if (velocidad < 100){
         sum_vel = sum_vel + velocidad ; // sumar velocidad al total
         cont_vel ++;                    // incrementar contador
-
-        // mostrar velocidad      
-        Serial.print("Velocidad:");
-        Serial.print(velocidad);
-        Serial.println(" Km/h");
       } 
     }
       
@@ -270,74 +314,6 @@ void loop(){
       tiempo = 0; 
       contP = 0;  
     } 
-
-  }else if (digitalRead(7)==HIGH || command == '0'){   // FIN DE LA MARCHA
-    
-    // Número de bloqueos
-    lcd.setCursor(0,0);
-    lcd.print("Bloqueos:");
-    lcd.setCursor(10, 0);  
-    lcd.print(bloqueos);
-
-    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
-    if (!isnan(bloqueos)&& !isinf(bloqueos)) {
-        btSerial.print("bloqueos:");
-        btSerial.println(bloqueos);
-    }
-    
-    Serial.print(F("Número de bloqueos:\t"));
-    Serial.println(bloqueos);
-
-    // Número total de pasos
-    Serial.print(F("Número de pasos:\t"));
-    Serial.println(Ptotal);
-
-    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
-    if (!isnan(Ptotal)&& !isinf(Ptotal)) {
-        btSerial.print("Ptotal:");
-        btSerial.println(Ptotal);
-    }
-    
-    // Tiempo total de actividad
-    actividad_min = tiempo_actividad/60.;
-    lcd.setCursor(0, 1); 
-    lcd.print(actividad_min);
-    lcd.setCursor(4, 1);  
-    lcd.print("min");
-
-    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
-    if (!isnan(actividad_min)&& !isinf(actividad_min)) {
-        btSerial.print("actividad_min:");
-        btSerial.println(actividad_min);
-    }
-    
-    Serial.print(F("Tiempo de actividad:\t"));
-    Serial.print(actividad_min); 
-    Serial.println(" min");
-
-    // Velocidad media
-    lcd.setCursor(8, 1);  
-    // Cálculo de la velocidad media solo si cont_vel > 0
-    if (cont_vel > 0) {
-        mean_vel = sum_vel / cont_vel;
-    }
-    lcd.print(mean_vel);
-    lcd.setCursor(12, 1); 
-    lcd.print("Km/h");
-
-    // Enviar datos por Bluetooth, solo si no son NaN ni Inf
-    if (!isnan(mean_vel)&& !isinf(mean_vel)) {
-        btSerial.print("mean_vel:");
-        btSerial.println(mean_vel);
-    }
-    
-    Serial.print(F("Velocidad media:\t"));
-    Serial.print(mean_vel);
-    Serial.print(" Km/h");
-
-    //boton1 = 3;
-    //resetActivity(); // Llama a una función para resetear la actividad
-  }
-
+  } 
   delay(500); // leer cada medio segundo
 }

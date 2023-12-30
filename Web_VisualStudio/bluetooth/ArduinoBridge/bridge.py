@@ -1,5 +1,7 @@
 import serial
 import requests
+import time
+import math
 
 # Configura el puerto serie
 ser = serial.Serial('COM6', 9600)  # Ajusta el puerto COM y el baudrate
@@ -12,11 +14,13 @@ def send_command_to_arduino(command):
 def send_data_to_server(endpoint, data):
     """Envía datos al servidor."""
     url = f'http://localhost:3000/{endpoint}'
-    requests.post(url, json={endpoint: data})
-    print(f"Enviado a {url}: {data}")
+    try:
+        with requests.post(url, json={endpoint: data}) as response:
+            print(f"Enviado a {url}: {data}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error al enviar a {url}: {e}")
 
 while True:
-    
     # Recibe datos de Arduino y los envía al servidor
     if ser.in_waiting:
         line = ser.readline().decode('utf-8').rstrip()
@@ -36,13 +40,18 @@ while True:
                 print("Error: no se pudo convertir el dato a flotante")
 
     # Recibe comandos del servidor y los envía a Arduino
-    #print("Solicitando comando al servidor...")
-    response = requests.get('http://localhost:3000/command')
-    #print(f"Respuesta recibida del servidor: {response.status_code}")
-    if response.status_code == 200:
-        data = response.json()['command']
-        if data:  # Verifica que data no esté vacío
-            print(f"Comando recibido del servidor: {data}")
-            send_command_to_arduino(data)
-        else:
-            print("No hay comando para enviar al Arduino")
+    try:
+        with requests.get('http://localhost:3000/command') as response:
+            if response.status_code == 200:
+                data = response.json()['command']
+                if data:
+                    print(f"Comando recibido del servidor: {data}")
+                    send_command_to_arduino(data)
+                else:
+                    print("No hay comando para enviar al Arduino")
+            else:
+                print(f"Error al solicitar comando: Estado {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error al conectar con el servidor: {e}")
+        
+    #time.sleep(1)  # Pausa de 1 segundo tras cada iteración para no sobrecargar el puerto
