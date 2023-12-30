@@ -54,4 +54,4 @@ while True:
     except requests.exceptions.RequestException as e:
         print(f"Error al conectar con el servidor: {e}")
         
-    #time.sleep(1)  # Pausa de 1 segundo tras cada iteración para no sobrecargar el puerto
+    time.sleep(0.1)  # Pausa de 0.1 segundos tras cada iteración para no sobrecargar el puerto

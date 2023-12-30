@@ -220,7 +220,7 @@ void loop(){
 
   // Funcionamiento según el estado del botón
   if (boton1 == 1){ // INICIO DE LA MARCHA
-
+    
     // Leer el tiempo en ese instante y dividirlo entre 1000 para obtener el tiempo en segundos
     tiempo2 = millis()/1000;
     mpu.getAcceleration(&ax, &ay, &az); // leer ejes del acelerometro

@@ -10,26 +10,29 @@
 
 
     <script>
+        let estadoActividad = 'esperando'; // Almacena el estado de la actividad (si se está realizando o no)
+
         function actualizarEstado() {
             fetch('http://localhost:3000/actividad')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('estadoActividad').innerText = data.estado;
+                    //document.getElementById('estadoActividad').innerText = data.estado;
+                    actividadIniciada = data.estado;
+                    actualizarDatosEnRecuadro();
                 });
         }
         
         function sendCommand(command) {
             fetch('http://localhost:3000/command', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify({ command: command }),
             })
             .then(response => response.text())
             .then(data => {
-                console.log(data); // Puedes mostrar un mensaje de confirmación si lo deseas
-                //document.getElementById('statusDisplay').innerText = data;
+                console.log(data); // Confirmación de envío del comando
+                estadoActividad = command === '1' ? 'iniciada' : 'finalizada';
+                actualizarDatosEnRecuadro(); // Actualizar el estado después de enviar el comando
             });
         }
 
@@ -37,15 +40,30 @@
             fetch('http://localhost:3000/datos')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('contPData').innerText = data.contP;
-                    document.getElementById('tiempoData').innerText = data.tiempo;
-                    document.getElementById('velocidadData').innerText = data.velocidad;
-                    document.getElementById('bloqueosData').innerText = data.bloqueos;
-                    document.getElementById('PtotalData').innerText = data.Ptotal;
-                    document.getElementById('actividadMinData').innerText = data.actividadMin;
-                    document.getElementById('velocidadMediaData').innerText = data.velocidadMedia;
+                    actualizarDatosRecuadro(data);
                 });
-        }    
+        } 
+        
+        function actualizarDatosRecuadro(data) {
+            let htmlContent = "";
+            if (estadoActividad === 'iniciada') {
+                // Mostrar datos de actividad en curso
+                htmlContent = 
+                    `<p>Pasos: ${data.contP}</p>
+                     <p>Tiempo: ${data.tiempo}</p>
+                     <p>Velocidad: ${data.velocidad}</p>`;
+            } else if (estadoActividad === 'finalizada') {
+                // Mostrar datos al finalizar la actividad
+                htmlContent = 
+                    `<p>Bloqueos: ${data.bloqueos}</p>
+                     <p>Total de Pasos: ${data.Ptotal}</p>
+                     <p>Actividad (min): ${data.actividadMin}</p>
+                     <p>Velocidad Media: ${data.velocidadMedia}</p>`;
+            } else {
+                htmlContent = "<p>Esperando a iniciar actividad</p>";
+            }
+            document.getElementById('datosActividad').innerHTML = htmlContent;
+        }
 
         setInterval(getArduinoData, 1000); // Actualiza los datos cada segundo
         setInterval(actualizarEstado, 1000); // Actualiza el estado de la actividad cada segundo
@@ -114,13 +132,9 @@
         </div>
         <!-- Aquí puedes agregar más contenido según sea necesario -->
         <div id="arduinoMessage" class="info-actividad">
-            <p>Pasos: <span id="contPData">Cargando...</span></p>
-            <p>Tiempo: <span id="tiempoData">Cargando...</span></p>
-            <p>Velocidad: <span id="velocidadData">Cargando...</span></p>
-            <p>Bloqueos: <span id="bloqueosData">Cargando...</span></p>
-            <p>Total de Pasos: <span id="PtotalData">Cargando...</span></p>
-            <p>Actividad (min): <span id="actividadMinData">Cargando...</span></p>
-            <p>Velocidad Media: <span id="velocidadMediaData">Cargando...</span></p>
+            <div id="datosActividad">
+                <!-- Aquí se mostrarán los datos de la actividad o el mensaje de espera -->
+            </div>
         </div>
         <button type="submit" onclick="sendCommand('1')">Iniciar Actividad</button>
         <button type="submit" onclick="sendCommand('0')">Finalizar Actividad</button>
