@@ -137,9 +137,6 @@
 <body>
 
     <div class="content">
-        <div class="welcome-message">
-            Bienvenido a tu Página de Inicio
-        </div>
         <!-- Aquí puedes agregar más contenido según sea necesario -->
         <div id="arduinoMessage" class="info-actividad">
             <div id="datosActividad">
@@ -147,7 +144,7 @@
             </div>
         </div>
         <button type="submit" onclick="sendCommand('1')">Iniciar Actividad</button>
-        <button type="submit" onclick="sendCommand('0')">Finalizar Actividad</button>
+        <button type="submit" onclick="sendCommand('0'); confirmarAccion('cerrarSesion')">Finalizar Actividad</button>
     </div>
 
 </body>
