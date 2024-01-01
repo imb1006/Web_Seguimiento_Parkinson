@@ -137,7 +137,6 @@ void finalizarActividad(){
         btSerial.println(velocidadMedia);
     }
 
-    //boton1 = 3;
     resetActivity(); // Llama a una función para resetear la actividad
 }
 

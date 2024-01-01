@@ -5,11 +5,11 @@ function confirmarAccion(accion) {
     if (accion === 'eliminarCuenta') {
         mensaje = "¿Quieres eliminar tu cuenta?";
         if (userType === 'administrador') {
-            urlRedireccion = 'admin/eliminarCuenta.php';
+            urlRedireccion = '../admin/eliminarCuenta.php';
         } else if (userType === 'profesional') {
-            urlRedireccion = 'profesional/eliminarCuenta.php';
+            urlRedireccion = '../profesional/eliminarCuenta.php';
         } else if (userType === 'paciente') {
-            urlRedireccion = 'paciente/eliminarCuenta.php';
+            urlRedireccion = '../paciente/eliminarCuenta.php';
         } else {
             urlRedireccion = '../common/logout.php'; // URL por defecto
         }
@@ -23,8 +23,18 @@ function confirmarAccion(accion) {
             print("Datos guardados");
             return;
         } else {
-            // Los datos de todas las variables se resetean y no se guardan
-            print("Datos descartados");
+            // Los datos de todas las variables se resetean y no se guardan en la BD
+            // El usuario es redirigido a su página de inicio
+            if (userType === 'administrador') {
+                urlRedireccion = '../admin/inicioAdmin.php';
+            } else if (userType === 'profesional') {
+                urlRedireccion = '../profesional/inicioProfesional.php';
+            } else if (userType === 'paciente') {
+                urlRedireccion = '../paciente/inicioPaciente.php';
+            } else {
+                urlRedireccion = '../common/logout.php'; // URL por defecto
+            }
+            window.location.href = urlRedireccion;
             return;
         }
     }

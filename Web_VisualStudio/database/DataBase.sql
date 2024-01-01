@@ -11,12 +11,10 @@
 CREATE TABLE `actividades` (
   `id_actividad` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
   `numero_bloqueos` int(11) NOT NULL,
-  `distancia` decimal(10,2) NOT NULL,
   `velocidad_media` decimal(10,2) NOT NULL,
-  `numero_pasos` int(11) NOT NULL
+  `numero_pasos` int(11) NOT NULL,
+  `duracion` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
