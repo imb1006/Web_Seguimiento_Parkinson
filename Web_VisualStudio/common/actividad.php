@@ -71,7 +71,16 @@
         setInterval(getArduinoData, 1000); // Actualiza los datos cada segundo
         setInterval(actualizarEstado, 1000); // Actualiza el estado de la actividad cada segundo
 
+        function finalizarYConfirmarActividad() {
+            sendCommand('0'); // Enviar comando para finalizar la actividad
+            setTimeout(function() {
+                confirmarAccion('finalizarActividad'); // Mostrar mensaje de confirmación después de un corto retraso
+            }, 2000); // Ajusta el tiempo de espera según sea necesario
+        }
+
     </script>
+
+    <script src="../js/confirmacion.js"></script>
 
     <style>
         html, body {
@@ -144,7 +153,7 @@
             </div>
         </div>
         <button type="submit" onclick="sendCommand('1')">Iniciar Actividad</button>
-        <button type="submit" onclick="sendCommand('0'); confirmarAccion('cerrarSesion')">Finalizar Actividad</button>
+        <button type="submit" onclick="finalizarYConfirmarActividad()">Finalizar Actividad</button>
     </div>
 
 </body>

@@ -17,19 +17,15 @@ function confirmarAccion(accion) {
         mensaje = "¿Quieres cerrar sesión?";
         urlRedireccion = '../common/logout.php';
     } else if (accion === 'finalizarActividad') {
-        mensaje = "¿Quieres finalizar la actividad?";
+        mensaje = "¿Deseas guardar los datos de la actividad?";
         if (confirm(mensaje)) {
-            // Pregunta adicional para guardar o descartar los datos
-            if (confirm("¿Deseas guardar los datos de la actividad?")) {
-                // Lógica para guardar los datos
-                console.log("Datos guardados");
-                // Aquí puedes redirigir a la página de guardado o manejar el guardado de datos
-            } else {
-                // Lógica para descartar los datos
-                console.log("Datos descartados");
-                // Aquí puedes redirigir a otra página o manejar el descarte de datos
-            }
-            return; // Importante para evitar que se ejecute el último confirm
+            // Los datos se almacenan en la base de datos y después las variables de arduino se resetean
+            console.log("Datos guardados");
+            return;
+        } else {
+            // Los datos de todas las variables se resetean y no se guardan
+            console.log("Datos descartados");
+            return;
         }
     }
 

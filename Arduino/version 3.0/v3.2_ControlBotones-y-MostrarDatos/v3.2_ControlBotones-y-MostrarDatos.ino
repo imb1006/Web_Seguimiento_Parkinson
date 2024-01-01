@@ -69,6 +69,7 @@ void contarPasos(){
         pierna = 0; // actualiza el estado de la pierna a "en reposo".
         cont_espera = 0; // reinicia el contador de espera.
         contP += 2; // incrementa el contador de pasos en 2.
+        Ptotal +=2; //incrementa el nº de pasos totales en 2.
       }
     }        
 }
@@ -308,7 +309,7 @@ void loop(){
 
       btSerial.println("IZQUIERDA");  //ahora por bluetooth
 
-      Ptotal += contP; // se guarda el número de pasos
+      //Ptotal += contP; // se guarda el número de pasos
       
       // restart
       tiempo = 0; 
