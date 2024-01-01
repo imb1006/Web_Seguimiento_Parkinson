@@ -20,11 +20,11 @@ function confirmarAccion(accion) {
         mensaje = "¿Deseas guardar los datos de la actividad?";
         if (confirm(mensaje)) {
             // Los datos se almacenan en la base de datos y después las variables de arduino se resetean
-            console.log("Datos guardados");
+            print("Datos guardados");
             return;
         } else {
             // Los datos de todas las variables se resetean y no se guardan
-            console.log("Datos descartados");
+            print("Datos descartados");
             return;
         }
     }
