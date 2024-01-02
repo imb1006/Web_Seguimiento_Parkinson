@@ -4,15 +4,7 @@ function confirmarAccion(accion) {
 
     if (accion === 'eliminarCuenta') {
         mensaje = "¿Quieres eliminar tu cuenta?";
-        if (userType === 'administrador') {
-            urlRedireccion = '../admin/eliminarCuenta.php';
-        } else if (userType === 'profesional') {
-            urlRedireccion = '../profesional/eliminarCuenta.php';
-        } else if (userType === 'paciente') {
-            urlRedireccion = '../paciente/eliminarCuenta.php';
-        } else {
-            urlRedireccion = '../common/logout.php'; // URL por defecto
-        }
+        realizarRedireccion(userType);
     } else if (accion === 'cerrarSesion') {
         mensaje = "¿Quieres cerrar sesión?";
         urlRedireccion = '../common/logout.php';
@@ -30,27 +22,17 @@ function confirmarAccion(accion) {
             .then(response => response.json())
             .then(data => {
                 console.log("Datos guardados", data);
-                // Redireccionar a la página adecuada dependiendo del tipo de usuario
-                realizarRedireccion(userType);
                 return;
             })
             .catch(error => {
                 console.error("Error al guardar datos", error);
             });
+            realizarRedireccion(userType);
             return;
         } else {
             // Los datos de todas las variables se resetean y no se guardan en la BD
             // El usuario es redirigido a su página de inicio
-            if (userType === 'administrador') {
-                urlRedireccion = '../admin/inicioAdmin.php';
-            } else if (userType === 'profesional') {
-                urlRedireccion = '../profesional/inicioProfesional.php';
-            } else if (userType === 'paciente') {
-                urlRedireccion = '../paciente/inicioPaciente.php';
-            } else {
-                urlRedireccion = '../common/logout.php'; // URL por defecto
-            }
-            window.location.href = urlRedireccion;
+            realizarRedireccion(userType);
             return;
         }
     }
