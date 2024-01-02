@@ -73,15 +73,15 @@
     // Verificar conexión
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
-}
+    }
+
     // Obtener información del paciente
     $id_paciente = $_SESSION['user_id'];
 
     // Consulta SQL
-    $sql = "SELECT p.altura, p.sexo, u.correo_electronico, pp.id_profesional
+    $sql = "SELECT p.altura, p.sexo, u.correo_electronico
         FROM pacientes p
         JOIN usuarios u ON p.id_paciente = u.id_usuario
-        LEFT JOIN profesional_paciente pp ON p.id_paciente = pp.id_paciente
         WHERE p.id_paciente = $id_paciente";
 
     $result = $conn->query($sql);
@@ -92,21 +92,16 @@
         $altura = $row['altura'];
         $sexo = $row['sexo'];
         $email = $row['correo_electronico'];
-        $profesionales = [];
-
-
+        
         // Obtener todos los profesionales asignados
-        do {
-            $id = $row['id_profesional'];
-            $profesionalQuery = "SELECT nombre, apellidos FROM usuarios WHERE id_usuario = $id";
-            $profesionalResult = $conn->query($profesionalQuery);
+        $profesionales = [];
+        $profesionalQuery = "SELECT nombre, apellidos FROM usuarios WHERE tipo_usuario = 'profesional'";
+        $profesionalResult = $conn->query($profesionalQuery);
 
-            if ($profesionalResult->num_rows > 0) {
-                $profesionalRow = $profesionalResult->fetch_assoc();
-                $nombreCompleto = $profesionalRow['nombre'] . ' ' . $profesionalRow['apellidos'];
-                $profesionales[] = $nombreCompleto;
-            }
-        } while ($row = $result->fetch_assoc());
+        while($profesionalRow = $profesionalResult->fetch_assoc()) {
+            $nombreCompleto = $profesionalRow['nombre'] . ' ' . $profesionalRow['apellidos'];
+            $profesionales[] = $nombreCompleto;
+        }
     } else {
         echo "No se encontraron datos del paciente.";
     }

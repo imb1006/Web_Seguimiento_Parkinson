@@ -32,16 +32,6 @@ CREATE TABLE `pacientes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesionales`
---
-
-CREATE TABLE `profesionales` (
-  `id_profesional` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `profesional_paciente`
 --
 
@@ -81,12 +71,6 @@ ALTER TABLE `actividades`
 --
 ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`id_paciente`);
-
---
--- Indices de la tabla `profesionales`
---
-ALTER TABLE `profesionales`
-  ADD PRIMARY KEY (`id_profesional`);
 
 --
 -- Indices de la tabla `profesional_paciente`
@@ -135,16 +119,10 @@ ALTER TABLE `pacientes`
   ADD CONSTRAINT `pacientes_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Filtros para la tabla `profesionales`
---
-ALTER TABLE `profesionales`
-  ADD CONSTRAINT `profesionales_ibfk_1` FOREIGN KEY (`id_profesional`) REFERENCES `usuarios` (`id_usuario`);
-
---
 -- Filtros para la tabla `profesional_paciente`
 --
 ALTER TABLE `profesional_paciente`
-  ADD CONSTRAINT `profesional_paciente_ibfk_1` FOREIGN KEY (`id_profesional`) REFERENCES `profesionales` (`id_profesional`),
+  ADD CONSTRAINT `profesional_paciente_ibfk_1` FOREIGN KEY (`id_profesional`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `profesional_paciente_ibfk_2` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`);
 COMMIT;
 
