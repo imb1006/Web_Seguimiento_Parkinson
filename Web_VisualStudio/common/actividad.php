@@ -15,6 +15,7 @@
         };
         echo "<script type='text/javascript'>\n";
         echo "var userType = '" . $_SESSION['user_type'] . "';\n";
+        echo "var userId = '" . $_SESSION['user_id'] . "';\n";
         echo "</script>\n";
     ?>
 
@@ -27,7 +28,7 @@
                 .then(data => {
                     //document.getElementById('estadoActividad').innerText = data.estado;
                     actividadIniciada = data.estado;
-                    actualizarDatosEnRecuadro();
+                    actualizarDatosRecuadro();
                 });
         }
         
@@ -41,7 +42,7 @@
             .then(data => {
                 console.log(data); // Confirmación de envío del comando
                 estadoActividad = command === '1' ? 'iniciada' : 'finalizada';
-                actualizarDatosEnRecuadro(); // Actualizar el estado después de enviar el comando
+                actualizarDatosRecuadro(); // Actualizar el estado después de enviar el comando
             });
         }
 

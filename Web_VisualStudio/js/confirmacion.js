@@ -18,9 +18,25 @@ function confirmarAccion(accion) {
         urlRedireccion = '../common/logout.php';
     } else if (accion === 'finalizarActividad') {
         mensaje = "¿Deseas guardar los datos de la actividad?";
+        console.log('userType:', userType, 'userId:', userId);
         if (confirm(mensaje)) {
             // Los datos se almacenan en la base de datos y después las variables de arduino se resetean
-            print("Datos guardados");
+            // Enviar solicitud al servidor para guardar los datos
+            fetch('http://localhost:3000/guardarActividad', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ userId: userId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Datos guardados", data);
+                // Redireccionar a la página adecuada dependiendo del tipo de usuario
+                realizarRedireccion(userType);
+                return;
+            })
+            .catch(error => {
+                console.error("Error al guardar datos", error);
+            });
             return;
         } else {
             // Los datos de todas las variables se resetean y no se guardan en la BD
@@ -42,4 +58,18 @@ function confirmarAccion(accion) {
     if (mensaje && confirm(mensaje)) {
         window.location.href = urlRedireccion;
     }
+}
+
+function realizarRedireccion(userType) {
+    let urlRedireccion;
+    if (userType === 'administrador') {
+        urlRedireccion = '../admin/inicioAdmin.php';
+    } else if (userType === 'profesional') {
+        urlRedireccion = '../profesional/inicioProfesional.php';
+    } else if (userType === 'paciente') {
+        urlRedireccion = '../paciente/inicioPaciente.php';
+    } else {
+        urlRedireccion = '../common/logout.php'; // O una página por defecto
+    }
+    window.location.href = urlRedireccion;
 }

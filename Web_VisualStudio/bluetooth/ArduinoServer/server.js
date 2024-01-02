@@ -1,13 +1,31 @@
 // Importar los módulos necesarios
 const express = require('express');
+const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express(); // Crea aplicación Express
+app.use(express.json());
 
 // Configura el middleware para CORS y bodyParser
 app.use(cors());
 app.use(bodyParser.json());
+
+// Configurar la conexión a la base de datos
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "webparkinson"
+});
+
+db.connect(err => {
+    if (err) {
+        console.error('Error al conectar a la base de datos:', err);
+        return;
+    }
+    console.log('Conexión a la base de datos establecida');
+});
 
 // Inicializa variables para almacenar los datos del Arduino y los comandos a enviar
 let contP = 0;
@@ -93,6 +111,26 @@ app.get('/datos', (req, res) => {
         actividadMin: actividadMin,
         velocidadMedia: velocidadMedia,
         izquierda: izquierdaFlag
+    });
+});
+
+// Endpoint para guardar datos de actividad
+app.post('/guardarActividad', (req, res) => {
+    const idPaciente = req.body.userId;
+
+    const query = `
+        INSERT INTO actividades 
+        (id_paciente, numero_bloqueos, velocidad_media, numero_pasos, duracion) 
+        VALUES (?, ?, ?, ?, ?)
+    `;
+
+    db.query(query, [idPaciente, bloqueos, velocidadMedia, Ptotal, actividadMin], (error, results) => {
+        if (error) {
+            console.error('Error al insertar en la base de datos:', error);
+            res.status(500).send('Error al guardar datos de actividad');
+            return;
+        }
+        res.send('Datos de actividad guardados correctamente');
     });
 });
 
