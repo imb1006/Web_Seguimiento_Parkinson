@@ -259,11 +259,6 @@ void loop(){
     //VELOCIDAD (Km/h)
     velocidad = frecuencia*60*60*cte*altura/100000.;
 
-    // Validación para NaN y Inf
-   // if (isnan(velocidad) || isinf(velocidad)) {
-     //   velocidad = 0.0; // Reemplazar NaN o Inf por 0.0
-    //}
-
     lcd.setCursor(0, 0);  
     lcd.print("Velocidad:");
     lcd.setCursor(10, 0);  
@@ -307,8 +302,6 @@ void loop(){
       lcd.print("IZQUIERDA");
 
       btSerial.println("IZQUIERDA");  //ahora por bluetooth
-
-      //Ptotal += contP; // se guarda el número de pasos
       
       // restart
       tiempo = 0; 
