@@ -48,12 +48,14 @@ app.get('/actividad', (req, res) => {
     res.json({ estado: estadoActividad, izquierda: izquierdaFlag });
 });
 
+// Ruta para recibir comandos
 app.post('/command', (req, res) => {
     commandToSend = req.body.command;
     console.log(`Comando recibido: ${commandToSend}`); // Verifica que se recibe el comando
     res.status(200).send(`Comando ${commandToSend} recibido`);
 });
 
+// Ruta para enviar comandos
 app.get('/command', (req, res) => {
     res.json({ command: commandToSend });
     commandToSend = ""; // Opcional: resetear el comando después de enviarlo
@@ -131,6 +133,29 @@ app.post('/guardarActividad', (req, res) => {
             return;
         }
         res.send('Datos de actividad guardados correctamente');
+    });
+});
+
+// Nueva ruta para obtener datos del paciente
+app.get('/datosPaciente', (req, res) => {
+    const idPaciente = req.query.id_paciente;
+
+    const query = `
+        SELECT altura, sexo 
+        FROM pacientes 
+        WHERE id_paciente = ?`;
+
+    db.query(query, [idPaciente], (error, results) => {
+        if (error) {
+            console.error('Error al obtener datos del paciente:', error);
+            res.status(500).send('Error al obtener datos del paciente');
+            return;
+        }
+        if (results.length > 0) {
+            res.json(results[0]); // Envía los datos del paciente a Arduino
+        } else {
+            res.status(404).send('Paciente no encontrado');
+        }
     });
 });
 

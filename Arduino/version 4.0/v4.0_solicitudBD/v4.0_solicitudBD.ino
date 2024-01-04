@@ -26,9 +26,9 @@ const float accEscala = (2.0 * 9.81 )/ 32768.0;
 const float gyroEscala = 250.0 / 32768.0;
 
 ////////////////////////////////// VARIABLES /////////////////////////////////////
-char command; // Variable para almacenar el comando recibido
+String command; // Variable para almacenar el comando recibido
 
-String texto = "";  // texto de entrada
+//String texto = "";  // texto de entrada
 int boton1 = 3;     // flag para el botón START
 float contP = 0;    // numero de pasos entre bloqueos
 float Ptotal = 0;   // numero total de pasos
@@ -69,6 +69,7 @@ void contarPasos(){
         pierna = 0; // actualiza el estado de la pierna a "en reposo".
         cont_espera = 0; // reinicia el contador de espera.
         contP += 2; // incrementa el contador de pasos en 2.
+        Ptotal +=2; //incrementa el nº de pasos totales en 2.
       }
     }        
 }
@@ -135,6 +136,8 @@ void finalizarActividad(){
         btSerial.print("velocidadMedia:");
         btSerial.println(velocidadMedia);
     }
+
+    resetActivity(); // Llama a una función para resetear la actividad
 }
 
 ////////////////////////////////////////////////////////// CONFIGURACIÓN DEL ///////////////////////////////////////////////////////////
@@ -152,29 +155,6 @@ void setup(){
   lcd.init();             // Iniciar LCD
   lcd.backlight();
   lcd.clear();
- 
-  // Introducir la altura
-  Serial.print("Introduce la altura del paciente (cm): ");
-  delay(3000);
-
-  // Mostrar la altura y convertirla a entero
-  texto = 155; // fijo para pruebas ------------------------
-  Serial.println(texto);
-  altura = texto.toInt(); 
-
-  // Introducir el sexo
-  Serial.print("Introduce el sexo del paciente: ");
-  delay(3000);
-
-  // Mostrar el sexo
-  texto = "mujer"; // fijo para pruebas--------------------
-  Serial.println(texto);
-    
-  if (texto == "mujer"){
-    cte = 0.413f;  // Si se trata de una mujer
-  } else { 
-    cte = 0.415f; // si se trata de un hombre
-  }
     
   lcd.setCursor(0, 0);  
   lcd.print("Presionar START");
@@ -187,28 +167,36 @@ void loop(){
   
   // Verificar si hay un comando disponible a través de Bluetooth
   if (btSerial.available()) {
-    char command = btSerial.read();
+    String command = btSerial.readStringUntil('\n'); // Lee la línea completa
 
-    if (command == '1') {
+    // Obtener datos actividad
+    // Tenemos en cuenta que el formato que se recibe es: "altura:<valor>,sexo:<valor>"
+    // Procesar el comando para obtener altura y sexo
+    if (command.startsWith("altura:")) {
+      altura = command.substring(7, command.indexOf(',')).toInt();
+      Serial.print("Altura recibida: ");
+      Serial.println(altura); // Imprime la altura en el monitor serial
+      
+      String sexoStr = command.substring(command.indexOf("sexo:") + 5);
+      char sexo = sexoStr.charAt(0);
+      Serial.print("Sexo recibido: ");
+      Serial.println(sexo); // Imprime el sexo en el monitor serial
+      if (sexo == 'F'){
+        cte = 0.413f;  // Si se trata de una mujer
+      } else { 
+        cte = 0.415f; // si se trata de un hombre
+      }
+    }
+    
+    // Control de la actividad
+    if (command == "1") {
       boton1 = 1; // Iniciar la actividad como si se presionara el botón físico
       tiempo1 = millis() / 1000;
       lcd.clear();
-    } else if (command == '0') {
+    } else if (command == "0") {
       boton1 = 0; // Finalizar la actividad como si se presionara el botón físico
       lcd.clear();
       finalizarActividad();
-    } else if (command == '2'){
-      resetActivity();
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("Actividad Reset");
-    } else if (command == '3'){
-      // Continuar actividad sin reiniciar las variables
-      boton1 = 1; // Asumiendo que boton1 = 1 indica actividad en curso
-      // No reiniciar tiempo1 o cualquier otra variable importante
-      lcd.clear();
-      lcd.setCursor(0, 0);  
-      lcd.print("Continuando Act.");
     }
   }
 
@@ -268,11 +256,6 @@ void loop(){
     //VELOCIDAD (Km/h)
     velocidad = frecuencia*60*60*cte*altura/100000.;
 
-    // Validación para NaN y Inf
-   // if (isnan(velocidad) || isinf(velocidad)) {
-     //   velocidad = 0.0; // Reemplazar NaN o Inf por 0.0
-    //}
-
     lcd.setCursor(0, 0);  
     lcd.print("Velocidad:");
     lcd.setCursor(10, 0);  
@@ -316,8 +299,6 @@ void loop(){
       lcd.print("IZQUIERDA");
 
       btSerial.println("IZQUIERDA");  //ahora por bluetooth
-
-      Ptotal += contP; // se guarda el número de pasos
       
       // restart
       tiempo = 0; 

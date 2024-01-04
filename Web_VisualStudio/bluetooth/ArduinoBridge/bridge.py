@@ -9,7 +9,8 @@ ser = serial.Serial('COM6', 9600)  # Ajusta el puerto COM y el baudrate
 def send_command_to_arduino(command):
     """Envía un comando al Arduino."""
     print(f"Enviando a Arduino: {command}")  # Imprime el dato a enviar
-    ser.write(command.encode())
+    command_saltoLinea = command + '\n'
+    ser.write(command_saltoLinea.encode())
     
 def send_data_to_server(endpoint, data):
     """Envía datos al servidor."""

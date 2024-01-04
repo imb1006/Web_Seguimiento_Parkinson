@@ -25,7 +25,7 @@ CREATE TABLE `actividades` (
 
 CREATE TABLE `pacientes` (
   `id_paciente` int(11) NOT NULL,
-  `altura` decimal(5,2) NOT NULL,
+  `altura` int(3) NOT NULL,
   `sexo` enum('M','F') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
