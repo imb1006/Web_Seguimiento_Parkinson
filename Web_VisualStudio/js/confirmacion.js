@@ -1,3 +1,17 @@
+function realizarRedireccion(userType) {
+    let urlRedireccion;
+    if (userType === 'administrador') {
+        urlRedireccion = '../admin/inicioAdmin.php';
+    } else if (userType === 'profesional') {
+        urlRedireccion = '../profesional/inicioProfesional.php';
+    } else if (userType === 'paciente') {
+        urlRedireccion = '../paciente/inicioPaciente.php';
+    } else {
+        urlRedireccion = '../common/logout.php'; // O una página por defecto
+    }
+    window.location.href = urlRedireccion;
+}
+
 function confirmarAccion(accion) {
     let mensaje;
     let urlRedireccion;
@@ -27,12 +41,31 @@ function confirmarAccion(accion) {
             .catch(error => {
                 console.error("Error al guardar datos", error);
             });
-            realizarRedireccion(userType);
+            realizarRedireccion(userType); // Usuario redirigido a su página de inicio
             return;
         } else {
             // Los datos de todas las variables se resetean y no se guardan en la BD
-            // El usuario es redirigido a su página de inicio
-            realizarRedireccion(userType);
+            realizarRedireccion(userType); // Usuario redirigido a su página de inicio
+            return;
+        }
+    } 
+
+    if (mensaje && confirm(mensaje)) {
+        window.location.href = urlRedireccion;
+    }
+}
+
+function confirmarAccionConId(accion, id) {
+    let mensaje;
+    let urlRedireccion;
+
+    if (accion === 'eliminarPacienteAsignado') {
+        mensaje = "¿Estás seguro de que quieres eliminar este paciente asignado?";
+        if (confirm(mensaje)) {
+            urlRedireccion = '../profesional/quitarPaciente.php?id_paciente=' + id;
+            return;
+        } else {
+            realizarRedireccion(userType); // Usuario redirigido a su página de inicio
             return;
         }
     }
@@ -40,18 +73,4 @@ function confirmarAccion(accion) {
     if (mensaje && confirm(mensaje)) {
         window.location.href = urlRedireccion;
     }
-}
-
-function realizarRedireccion(userType) {
-    let urlRedireccion;
-    if (userType === 'administrador') {
-        urlRedireccion = '../admin/inicioAdmin.php';
-    } else if (userType === 'profesional') {
-        urlRedireccion = '../profesional/inicioProfesional.php';
-    } else if (userType === 'paciente') {
-        urlRedireccion = '../paciente/inicioPaciente.php';
-    } else {
-        urlRedireccion = '../common/logout.php'; // O una página por defecto
-    }
-    window.location.href = urlRedireccion;
 }

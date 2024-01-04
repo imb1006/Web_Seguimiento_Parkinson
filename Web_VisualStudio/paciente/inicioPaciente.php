@@ -66,7 +66,7 @@
         .welcome-message {
             color: #333;
             font-size: 24px;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
         
         .info-paciente {

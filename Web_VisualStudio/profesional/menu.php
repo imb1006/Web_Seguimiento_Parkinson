@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive" style="">
+<html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive">
 
 <body>
     <?php
