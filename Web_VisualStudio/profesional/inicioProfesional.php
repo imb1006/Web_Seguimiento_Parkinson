@@ -63,23 +63,20 @@
             color: #555; /* Color del icono al pasar el mouse por encima */
         }
 
-        .btn-consultar {
-            display: inline-block;
-            background-color: #5DADE2; /* Color de fondo */
-            color: white; /* Color del texto */
+        button[type="submit"]  {
+            margin: 10px;
+            padding: 10px 20px;
             border: none;
-            padding: 8px 12px;
-            margin-right: 5px;
+            background-color: #79c3f5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
             border-radius: 5px;
-            text-decoration: none;
-            text-align: center;
-            min-width: 120px;
-            box-sizing: border-box;
-            white-space: normal;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .btn-consultar:hover {
-            background-color: #3498DB; /* Color al pasar el ratón por encima */
+        button[type="submit"]:hover {
+            background-color: #D2B4DE;
         }
 
     </style>
@@ -148,7 +145,7 @@
                             <td><?php echo htmlspecialchars($paciente['correo_electronico']); ?></td>
                             <td>
                                 <!-- Botón Consultar Paciente -->
-                                <a href="infoPaciente.php?id_paciente=<?php echo htmlspecialchars($paciente['id_usuario']); ?>" class="btn-consultar">Consultar Paciente</a>
+                                <abutton type="submit" onclick = "location.href='infoPaciente.php?id_paciente=<?php echo htmlspecialchars($paciente['id_usuario']); ?>'">Consultar Paciente</abutton>
                             </td>
                             <td>
                                 <!-- Botón Eliminar -->
