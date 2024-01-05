@@ -72,9 +72,11 @@
         .info-paciente {
             background-color: #fff;
             padding: 20px;
-            margin-bottom: 20px;
+            margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: auto;
+            max-width: 80%;
         }
 
         button[type="submit"]  {
