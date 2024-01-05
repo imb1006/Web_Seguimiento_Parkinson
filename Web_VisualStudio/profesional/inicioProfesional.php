@@ -145,7 +145,7 @@
                             <td><?php echo htmlspecialchars($paciente['correo_electronico']); ?></td>
                             <td>
                                 <!-- Botón Consultar Paciente -->
-                                <abutton type="submit" onclick = "location.href='infoPaciente.php?id_paciente=<?php echo htmlspecialchars($paciente['id_usuario']); ?>'">Consultar Paciente</abutton>
+                                <button type="submit" onclick = "location.href='infoPaciente.php?id_paciente=<?php echo htmlspecialchars($paciente['id_usuario']); ?>'">Consultar Paciente</button>
                             </td>
                             <td>
                                 <!-- Botón Eliminar -->
