@@ -68,6 +68,15 @@ function confirmarAccionConId(accion, id) {
             realizarRedireccion(userType); // Usuario redirigido a su página de inicio
             return;
         }
+    } else if (accion === 'eliminarUsuario') {
+        mensaje = "¿Estás seguro de que quieres eliminar la cuenta de este usuario?";
+        if (confirm(mensaje)) {
+            urlRedireccion = '../admin/eliminarUsuario.php?id_usuario=' + id;
+            return;
+        } else {
+            realizarRedireccion(userType); // Usuario redirigido a su página de inicio
+            return;
+        }
     }
 
     if (mensaje && confirm(mensaje)) {
