@@ -60,7 +60,7 @@ if (isset($_SESSION['message'])) {
             max-width: 80%;
         }
 
-        input[type="text"], input[type="email"], input[type="password"] {
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
             border-radius: 10px; /* Más redondeado */
             border: 1px solid #ccc; /* Borde gris claro */
             padding: 8px; /* Ajuste de padding para reducir el tamaño */
@@ -157,12 +157,9 @@ if (isset($_SESSION['message'])) {
 
                 <!-- Campos para Paciente -->
                 <div id="camposPaciente" style="display:none;">
+                    
                     <div>
-                        <label for="altura">Altura</label>
-                        <input type="number" id="altura" name="altura">
-                    </div>
-                    <div>
-                        <label>Sexo:</label><br>
+                        <label>Sexo:</label>
                         <label for="M">
                             <input type="radio" id="M" name="sexo" value="M">
                             Masculino
@@ -172,6 +169,7 @@ if (isset($_SESSION['message'])) {
                             Femenino
                         </label><br>                  
                     </div>
+                    <div><input type="number" id="altura" name="altura" placeholder="Altura (ej: 170)" required></div>
                     <div>
                         <label for="asignarProfesional">Asignar Profesional: </label>
                         <select id="asignarProfesional" name="asignarProfesional">

@@ -60,6 +60,32 @@ $sql = "INSERT INTO usuarios (nombre, apellidos, correo_electronico, contrasena,
 if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
 
+    // Si el usuario es un paciente, insertar en la tabla 'pacientes'
+    if ($tipo_usuario == 'paciente') {
+        $altura = $_POST['altura'];
+        $sexo = $_POST['sexo'];
+
+        $sql_paciente = "INSERT INTO pacientes (id_paciente, altura, sexo) VALUES ('$last_id', '$altura', '$sexo')";
+        $conn->query($sql_paciente);
+
+        // Asignar paciente a profesional
+        $asignarProfesional = $_POST['asignarProfesional'];
+        if ($asignarProfesional == 'auto') {
+            // Seleccionar un profesional aleatoriamente
+            $sql_profesional = "SELECT id_usuario FROM usuarios WHERE tipo_usuario = 'profesional' ORDER BY RAND() LIMIT 1";
+            $resultado = $conn->query($sql_profesional);
+            $fila = $resultado->fetch_assoc();
+            $id_profesional = $fila['id_usuario'];
+        } else {
+            // Usar el profesional seleccionado
+            $id_profesional = $asignarProfesional;
+        }
+
+        // Insertar en la tabla 'profesional_paciente'
+        $sql_prof_pac = "INSERT INTO profesional_paciente (id_profesional, id_paciente) VALUES ('$id_profesional', '$last_id')";
+        $conn->query($sql_prof_pac);
+    }
+
     $_SESSION['message'] = "Nuevo usuario creado con éxito. ID: " . $last_id;
     header("Location: crearUsuarioHTML.php"); // Redirige de nuevo al formulario
     exit;
@@ -68,8 +94,6 @@ if ($conn->query($sql) === TRUE) {
     header("Location: crearUsuarioHTML.php"); // Redirige de nuevo al formulario
     exit;
 }
-
-// Lógica adicional para asignar pacientes a profesionales
 
 $conn->close();
 ?>
