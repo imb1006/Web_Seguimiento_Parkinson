@@ -54,7 +54,10 @@ function confirmarAccion(accion) {
 
     } else if (accion === "crearUsuario") {
         mensaje = "¿Quiere dar de alta al nuevo usuario?";
-        urlRedireccion = '../admin/crearUsuario.php';
+        if (mensaje && confirm(mensaje)) {
+            document.getElementById('formCrearUsuario').submit(); // Enviar el formulario
+            return; // Salir de la función para evitar la redirección
+        }
     }
 
     if (mensaje && confirm(mensaje)) {

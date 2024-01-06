@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['message'])) {
+    echo "<script>alert('" . addslashes($_SESSION['message']) . "');</script>";
+    unset($_SESSION['message']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -128,86 +136,76 @@
 
     <div class="content">
         <div class="welcome-message">Información general </div>
-        <div class="contenedor">
-            <form action="crearUsuario.php" method="post" id="formCrearUsuario">
-            <div>
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+        <form action="crearUsuario.php" method="post" id="formCrearUsuario">
+            <div class="contenedor">
+                <div><input type="text" id="nombre" name="nombre" placeholder="Nombre" required></div>
+                <div><input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required></div>
+                <div><input type="email" id="email" name="email" placeholder="Correo Electrónico" required></div>
+                <div><input type="email" id="confirm_email" name="confirm_email" placeholder="Repetir Correo Electrónico" required></div>
+                <div><input type="password" id="password" name="password" placeholder="Contraseña" required></div>
+                <div><input type="password" id="confirm_password" name="confirm_password" placeholder="Repetir Contraseña" required></div>
             </div>
-            <div>
-                <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
-            </div>
-            <div>
-                <input type="email" id="email" name="email" placeholder="Correo Electrónico" required>
-            </div>
-            <div>
-                <input type="email" id="confirm_email" name="confirm_email" placeholder="Repetir Correo Electrónico" required>
-            </div>
-            <div>
-                <input type="password" id="password" name="password" placeholder="Contraseña" required>
-            </div>
-            <div>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Repetir Contraseña" required>
-            </div>
-                
-            </form>
-        </div>
-        <div class="welcome-message">Tipo de usuario </div>
-        <div class="contenedor">
-            <label for="tipo_usuario">Tipo de Usuario</label>
-            <select id="tipo_usuario" name="tipo_usuario" onchange="mostrarCampos()">
-                <option value="administrador">Administrador</option>
-                <option value="profesional">Profesional</option>
-                <option value="paciente">Paciente</option>
-            </select>
+            
+            <div class="welcome-message">Tipo de usuario </div>
+            <div class="contenedor">
+                <label for="tipo_usuario">Tipo de Usuario</label>
+                <select id="tipo_usuario" name="tipo_usuario" onchange="mostrarCampos()">
+                    <option value="administrador">Administrador</option>
+                    <option value="profesional">Profesional</option>
+                    <option value="paciente">Paciente</option>
+                </select>
 
-            <!-- Campos para Paciente -->
-            <div id="camposPaciente" style="display:none;">
-                <div>
-                    <label for="altura">Altura</label>
-                    <input type="number" id="altura" name="altura">
+                <!-- Campos para Paciente -->
+                <div id="camposPaciente" style="display:none;">
+                    <div>
+                        <label for="altura">Altura</label>
+                        <input type="number" id="altura" name="altura">
+                    </div>
+                    <div>
+                        <label for="sexo">Sexo: </label>
+                        <label for="M">
+                            <input type="radio" id="M" name="sexo" value="M">
+                            <span>Masculino</span>
+                        </label>
+                        <label for="F">
+                            <input type="radio" id="F" name="sexo" value="F">
+                            <span>Femenino</span>
+                        </label><br>                    
+                    </div>
+                    <div>
+                        <label for="asignarProfesional">Asignar Profesional: </label>
+                        <select id="asignarProfesional" name="asignarProfesional">
+                            <option value="auto">Automático</option>
+                            <?php foreach ($profesionales as $profesional): ?>
+                                <option value="<?php echo $profesional['id_usuario']; ?>">
+                                    <?php echo $profesional['nombre'] . " " . $profesional['apellidos']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label for="sexo">Sexo: </label>
-                    <label for="M">
-                        <input type="radio" id="M" name="sexo" value="M">
-                        <span>Masculino</span>
-                    </label>
-                    <label for="F">
-                        <input type="radio" id="F" name="sexo" value="F">
-                        <span>Femenino</span>
-                    </label><br>                    
-                </div>
-                <div>
-                    <label for="asignarProfesional">Asignar Profesional: </label>
-                    <select id="asignarProfesional" name="asignarProfesional">
-                        <option value="auto">Automático</option>
-                        <?php foreach ($profesionales as $profesional): ?>
-                            <option value="<?php echo $profesional['id_usuario']; ?>">
-                                <?php echo $profesional['nombre'] . " " . $profesional['apellidos']; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
 
-            <!-- Campos para Profesional -->
-            <div id="camposProfesional" style="display:none;">
-                <div>
-                    <label for="asignarPacientes">Asignar Pacientes</label>
-                    <select id="asignarPacientes" name="asignarPacientes">
-                        <option value="auto">Automático</option>
-                        <option value="none">No Asignar</option>
-                    </select>
+                <!-- Campos para Profesional -->
+                <div id="camposProfesional" style="display:none;">
+                    <div>
+                        <label for="asignarPacientes">Asignar Pacientes</label>
+                        <select id="asignarPacientes" name="asignarPacientes">
+                            <option value="auto">Automático</option>
+                            <option value="none">No Asignar</option>
+                        </select>
+                    </div>
                 </div>
+
             </div>
 
-        </div>
+            <!-- Botones -->
+            <div class="botones-formulario">
+                <button type="submit" onclick="confirmarAccion('descartarUsuario')">Descartar Cambios</button>
+                <button type="submit" onclick="confirmarAccion('crearUsuario')">Guardar Cambios</button>
+            </div>
 
-        <!-- Botones -->
-        <div class="botones-formulario">
-            <button type="submit" onclick="confirmarAccion('descartarUsuario')">Descartar Cambios</button>
-            <button type="submit" onclick="confirmarAccion('crearUsuario')">Guardar Cambios</button>
-        </div>
+        </form>
+        
     </div>
 </body>
 </html>
