@@ -157,7 +157,7 @@ if (isset($_SESSION['message'])) {
 
                 <!-- Campos para Paciente -->
                 <div id="camposPaciente" style="display:none;">
-                    
+                    <div><input type="number" id="altura" name="altura" placeholder="Altura (ej: 170)" required></div>
                     <div>
                         <label>Sexo:</label>
                         <label for="M">
@@ -169,7 +169,6 @@ if (isset($_SESSION['message'])) {
                             Femenino
                         </label><br>                  
                     </div>
-                    <div><input type="number" id="altura" name="altura" placeholder="Altura (ej: 170)" required></div>
                     <div>
                         <label for="asignarProfesional">Asignar Profesional: </label>
                         <select id="asignarProfesional" name="asignarProfesional">
