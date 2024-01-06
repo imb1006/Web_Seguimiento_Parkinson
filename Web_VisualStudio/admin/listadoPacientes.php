@@ -49,6 +49,22 @@
             margin: auto; /* Centra la tabla dentro del recuadro */
             max-width: 100%; /* Máximo ancho de la tabla */
         }
+
+        button[type="submit"]  {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #79c3f5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #D2B4DE;
+        }
     </style>
 </head>
 <body>
@@ -90,8 +106,6 @@
             while($row = $result->fetch_assoc()) {
                 $pacientes[] = $row;
             }
-        } else {
-            echo "No hay pacientes asignados a este profesional.";
         }
     } else {
         echo "No se ha especificado un profesional.";
@@ -100,7 +114,7 @@
     $conn->close();
     ?>
 
-<div class="content">
+    <div class="content">
         <div class="welcome-message">
             Listado de Pacientes de <?php echo htmlspecialchars($nombreProfesional); ?> 
         </div>
@@ -121,8 +135,17 @@
                         <td><?php echo htmlspecialchars($paciente['correo_electronico']); ?></td>
                     </tr>
                 <?php endforeach; ?>
+
+                <?php
+                if (empty($pacientes)) {
+                    echo "<tr><td colspan='3'>No hay pacientes asignados a este profesional.</td></tr>";
+                } 
+                ?>
             </tbody>
             </table>
+        </div>
+        <div class="botones-actividades">
+            <button type="submit" onclick="location.href='inicioAdmin.php'">Menú Usuarios</button>
         </div>
     </div>
 
