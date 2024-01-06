@@ -60,35 +60,6 @@ $sql = "INSERT INTO usuarios (nombre, apellidos, correo_electronico, contrasena,
 if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
 
-    // Si el usuario es un profesional y se seleccionó la opción "auto"
-    if ($tipo_usuario == 'profesional' && $_POST['asignarPacientes'] == "auto") {
-        // Calcular el promedio de pacientes por profesional
-        $sql = "SELECT AVG(paciente_count) as promedio FROM (SELECT COUNT(id_paciente) as paciente_count FROM profesional_paciente GROUP BY id_profesional) as subquery";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $promedioPacientes = ceil($row['promedio']);
-
-        // Encuentra profesionales con más pacientes que el promedio
-        $sql = "SELECT id_profesional FROM profesional_paciente GROUP BY id_profesional HAVING COUNT(id_paciente) > $promedioPacientes";
-        $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            $profesionalConMasPacientes = $row['id_profesional'];
-
-            // Reasignar un paciente de ese profesional al nuevo profesional
-            $sqlUpdate = "UPDATE profesional_paciente SET id_profesional = $last_id WHERE id_profesional = $profesionalConMasPacientes ORDER BY RAND() LIMIT 1";
-            $conn->query($sqlUpdate);
-
-            // Verificar si ya se alcanzó el equilibrio
-            $sqlCheck = "SELECT COUNT(id_paciente) as num_pacientes FROM profesional_paciente WHERE id_profesional = $last_id";
-            $resultCheck = $conn->query($sqlCheck);
-            $rowCheck = $resultCheck->fetch_assoc();
-            if ($rowCheck['num_pacientes'] >= $promedioPacientes) {
-                break; // Salir del bucle si se alcanza el promedio
-            }
-        }
-    }
-
-
     $_SESSION['message'] = "Nuevo usuario creado con éxito. ID: " . $last_id;
     header("Location: crearUsuarioHTML.php"); // Redirige de nuevo al formulario
     exit;
@@ -98,17 +69,7 @@ if ($conn->query($sql) === TRUE) {
     exit;
 }
 
-// Lógica adicional para asignar pacientes a profesionales y viceversa
-
-
-if ($tipo_usuario == 'paciente'){
-    $altura = $_POST['altura'];
-    $sexo = $_POST['asignarPacientes'];
-    $asignar = $_POST['asignarProfesional'];
-
-
-
-}
+// Lógica adicional para asignar pacientes a profesionales
 
 $conn->close();
 ?>

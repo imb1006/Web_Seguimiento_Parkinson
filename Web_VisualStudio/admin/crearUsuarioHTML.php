@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <?php
 session_start();
 if (isset($_SESSION['message'])) {
@@ -6,8 +9,6 @@ if (isset($_SESSION['message'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Crear Usuario</title>
@@ -22,7 +23,6 @@ if (isset($_SESSION['message'])) {
         function mostrarCampos() {
             var tipoUsuario = document.getElementById("tipo_usuario").value;
             document.getElementById("camposPaciente").style.display = tipoUsuario === "paciente" ? "block" : "none";
-            document.getElementById("camposProfesional").style.display = tipoUsuario === "profesional" ? "block" : "none";
         }
     </script>
     
@@ -162,15 +162,15 @@ if (isset($_SESSION['message'])) {
                         <input type="number" id="altura" name="altura">
                     </div>
                     <div>
-                        <label for="sexo">Sexo: </label>
+                        <label>Sexo:</label><br>
                         <label for="M">
                             <input type="radio" id="M" name="sexo" value="M">
-                            <span>Masculino</span>
+                            Masculino
                         </label>
                         <label for="F">
                             <input type="radio" id="F" name="sexo" value="F">
-                            <span>Femenino</span>
-                        </label><br>                    
+                            Femenino
+                        </label><br>                  
                     </div>
                     <div>
                         <label for="asignarProfesional">Asignar Profesional: </label>
@@ -181,17 +181,6 @@ if (isset($_SESSION['message'])) {
                                     <?php echo $profesional['nombre'] . " " . $profesional['apellidos']; ?>
                                 </option>
                             <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Campos para Profesional -->
-                <div id="camposProfesional" style="display:none;">
-                    <div>
-                        <label for="asignarPacientes">Asignar Pacientes</label>
-                        <select id="asignarPacientes" name="asignarPacientes">
-                            <option value="auto">Automático</option>
-                            <option value="none">No Asignar</option>
                         </select>
                     </div>
                 </div>
