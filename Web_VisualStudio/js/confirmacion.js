@@ -48,7 +48,14 @@ function confirmarAccion(accion) {
             realizarRedireccion(userType); // Usuario redirigido a su página de inicio
             return;
         }
-    } 
+    } else if (accion === "descartarUsuario") {
+        mensaje = "¡Atención! Estás a punto de descartar los cambios";
+        urlRedireccion = '../admin/inicioAdmin.php';
+
+    } else if (accion === "crearUsuario") {
+        mensaje = "¿Quiere dar de alta al nuevo usuario?";
+        urlRedireccion = '../admin/crearUsuario.php';
+    }
 
     if (mensaje && confirm(mensaje)) {
         window.location.href = urlRedireccion;

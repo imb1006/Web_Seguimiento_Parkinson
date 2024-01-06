@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Página de Inicio del Profesional</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -154,7 +154,7 @@
             </table>
         </div>
         <div class="botones-actividades">
-            <button type="submit" onclick="location.href='crearUsuario.php'">Nuevo usuario</button>
+            <button type="submit" onclick="location.href='crearUsuarioHTML.php'">Nuevo usuario</button>
         </div>
     </div>
 
