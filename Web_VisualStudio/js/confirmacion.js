@@ -56,6 +56,7 @@ function confirmarAccion(accion) {
         mensaje = "¿Quiere dar de alta al nuevo usuario?";
         if (mensaje && confirm(mensaje)) {
             document.getElementById('formCrearUsuario').submit(); // Enviar el formulario
+            realizarRedireccion(userType); // Usuario redirigido a su página de inicio
             return; // Salir de la función para evitar la redirección
         }
     }
@@ -81,7 +82,7 @@ function confirmarAccionConId(accion, id) {
     } else if (accion === 'eliminarUsuario') {
         mensaje = "¿Estás seguro de que quieres eliminar la cuenta de este usuario?";
         if (confirm(mensaje)) {
-            urlRedireccion = '../admin/eliminarUsuario.php?id_usuario=' + id;
+            window.location.href = '../admin/eliminarUsuario.php?id_usuario=' + id;
             return;
         } else {
             realizarRedireccion(userType); // Usuario redirigido a su página de inicio
