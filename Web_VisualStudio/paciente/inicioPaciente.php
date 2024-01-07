@@ -163,7 +163,7 @@
         </div>
         <div class="botones-actividades">
             <button type="submit" onclick="iniciarActividadYRedirigir()">Realizar Actividad</button>
-            <button type="submit" onclick="location.href='consultaActividades.php'">Actividades y Estadísticas</button>
+            <button type="submit" onclick="location.href='../common/consultaActividades.php'">Actividades y Estadísticas</button>
         </div>
     </div>
 

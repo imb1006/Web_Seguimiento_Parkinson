@@ -116,7 +116,7 @@
         <div class="botones-actividades">
             <button type="submit" onclick="location.href='inicioProfesional.php'">Menú Pacientes</button>
             <button type="submit" onclick="location.href='../common/actividad.php'">Realizar Actividad</button>
-            <button type="submit" onclick="location.href='../common/actividadesEstadisticas.php'">Actividades y Estadísticas</button>
+            <button type="submit" onclick="location.href='../common/consultaActividades.php?id_paciente=<?php echo $id_paciente; ?>'">Actividades y Estadísticas</button>
         </div>
     </div>
 

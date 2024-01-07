@@ -70,7 +70,6 @@
 <body>
     <?php 
     session_start();
-    include 'menu.php'; // Incluye el menú
 
     // Conexión a la base de datos
     $servername = "localhost";
@@ -84,8 +83,19 @@
         die("Conexión fallida: " . $conn->connect_error);
     }
 
-    $id_paciente = $_SESSION['user_id'];
     $actividades = [];
+    $id_paciente = 0;
+
+    if ($_SESSION['user_type'] == 'paciente') {
+        $id_paciente = $_SESSION['user_id'];
+        include '../paciente/menu.php'; // Incluye el menú
+    } elseif ($_SESSION['user_type'] == 'profesional') {
+        if (isset($_GET['id_paciente']) && is_numeric($_GET['id_paciente'])) {
+            $id_paciente = $_GET['id_paciente'];
+        }
+        include '../profesional/menu.php'; // Incluye el menú
+    }
+
 
     // Variables para estadísticas
     $totalBloqueos = 0;
@@ -175,7 +185,27 @@
             </table>
         </div>
         <div class="botones">
-            <button type="submit" onclick="location.href='inicioPaciente.php'">Volver a Inicio</button>
+            <?php
+            // Asegúrate de que la sesión está iniciada
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            // Verifica el tipo de usuario y muestra los botones correspondientes
+            if (isset($_SESSION['user_type'])) {
+                if ($_SESSION['user_type'] == 'paciente') {
+                    echo '<button type="submit" onclick="location.href= \'../paciente/inicioPaciente.php\'">Volver a Inicio</button>';
+                } elseif ($_SESSION['user_type'] == 'profesional') {
+                    echo '<button type="submit" onclick="location.href=\'../profesional/inicioProfesional.php\'">Volver a Inicio</button>';
+                    // Asegúrate de tener el id_paciente para redirigir correctamente
+                    if (isset($_GET['id_paciente'])) {
+                        $id_paciente = $_GET['id_paciente'];
+                        echo '<button type="submit" onclick="location.href=\'../profesional/infoPaciente.php?id_paciente=' . $id_paciente . '\'">Información del Paciente</button>';
+                    }
+                }
+            }
+            ?>
+
         </div>
     </div>
 
