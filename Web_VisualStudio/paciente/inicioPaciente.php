@@ -133,14 +133,21 @@
         $sexo = $row['sexo'];
         $email = $row['correo_electronico'];
         
-        // Obtener todos los profesionales asignados
-        $profesionales = [];
-        $profesionalQuery = "SELECT nombre, apellidos FROM usuarios WHERE tipo_usuario = 'profesional'";
-        $profesionalResult = $conn->query($profesionalQuery);
+        // Consulta SQL para obtener los profesionales asignados al paciente
+        $profesionalQuery = "SELECT u.nombre, u.apellidos FROM profesional_paciente pp 
+        JOIN usuarios u ON pp.id_profesional = u.id_usuario 
+        WHERE pp.id_paciente = $id_paciente AND u.tipo_usuario = 'profesional'";
 
+        $profesionalResult = $conn->query($profesionalQuery);
+        $profesionales = [];
+
+        if ($profesionalResult->num_rows > 0) {
         while($profesionalRow = $profesionalResult->fetch_assoc()) {
-            $nombreCompleto = $profesionalRow['nombre'] . ' ' . $profesionalRow['apellidos'];
-            $profesionales[] = $nombreCompleto;
+        $nombreCompleto = $profesionalRow['nombre'] . ' ' . $profesionalRow['apellidos'];
+        $profesionales[] = $nombreCompleto;
+        }
+        } else {
+        echo "No se encontraron profesionales asignados a este paciente.";
         }
     } else {
         echo "No se encontraron datos del paciente.";
@@ -159,7 +166,7 @@
             <p>Sexo: <?php echo $sexo; ?></p>
             <p>Altura: <?php echo $altura; ?> cm</p>
             <p>Email: <?php echo $email; ?></p>
-            <p>Profesional/es Asignado/s: <?php echo implode(", ", $profesionales); ?></p>
+            <p>Profesional Asignado: <?php echo implode(", ", $profesionales); ?></p>
         </div>
         <div class="botones-actividades">
             <button type="submit" onclick="iniciarActividadYRedirigir()">Realizar Actividad</button>
