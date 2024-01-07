@@ -73,7 +73,7 @@ function confirmarAccionConId(accion, id) {
     if (accion === 'eliminarPacienteAsignado') {
         mensaje = "¿Estás seguro de que quieres eliminar este paciente asignado?";
         if (confirm(mensaje)) {
-            urlRedireccion = '../profesional/quitarPaciente.php?id_paciente=' + id;
+            window.location.href = '../profesional/quitarPaciente.php?id_paciente=' + id;
             return;
         } else {
             realizarRedireccion(userType); // Usuario redirigido a su página de inicio
