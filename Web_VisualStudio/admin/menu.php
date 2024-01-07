@@ -33,7 +33,7 @@
                               <li><a class="dropdown-item" href="../common/actualizarCorreo.html">Actualizar correo</a></li>
                               <li><a class="dropdown-item" href="../common/cambiarContraseña.html">Cambiar contraseña</a></li>
                               <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="#" onclick="confirmarAccion('eliminarCuenta')">Eliminar cuenta</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="confirmarAccionConId('eliminarCuenta', <?php echo htmlspecialchars($_SESSION['user_id']); ?>)">Eliminar cuenta</a></li>
                             </ul>
                           </li>
                         <li class="nav-item">

@@ -88,6 +88,12 @@ function confirmarAccionConId(accion, id) {
             realizarRedireccion(userType); // Usuario redirigido a su página de inicio
             return;
         }
+    } else if (accion == 'eliminarCuenta') {
+        mensaje = "¡Atención! Estás a punto de eliminar tu cuenta";
+        if (confirm(mensaje)) {
+            window.location.href = '../common/eliminarCuenta.php?id_usuario=' + id;
+            return;
+        }
     }
 
     if (mensaje && confirm(mensaje)) {
