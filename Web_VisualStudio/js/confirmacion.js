@@ -56,9 +56,10 @@ function confirmarAccion(accion) {
         mensaje = "¿Quiere dar de alta al nuevo usuario?";
         if (mensaje && confirm(mensaje)) {
             document.getElementById('formCrearUsuario').submit(); // Enviar el formulario
-            realizarRedireccion(userType); // Usuario redirigido a su página de inicio
             return; // Salir de la función para evitar la redirección
         }
+    } else if (accion === 'asignarPaciente') {
+        mensaje = "¿Quiere asignarse el paciente seleccionado?";
     }
 
     if (mensaje && confirm(mensaje)) {

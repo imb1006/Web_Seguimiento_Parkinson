@@ -55,6 +55,15 @@ if ($result->num_rows > 0) {
     exit;
 }
 
+// Verificar si el correo electrónico ya existe
+$sql = "SELECT * FROM usuarios WHERE correo_electronico = '$email'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $_SESSION['message'] = "El correo electrónico ya está en uso.";
+    header("Location: crearUsuarioHTML.php");
+    exit;
+}
+
 // Insertar usuario en la base de datos
 $sql = "INSERT INTO usuarios (nombre, apellidos, correo_electronico, contrasena, tipo_usuario) VALUES ('$nombre', '$apellidos', '$email', '$password', '$tipo_usuario')";
 if ($conn->query($sql) === TRUE) {
@@ -86,8 +95,10 @@ if ($conn->query($sql) === TRUE) {
         $conn->query($sql_prof_pac);
     }
 
+    // Después de crear el usuario con éxito
     $_SESSION['message'] = "Nuevo usuario creado con éxito. ID: " . $last_id;
-    header("Location: crearUsuarioHTML.php"); // Redirige de nuevo al formulario
+    $_SESSION['redirect'] = "inicioAdmin.php"; // Nueva bandera para redirección
+    header("Location: crearUsuarioHTML.php");
     exit;
 } else {
     $_SESSION['message'] = "Error: " . $sql . "<br>" . $conn->error;

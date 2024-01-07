@@ -158,6 +158,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="botones-actividades">
+            <button type="submit" onclick="location.href='mostrarPacientes.php?id_profesional=<?php echo $id_profesional; ?>'">Asignar Paciente Existente</button>
+            <button type="submit" onclick="location.href='nuevoPacienteHTML.php?id_profesional=<?php echo $id_profesional; ?>'">Crear Nuevo Paciente</button>
+        </div>
     </div>
 
 </body>

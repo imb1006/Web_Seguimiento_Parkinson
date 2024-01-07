@@ -3,6 +3,19 @@
 
 <?php
 session_start();
+
+// Manejo de redirección con mensaje de éxito
+if (isset($_SESSION['redirect'])) {
+    echo "<script type='text/javascript'>
+            alert('" . addslashes($_SESSION['message']) . "');
+            window.location.href = '" . $_SESSION['redirect'] . "';
+          </script>";
+    unset($_SESSION['message']);
+    unset($_SESSION['redirect']);
+    exit; // Detiene la ejecución del script
+}
+
+// Mostrar mensaje si está establecido
 if (isset($_SESSION['message'])) {
     echo "<script>alert('" . addslashes($_SESSION['message']) . "');</script>";
     unset($_SESSION['message']);
