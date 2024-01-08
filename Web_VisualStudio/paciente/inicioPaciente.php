@@ -43,7 +43,7 @@
             .catch(error => console.error('Error:', error));
         }
 
-</script>
+    </script>
 
     <style>
         html, body {
