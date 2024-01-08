@@ -58,9 +58,13 @@ function confirmarAccion(accion) {
             document.getElementById('formCrearUsuario').submit(); // Enviar el formulario
             return; // Salir de la función para evitar la redirección
         }
-    } else if (accion === 'asignarPaciente') {
-        mensaje = "¿Quiere asignarse el paciente seleccionado?";
-    }
+    } else if (accion === 'crearPaciente') {
+        mensaje = "¿Quiere dar de alta al nuevo paciente?";
+        if (confirm(mensaje)) {
+            document.getElementById('formNuevoPaciente').submit();
+            return;
+        }
+    } 
 
     if (mensaje && confirm(mensaje)) {
         window.location.href = urlRedireccion;
@@ -93,6 +97,12 @@ function confirmarAccionConId(accion, id) {
         mensaje = "¡Atención! Estás a punto de eliminar tu cuenta";
         if (confirm(mensaje)) {
             window.location.href = '../common/eliminarCuenta.php?id_usuario=' + id;
+            return;
+        }
+    }  else if (accion === 'asignarPaciente') {
+        mensaje = "¿Quiere asignarse el paciente seleccionado?";
+        if (confirm(mensaje)) {
+            window.location.href = '../profesional/asignarPaciente.php?id_paciente=' + id;
             return;
         }
     }
