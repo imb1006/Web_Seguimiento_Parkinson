@@ -1,3 +1,10 @@
+<?php 
+// Establecer una cookie para el ID del paciente antes de cualquier salida HTML
+if (isset($_GET['id_paciente'])) {
+    setcookie('id_paciente', $_GET['id_paciente'], time() + 86400, "/"); // La cookie expira en 1 día
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" class="responsive">
 <head>
@@ -8,6 +15,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <script src="../js/confirmacion.js"></script>
+
+    <script>
+        function iniciarActividadYRedirigir() {
+            fetch(`http://localhost:3000/datosPaciente?id_paciente=<?php echo $_COOKIE['id_paciente']; ?>`)
+                .then(response => response.json())
+                .then(datosPaciente => {
+                    console.log(datosPaciente); // Verificar datos en consola
+                    enviarDatosArduino(datosPaciente);
+                })
+                .then(() => {
+                    window.location.href = '../common/actividad.php'; // Redirige a actividad.php
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function enviarDatosArduino(datosPaciente) {
+            fetch('http://localhost:3000/command', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ command: `altura:${datosPaciente.altura},sexo:${datosPaciente.sexo}` })
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
 
     <style>
          html, body {
@@ -115,7 +148,7 @@
         </div>
         <div class="botones-actividades">
             <button type="submit" onclick="location.href='inicioProfesional.php'">Menú Pacientes</button>
-            <button type="submit" onclick="location.href='../common/actividad.php'">Realizar Actividad</button>
+            <button type="submit" onclick="iniciarActividadYRedirigir()">Realizar Actividad</button>
             <button type="submit" onclick="location.href='../common/consultaActividades.php?id_paciente=<?php echo $id_paciente; ?>'">Actividades y Estadísticas</button>
         </div>
     </div>

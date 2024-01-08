@@ -13,10 +13,18 @@
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         };
+
+        if ($_SESSION['user_type'] == 'paciente') {
+            $userId = $_SESSION['user_id'];
+        } elseif ($_SESSION['user_type'] == 'profesional') {
+            // Obtener el ID del paciente desde la cookie
+            $userId = isset($_COOKIE['id_paciente']) ? $_COOKIE['id_paciente'] : 0;
+        }
         echo "<script type='text/javascript'>\n";
         echo "var userType = '" . $_SESSION['user_type'] . "';\n";
-        echo "var userId = '" . $_SESSION['user_id'] . "';\n";
+        echo "var userId = '" . $userId . "';\n"; // Usar userId basado en el tipo de usuario
         echo "</script>\n";
+
     ?>
 
     <script>
@@ -161,7 +169,13 @@
             <div id="datosActividad">
             </div>
         </div>
-        <button type="submit" onclick="location.href='../paciente/inicioPaciente.php'">Menú Principal</button>
+        <?php
+        if ($_SESSION['user_type'] == 'paciente') {
+            echo '<button type="submit" onclick="location.href=\'../paciente/inicioPaciente.php\'">Menú Principal</button>';
+        } elseif ($_SESSION['user_type'] == 'profesional') {
+            echo '<button type="submit" onclick="location.href=\'../profesional/inicioProfesional.php\'">Menú Pacientes</button>';
+        }
+        ?>
         <button type="submit" onclick="sendCommand('1')">Iniciar Actividad</button>
         <button type="submit" onclick="finalizarYConfirmarActividad()">Finalizar Actividad</button>
     </div>
