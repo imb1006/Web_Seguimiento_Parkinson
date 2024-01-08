@@ -156,12 +156,12 @@
 <body>
 
     <div class="content">
-        <!-- Aquí puedes agregar más contenido según sea necesario -->
+    <div class="welcome-message">Actividad en Tiempo Real </div>
         <div id="arduinoMessage" class="info-actividad">
             <div id="datosActividad">
-                <!-- Aquí se mostrarán los datos de la actividad o el mensaje de espera -->
             </div>
         </div>
+        <button type="submit" onclick="location.href='../paciente/inicioPaciente.php'">Menú Principal</button>
         <button type="submit" onclick="sendCommand('1')">Iniciar Actividad</button>
         <button type="submit" onclick="finalizarYConfirmarActividad()">Finalizar Actividad</button>
     </div>
