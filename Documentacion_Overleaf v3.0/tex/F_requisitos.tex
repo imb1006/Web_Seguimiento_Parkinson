@@ -1,28 +1,41 @@
 \apendice{Especificación de Requisitos}
 
-Si procede.
 
 \section{Descripción requisitos funcionales}
+Se procede a la descripción detallada de las funciones específicas del proyecto software que se quiere desarrollar, incluyendo funcionamiento e interacciones con los usuarios.
 
 \begin{itemize}
     \item \textbf{RF-01 Iniciar sesión}: Todos los usuarios deben introducir de forma obligatoria su correo electrónico, tipo de usuario y contraseña para poder acceder a la página web.
     \item \textbf{RF-02 Consultar pacientes y usuarios}: Otorgar acceso a la lista completa de usuarios o pacientes, según los permisos asignados al usuario, y permitir la realización de búsquedas específicas dentro de ella.
     \item \textbf{RF-03 Gestionar pacientes y usuarios}: Permitir la creación y eliminación de cuentas, así como la modificación de los datos almacenados en las cuentas de pacientes y médicos. La capacidad para realizar estas acciones depende del nivel de acceso que el usuario tenga en el sistema web.
     \item \textbf{RF-04 Realizar actividad}: Ofrece las opciones de iniciar y finalizar actividades, así como la opción de guardar o descartar estas mismas. Existirá la posibilidad de realización de actividades sin que exista conexión entre el dispositivo físico y la página web, el denominado "modo offline".
-    \item \textbf{RF-05 Mostrar actividades}: Presenta al usuario las actividades realizadas por el paciente, ya sea a través de un calendario de actividades o una lista con aquellas que cumplen unos criterios establecidos por el propio usuario.
+    \item \textbf{RF-05 Mostrar actividades}: Presenta al usuario en una lista las actividades realizadas por el paciente, permitiendo diferentes visualizaciones y llevar a cabo filtrados.
     \item \textbf{RF-06 Consultar estadísticas}: Visualización de los datos relacionados con las actividades realizadas por el paciente, ya sea de una actividad en concreto o de todas en conjunto.
     \item \textbf{RF-07 Gestionar cuenta}: Facilitar a los usuarios las tareas de cambio de contraseña y actualización del correo eléctrónico vinculado a su cuenta.
     \item \textbf{RF-08 Cerrar sesión}: Todos los usuarios tendrán la opción de cerrar sesión desde el menú de inicio. Para prevenir cierres accidentales, se solicitará una confirmación de la acción antes de que esta se complete.
 \end{itemize}
 
 
-\section{Diagrama de casos de uso}
+\section{Diagrama de Casos de Uso}
+Un stakeholder es cualquier persona u organización interesada, afectada o implicada en el funcionamiento del software que se desarrolla \\ \cite{pradel2013ingenieria}. Van a desempeñar un papel clave y activo en la especificación y validación de los requerimientos del software \\ \cite{oliveros2014stakeholders}. Para la página web que se va a desarrollar se prevee la implicación de los tres tipos de stakeholders o usuarios:
+\begin{itemize}
+    \item Paciente: usuario que está siendo tratado de EP.
+    \item Profesional: médicos, enfermeros, fisioterapéutas, neurólogos y cualqiuer otro personal sanitario que sigue de cerca la evolución de la enfermedad o toma decisiones referidas al tratamiento.
+    \item Administrador: usuario con control sobre funciones críticas del sistema no disponibles para usuarios regulares. Estas funciones incluyen crear, consultar y eliminar cualquier tipo de usuario.
+\end{itemize}
 
+Un caso de uso es una descripción de las acciones del sistema desde el punto de vista del usuario, es decir, son las funciones o servicios que el sistema proporciona a los usuarios \cite{Microsof53:online}. La documentación de casos de uso es una herramienta empleada en la obtención de los requerimientos del sistema y requiere un paso previo de identificación de los actores o stakeholders \cite{UMLCasos85:online}.
+Se han generado un total de 27 Casos de Uso que pretenden abarcar todas las funcionalidades del sistema y las posibles interacciones entre este y los stakeholders. Su representación en diagramas permite una comprensión global de las posibles relaciones entre ellos y las opciones ofertadas por la web.
+\begin{itemize}
+    \item Las funciones comunes a todos los tipos de usuarios se muestran en la Figura \ref{fig:CU-todos}.
+    \item Las opciones de trabajo restringidas para el usuario administrador son las presentadas en la Figura \ref{fig:CU-Administrador}.
+    \item La Figura \ref{fig:CU-Paciente_Profesional} refleja la relación entre las funcionalidades de pacientes y profesionales.
+\end{itemize}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{img/CUdiagramas/CU-todos.jpg}
-    \caption{CU-todos}
+    \caption{CU-Administradores, Pacientes y Profesionales}
     \label{fig:CU-todos}
 \end{figure}
 
@@ -41,13 +54,8 @@ Si procede.
 \end{figure}
 
 
-
-
-\section{Explicación casos de uso.}
-
-Se puede describir mediante el uso de tablas o mediante lenguaje natural.    
-
-Una muestra de cómo podría ser una tabla de casos de uso:
+\section{Explicación Casos de Uso.}
+Las tablas de explicación de Casos de Uso permiten proporcionar información detallada y organizada relativa a las funcionalidades del sistema y su integración. Facilitan el manejo de excepciones y sirven de guía para el posterior procceso de desarrollo, evitando errores que podrían tener importantes repercusiones en el avance del proyecto.  
 
 % Caso de Uso 1 -> Iniciar sesión. -> ACABADO
 \begin{table}[p]
@@ -88,7 +96,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-1 Iniciar sesión.}
+	\caption{CU-1 Iniciar sesión}
+    \label{CU-1}
 \end{table}
 
 % Caso de Uso 2 -> Confirmar operación. -> ACABADO
@@ -115,7 +124,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Media \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-2 Confirmar operación.}
+	\caption{CU-2 Confirmar operación}
+    \label{CU-2}
 \end{table}
 
 % Caso de Uso 3 -> Gestionar cuenta. -> ACABADO
@@ -148,7 +158,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Media \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-3 Gestionar cuenta.}
+	\caption{CU-3 Gestionar cuenta}
+     \label{CU-3}
 \end{table}
 
 
@@ -193,7 +204,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-4 Actualizar correo.}
+	\caption{CU-4 Actualizar correo}
+    \label{CU-4}
 \end{table}
 
 % Caso de Uso 5 -> Cambiar contraseña. -> ACABADO
@@ -237,7 +249,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-5 Cambiar contraseña.}
+	\caption{CU-5 Cambiar contraseña}
+    \label{CU-5}
 \end{table}
 
 % Caso de Uso 6 -> Cerrar sesión. -> ACABADO
@@ -271,6 +284,7 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\bottomrule
 	\end{tabularx}
 	\caption{CU-6 Cerrar sesión.}
+    \label{CU-6}
 \end{table}
 
 % Caso de Uso 7 -> Consulta y gestión de usuarios. -> ACABADO
@@ -306,7 +320,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-7 Consulta y gestión de usuarios.}
+	\caption{CU-7 Consulta y gestión de usuarios}
+    \label{CU-7}
 \end{table}
 
 % Caso de Uso 8 -> Buscar usuario.  -> ACABADO
@@ -353,7 +368,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Media \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-8 Buscar usuario.}
+	\caption{CU-8 Buscar usuario}
+    \label{CU-8}
 \end{table}
 
 % Caso de Uso 9 -> Crear usuario   -> ACABADO
@@ -400,7 +416,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-9 Crear usuario.}
+	\caption{CU-9 Crear usuario}
+    \label{CU-9}
 \end{table}
 
 % Caso de Uso 10 -> Especificar características usuario profesional
@@ -439,7 +456,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta\\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-10 Especificar características usuario profesional.}
+	\caption{CU-10 Especificar características usuario profesional}
+    \label{CU-10}
 \end{table}
 
 % Caso de Uso 11 -> Especificar características usuario paciente
@@ -480,7 +498,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-11 Especificar características usuario paciente.}
+	\caption{CU-11 Especificar características usuario paciente}
+    \label{CU-11}
 \end{table}
 
 % Caso de Uso 12 -> Gestionar función admin  -> ACABADO
@@ -526,7 +545,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-12 Gestionar función admin.}
+	\caption{CU-12 Gestionar función admin}
+    \label{CU-12}
 \end{table}
 
 % Caso de Uso 13 -> Eliminar usuario     -> ACABADO
@@ -553,7 +573,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-13 Eliminar usuario.}
+	\caption{CU-13 Eliminar usuario}
+    \label{CU-13}
 \end{table}
 
 % Caso de Uso 14 -> Consultar lista de pacientes  -> ACABADO
@@ -596,7 +617,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-14 Consultar lista de pacientes.}
+	\caption{CU-14 Consultar lista de pacientes}
+    \label{CU-14}
 \end{table}
 
 % Caso de Uso 15 -> Consultar información personal y otras operaciones    -> ACABADO
@@ -625,7 +647,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-15 Consultar información personal y otras operaciones.}
+	\caption{CU-15 Consultar información personal y otras operaciones}
+    \label{CU-15}
 \end{table}
 
 % Caso de Uso 16 -> Iniciar actividad    -> ACABADO
@@ -660,7 +683,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-16 Iniciar actividad.}
+	\caption{CU-16 Iniciar actividad}
+    \label{CU-16}
 \end{table}
 
 % Caso de Uso 17 -> Finalizar actividad    -> ACABADO
@@ -700,7 +724,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta  \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-17 Finalizar actividad.}
+	\caption{CU-17 Finalizar actividad}
+    \label{CU-17}
 \end{table}
 
 % Caso de Uso 18 -> Consultar actividades y estadísticas    -> ACABADO
@@ -729,7 +754,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta  \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-18 Consultar actividades y estadísticas.}
+	\caption{CU-18 Consultar actividades y estadísticas}
+    \label{CU-18}
 \end{table}
 
 % Caso de Uso 19 -> Buscar actividad    -> ACABADO
@@ -769,7 +795,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          &  Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-19 Buscar actividad.}
+	\caption{CU-19 Buscar actividad}
+    \label{CU-19}
 \end{table}
 
 % Caso de Uso 20 -> Consulta y gestión de pacientes    -> ACABADO
@@ -805,7 +832,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Media \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-20 Consulta y gestión de pacientes.}
+	\caption{CU-20 Consulta y gestión de pacientes}
+    \label{CU-20}
 \end{table}
 
 % Caso de Uso 21 -> Buscar paciente    -> ACABADO
@@ -844,7 +872,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-21 Buscar paciente.}
+	\caption{CU-21 Buscar paciente}
+    \label{CU-21}
 \end{table}
 
 % Caso de uso 22 -> Dar de alta paciente     -> ACABADO
@@ -878,7 +907,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Media\\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-22 Dar de alta paciente.}
+	\caption{CU-22 Dar de alta paciente}
+    \label{CU-22}
 \end{table}
 
 % Caso de Uso 23 -> Crear paciente     -> ACABADO
@@ -922,7 +952,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta\\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-23 Crear paciente.}
+	\caption{CU-23 Crear paciente}
+    \label{CU-23}
 \end{table}
 
 % Caso de Uso 24 -> Eliminar paciente    -> ACABADO
@@ -949,7 +980,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-24 Eliminar paciente.}
+	\caption{CU-24 Eliminar paciente}
+    \label{CU-24}
 \end{table}
 
 % Caso de Uso 25 -> Visualizar paciente    -> ACABADO
@@ -977,7 +1009,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-25 Visualizar paciente.}
+	\caption{CU-25 Visualizar paciente}
+    \label{CU-25}
 \end{table}
 
 % Caso de Uso 26 -> Modificar paciente     -> ACABADO
@@ -1006,7 +1039,8 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Alta o Media o Baja... \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-26 Modificar paciente.}
+	\caption{CU-26 Modificar paciente}
+    \label{CU-26}
 \end{table}
 
 % Caso de Uso 27 -> Eliminar cuenta    -> ACABADO
@@ -1034,15 +1068,34 @@ Una muestra de cómo podría ser una tabla de casos de uso:
 		\textbf{Importancia}          & Baja \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-27 Eliminar cuenta.}
+	\caption{CU-27 Eliminar cuenta}
+    \label{CU-27}
 \end{table}
 
 
+\section{Prototipos de interfaz.}
+Una buena práctica antes de comenzar con la programación de la página web es la elaboración de wireframes sencillos, al menos, para las principales pestañas. Esto es esencial por varios motivos: 
+\begin{itemize}
+    \item Proporcionan mayor claridad y comprensión de los requisitos de la web, ayudando a guiar el desarrollo posterior.
+    \item Permiten la detección temprana de problemas de usabilidad y otorgar importancia para la experiencia del usuario.
+    \item Mejoran la comunicación entre las personas involucradas en el proceso de desarrollo (no aplicable a este proyecto).
+\end{itemize}
 
+En este caso, se han realizado wireframes para algunas de las ventanas más relevantes, mostrando una aproximación de lo que podría ser el resultado final.
+\begin{itemize}
+    \item Iniciar sesión. En la figura \ref{fig:Iniciar sesión} se muestran los campos a rellenar en la pantalla de acceso común a todos los usarios.
+    \item Confirmar operación. La notificación \ref{fig:Confirmar operación} se mostrará ante operaciones delicadas como eliminación de pacientes para confirmar que el usuario realmente quiere llevar a cabo el proceso que ha iniciado (\ref{CU-2}).
+    \item Consulta y gestión de usuarios. El menú de inicio del usuario administrador será similar a la figura \ref{fig:Consulta y gestión de usuarios} de la forma que indica CU-7 (\ref{CU-7}).
+    \item Crear usuario. Frontend de CU-9 (\ref{CU-9}) representado en la figura \ref{fig:Crear usuario}. El administrador tendrá que rellenar los datos comunes a todos los usuarios y, posteriormente, según el tipo de usuario que esté dando de alta será neceario completar unos campos específicos.
+    \item Consultar lista de pacientes. La Figura \ref{fig:Consultar lista de pacientes} es un primer boceto de la pantalla de inicio de un usuario profesional.
+    \item Consultar información personal y otras operaciones. La pantalla de la Figura \ref{fig:Consultar info personal y otras actividades} es accesible tanto por pacientes (será su pantalla de inicio) como por profesionales cuando seleccionen el paciente que quieren visualizar.
+    \item Iniciar actividad. Al seleccionar la función de iniciar actividad, CU-16 (\ref{CU-16}), el sistema se comunica con Arduino y este le enviará los datos en tiempo real a una interfaz como la de la Figura \ref{fig:Iniciar actividad}.
+    \item Consultar actividades y estadísticas. Las imágenes de \ref{fig:Consultar actividades y estadísticas (Paciente)} y \ref{fig:Consultar actividades y estadísticas (Profesional)} reflejan la idea inicial de cómo organizar el CU-18 (\ref{CU-18}) para pacienes y profesionales respectivamente.
+    \item Consulta y gestión de pacientes (\ref{fig:Consulta y gestión de pacientes}. Es la pantalla de inicio para profesionales.
+    \item Crear paciente. Acción reservada a administradores mediante la cumplimentación del formulario \ref{fig:Crear paciente}. 
+    \item Visualizar paciente. El profesional santiario tiene acceso a los datos de cada paciente estructurados como en la pestaña de la Figura \ref{fig:Visualizar paciente}.
+\end{itemize}
 
-\section{Prototipos de interfaz o interacción con el proyecto.}
-
-\subsection{Wireframes}
 
 % Iniciar sesión
 \begin{figure}[h]
