@@ -1,0 +1,179 @@
+\apendice{Documentación de usuario}
+
+
+\section{Requisitos software y hardware para ejecutar el proyecto.}
+
+\subsection{Software necesario}
+El desarrollo de la página web en modo localhost, en lugar de alojarla en un servidor externo, genera unos requerimientos específicos de software. Cumplir con estos requisitos es indespensable para el correcto funcionamiento de la página, asegurando el acceso a esta y permitiendo la comunicación con la base de datos y el Bluetooth del dispositivo hardware.\\
+
+Descripción de los elementos software necesarios y sus respectivas funciones:
+\begin{itemize}
+    \item XAMPP. Es un paquete de software que a través de su panel de control va a permitir iniciar Apache (servidor web) y MySQL (servidor de bases de datos).
+    \item Node.js. Servidor que se inicia desde los comandos de cmd y forma parte del backend para el control de la comunicación entre la web, Arduino y la base de datos.
+    \item Scripts y archivos de \textit{Web\_VisualStudio}. Es imprescindible que estén localizados dentro de la carpeta htdocs de XAMPP.
+    \item Visual Studio Code. Para ejecutar el archivo \textit{/bluetooth/ArduinoBridge \\ /bridge.py}, puente para la comunicación entre el dispositivo Arduino y el servidor web.
+\end{itemize}
+
+Además del software que permite el funcionamiento de la web, es indispensable cargar el script correcto en el microprocesador Arduino:
+\begin{itemize}
+    \item \textit{version 4.0/v4.0\_solicitudBD.ino}. Una vez el código ha sido compilado y almacenado en el microprocesador no será necesario realizar esta operación más veces, es decir, el usuario final no debería realizar este proceso ya que el hardware estaría configurado de fábrica.
+    \item Arduino IDE. Necesario para realizar la subida del script.
+    \item Antes de cualquier uso del prototipo hay que cargar y ejecutar el archivo MPU6050-lcd16\_ic2/MPU6050-lcd16\_ic2.ino para su calibración \cite{saragonz91:online}. Esta acción debería realizarse en fábrica, antes de la distribución al usuario final. 
+\end{itemize}
+
+Para el correcto funcionamiento de todos los softwares mencionados, se requiere la instalación de una variedad de paquetes y librerías de Arduino, python y Node.js.
+\begin{itemize}
+    \item Librerías de Arduino: I2Cdev, MPU6050, Wire, SoftwareSerial y LiquidCrystal\_I2C.
+    \item Paquetes Pyton: PySerial, Requests.
+    \item Paquetes Node.js: Express, MySQL, Body-Parser y CORS.
+\end{itemize}
+
+Se procede a la descripción detallada mediante tablas de los requisitos funcionales específicos del proyecto software que se quiere desarrollar. Van desde la Tabla RF-01 (\ref{RF-01}) hasta la Tabla RF-08 (\ref{RF-08}) e incluyen información del funcionamiento de la web y las interacciones con los usuarios.
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-01}    & \textbf{Iniciar sesión}\\
+        \toprule
+        \textbf{Descripción}              & Todos los usuarios deben introducir de forma obligatoria su correo electrónico, tipo de usuario y contraseña para poder acceder a la página web.   \\
+        \textbf{Importancia}                & Baja \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-01 Iniciar Sesión}
+    \label{RF-01}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-02}    & \textbf{Consultar pacientes y usuarios}\\
+        \toprule
+        \textbf{Descripción}              & Otorgar acceso a la lista completa de usuarios o pacientes, según los permisos asignados al usuario, y permitir la realización de búsquedas específicas dentro de ella.   \\
+        \textbf{Importancia}                & Media \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-02 Consultar pacientes y usuarios}
+    \label{RF-02}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-03}    & \textbf{Gestionar pacientes y usuarios}\\
+        \toprule
+        \textbf{Descripción}              & Permitir la creación y eliminación de cuentas, así como la modificación de los datos almacenados en las cuentas de pacientes y médicos. La capacidad para realizar estas acciones depende del nivel de acceso que el usuario tenga en el sistema web.   \\
+        \textbf{Importancia}                & Media \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-03 Gestionar pacientes y usuarios}
+    \label{RF-03}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-04}    & \textbf{Realizar actividad}\\
+        \toprule
+        \textbf{Descripción}              & Ofrece las opciones de iniciar y finalizar actividades, así como la opción de guardar o descartar estas mismas.   \\
+        \textbf{Importancia}                & Media \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-04 Realizar actividad}
+    \label{RF-04}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-05}    & \textbf{Mostrar actividades}\\
+        \toprule
+        \textbf{Descripción}              & Presenta al usuario en una lista las actividades realizadas por el paciente, permitiendo diferentes visualizaciones y llevar a cabo filtrados.   \\
+        \textbf{Importancia}                & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-05 Mostrar actividades}
+    \label{RF-05}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-06}    & \textbf{Consultar estadísticas}\\
+        \toprule
+        \textbf{Descripción}              & Visualización de los datos relacionados con las actividades realizadas por el paciente, ya sea de una actividad en concreto o de todas en conjunto.   \\
+        \textbf{Importancia}                & Baja \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-06 Consultar Estadísticas}
+    \label{RF-06}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-07}    & \textbf{Gestionar cuenta}\\
+        \toprule
+        \textbf{Descripción}              & Facilitar a los usuarios las tareas de cambio de contraseña y actualización del correo eléctrónico vinculado a su cuenta.  \\
+        \textbf{Importancia}                & Baja \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-07 Gestionar cuenta}
+    \label{RF-07}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-08}    & \textbf{Cerrar sesión}\\
+        \toprule
+        \textbf{Descripción}              & Todos los usuarios tendrán la opción de cerrar sesión desde el menú de inicio. Para prevenir cierres accidentales, se solicitará una confirmación de la acción antes de que esta se complete.  \\
+        \textbf{Importancia}                & Baja \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-08 Cerrar sesión}
+    \label{RF-08}
+\end{table}
+
+\subsection{Hardware necesario}
+El hardware del prototipo anterior (sara).
+
+Descripción de requisitos funcionales con los que ya cumplía.
+    - recogida de datos
+    - inicio fin actividad
+    
+
++ el principal elemento que da pie a este proyecto -> bluetooth
++ pequeñas mejoras para mayor comodidad.
+
+Requisitos de funcionalidad añadidos.:
+    - envío de datos
+    - on off
+    - autonomía
+    - comodidad de uso
+
+
+\section{Puesta en marcha}
+Para el funcionamiento del prototipo y su control a través de la web, no debería ser necesario instalar ningún programa específico salvo, en este caso, los indicados en el apartado de software necesario.
+
+Añadir proceso de calibración.
+
+\subsection{Software}
+\subsection{Hardware}
+
+
+
+\section{Manuales y/o Demostraciones prácticas}
+
+
+
+
+    
+     
