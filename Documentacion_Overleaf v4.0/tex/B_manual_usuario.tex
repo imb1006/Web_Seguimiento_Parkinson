@@ -3,7 +3,7 @@
 
 \section{Requisitos software y hardware para ejecutar el proyecto.}
 
-\subsection{Software necesario}
+\subsection{Software}
 El desarrollo de la página web en modo localhost, en lugar de alojarla en un servidor externo, genera unos requerimientos específicos de software. Cumplir con estos requisitos es indespensable para el correcto funcionamiento de la página, asegurando el acceso a esta y permitiendo la comunicación con la base de datos y el Bluetooth del dispositivo hardware.\\
 
 Descripción de los elementos software necesarios y sus respectivas funciones:
@@ -28,7 +28,7 @@ Para el correcto funcionamiento de todos los softwares mencionados, se requiere 
     \item Paquetes Node.js: Express, MySQL, Body-Parser y CORS.
 \end{itemize}
 
-Se procede a la descripción detallada mediante tablas de los requisitos funcionales específicos del proyecto software que se quiere desarrollar. Van desde la Tabla RF-01 (\ref{RF-01}) hasta la Tabla RF-08 (\ref{RF-08}) e incluyen información del funcionamiento de la web y las interacciones con los usuarios.
+Se procede a la descripción detallada mediante tablas de los requisitos funcionales específicos del proyecto software que se desarrolla en este proyecto. Van desde la Tabla RF-01 (Tabla \ref{RF-01}) hasta la Tabla RF-08 (Tabla \ref{RF-08}) e incluyen información del funcionamiento de la web y las interacciones con los usuarios.
 
 \begin{table}[p]
     \centering
@@ -79,7 +79,7 @@ Se procede a la descripción detallada mediante tablas de los requisitos funcion
         \textbf{RF-04}    & \textbf{Realizar actividad}\\
         \toprule
         \textbf{Descripción}              & Ofrece las opciones de iniciar y finalizar actividades, así como la opción de guardar o descartar estas mismas.   \\
-        \textbf{Importancia}                & Media \\
+        \textbf{Importancia}                & Alta \\
         \bottomrule
     \end{tabularx}
     \caption{RF-04 Realizar actividad}
@@ -107,7 +107,7 @@ Se procede a la descripción detallada mediante tablas de los requisitos funcion
         \textbf{RF-06}    & \textbf{Consultar estadísticas}\\
         \toprule
         \textbf{Descripción}              & Visualización de los datos relacionados con las actividades realizadas por el paciente, ya sea de una actividad en concreto o de todas en conjunto.   \\
-        \textbf{Importancia}                & Baja \\
+        \textbf{Importancia}                & Media \\
         \bottomrule
     \end{tabularx}
     \caption{RF-06 Consultar Estadísticas}
@@ -142,22 +142,92 @@ Se procede a la descripción detallada mediante tablas de los requisitos funcion
     \label{RF-08}
 \end{table}
 
-\subsection{Hardware necesario}
-El hardware del prototipo anterior (sara).
+\subsection{Hardware}
+El funcionamiento correcto de todo el proyecto requiere del dispositivo físico adecuado que trabaje en concordancia con el software desarrollado, fin con el que se han realizado cambios y adiciones de componentes sobre el hardware del prototipo inicial. En la Tabla \ref{tab:componentes} se muestran todos los componentes que se emplean en el desarrollo de este proyecto.
 
-Descripción de requisitos funcionales con los que ya cumplía.
-    - recogida de datos
-    - inicio fin actividad
-    
+\begin{table}[]
+    \begin{tabular}{|c|c|}
+    \hline
+    \rowcolor[HTML]{FFFFFF} 
+    \multicolumn{2}{|c|}{\cellcolor[HTML]{FFFFFF}\textbf{Componentes}} \\ \hline 
+    \rowcolor[HTML]{EFEFEF} 
+    Arduino UNO R3 & 2 Resistencias \\ \hline
+    \rowcolor[HTML]{FFFFFF} 
+    Display LCD + Interfaz I2C & 2 Pulsadores \\ \hline
+    \rowcolor[HTML]{EFEFEF} 
+    Bluetooth HC-05 & Sensor MPU-6050 \\ \hline
+    \rowcolor[HTML]{FFFFFF} 
+    Cables & Caja para Prototipos \\ \hline
+    \rowcolor[HTML]{EFEFEF} 
+    Batería Recargable 9V + Conector de Batería & Cable Multihilo Flexible \\ \hline
+    \rowcolor[HTML]{FFFFFF} 
+    Proto Shield Arduino & Interruptor \\ \hline
+    \rowcolor[HTML]{EFEFEF} 
+    Conector 5 pines macho-hembra & \\ \hline
+    \end{tabular}
+    \caption{Componentes del Prototipo}
+    \label{tab:componentes}
+\end{table}
 
-+ el principal elemento que da pie a este proyecto -> bluetooth
-+ pequeñas mejoras para mayor comodidad.
 
-Requisitos de funcionalidad añadidos.:
-    - envío de datos
-    - on off
-    - autonomía
-    - comodidad de uso
+
+Los requisitos hardware se basan en el principal elemento que da pie a este proyecto, el Bluetooth, y en la necesidad de implementar mejoras para lograr una mayor facilidad de uso y comodidad. Su descripción se incluye en las tablas RF-09 ( Tabla \ref{RF-09}) a RF-12 (Tabla \ref{RF-12}).
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-09}    & \textbf{Transmisión de datos sin cables}\\
+        \toprule
+        \textbf{Descripción}              & Implementación de la tecnología de comunicación escogida para que el envío de datos del dispositivo no dependa de la conexión por USB al ordenador.  \\
+        \textbf{Importancia}                & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-09 Transmisión de datos sin cables}
+    \label{RF-09}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-10}    & \textbf{Alimentación externa}\\
+        \toprule
+        \textbf{Descripción}              & Permitir la completa autonomía del prototipo incorporando en él una batería externa recargable. \\
+        \textbf{Importancia}                & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-10 Alimentación externa}
+    \label{RF-10}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-11}    & \textbf{Encendido y apagado del sistema}\\
+        \toprule
+        \textbf{Descripción}              & Regulación del flujo eléctrico que recibe el sistema. Se puede lograr de forma sencilla a través de un interruptor. \\
+        \textbf{Importancia}                & Media \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-11 Encendido y apagado del sistema}
+    \label{RF-11}
+\end{table}
+
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{RF-12}    & \textbf{Seguridad y manejabilidad del prototipo}\\
+        \toprule
+        \textbf{Descripción}              & Es imprescindible, tanto para la protección del prototipo como para la seguridad del usuario, que el hardware y el montaje electrónico se encuentren protegidos y aislados. La solución que se implemente debe asegurar un manejo sencillo del dispositivo.  \\
+        \textbf{Importancia}                & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{RF-12 Seguridad y manejabilidad del prototipo}
+    \label{RF-12}
+\end{table}
 
 
 \section{Puesta en marcha}
