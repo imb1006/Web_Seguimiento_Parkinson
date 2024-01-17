@@ -15,7 +15,7 @@ MPU6050 mpu;
 LiquidCrystal_I2C lcd(0x27, 16,2);
 
 // Crear instancia de SoftwareSerial para el HC-05
-SoftwareSerial btSerial(10, 11);
+SoftwareSerial btSerial(10, 11); //RX (recepción), TX (transmisión)
 
 // Valores sin procesar (valores RAW) del acelerometro y giroscopio (ejes x, y, z)
 int ax, ay, az; // rango por defecto: -2g a +2g
