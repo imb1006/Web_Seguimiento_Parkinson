@@ -136,7 +136,25 @@ session_start();
     </style>
 </head>
 <body>
-    <?php 
+    <?php
+
+    // Manejo de redirección con mensaje de éxito
+    if (isset($_SESSION['redirect'])) {
+        echo "<script type='text/javascript'>
+                alert('" . addslashes($_SESSION['message']) . "');
+                window.location.href = '" . $_SESSION['redirect'] . "';
+            </script>";
+        unset($_SESSION['message']);
+        unset($_SESSION['redirect']);
+        exit; // Detiene la ejecución del script
+    }
+
+
+    // Mostrar mensaje si está establecido
+    if (isset($_SESSION['message'])) {
+        echo "<script>alert('" . addslashes($_SESSION['message']) . "');</script>";
+        unset($_SESSION['message']);
+    }
 
     if ($_SESSION['user_type'] === 'profesional') {
         include '../profesional/menu.php'; // Incluye el menú para profesionales
@@ -166,7 +184,7 @@ session_start();
 
     <div class="content">
         <div class="welcome-message">Cambiar contraseña</div>
-        <form id="actualizarCorreo" action="actualizarCorreo.php" method="post">
+        <form id="formCambiarContraseña" action="cambiarContraseña.php" method="post">
             <div class="contenedor">
                 <div class="form-field">
                     <input type="password" id="actual_password" name="actual_password" placeholder="Contraseña Actual" required>
@@ -182,7 +200,7 @@ session_start();
                 </div>
             </div>
             <div>
-                <button type="button">Aplicar cambios</button>
+                <button type="button" onclick="confirmarAccion('cambiarContraseña')">Aplicar cambios</button>
             </div>
         </form>
     </div>

@@ -79,6 +79,14 @@ function confirmarAccion(accion) {
         } else {
             return;
         }
+    } else if (accion === 'cambiarContraseña') {
+        mensaje = "¿Estás seguro de que quieres cambiar tu contraseña?";
+        if (mensaje && confirm(mensaje)) {
+            document.getElementById('formCambiarContraseña').submit(); // Enviar el formulario
+            return;
+        } else {
+            return;
+        }
     }
 
     if (mensaje && confirm(mensaje)) {
