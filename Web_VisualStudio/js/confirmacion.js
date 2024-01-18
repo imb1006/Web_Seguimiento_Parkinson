@@ -71,6 +71,14 @@ function confirmarAccion(accion) {
     } else if (accion === 'descartarPaciente') {
         mensaje = "¡Atención! Estás a punto de descartar los cambios";
         urlRedireccion = '../profesional/inicioProfesional.php';
+    } else if (accion === 'actualizarCorreo') {
+        mensaje = "¿Estás seguro de que quieres actualizar tu correo electrónico?";
+        if (mensaje && confirm(mensaje)) {
+            document.getElementById('actualizarCorreo').submit(); // Enviar el formulario
+            return;
+        } else {
+            return;
+        }
     }
 
     if (mensaje && confirm(mensaje)) {

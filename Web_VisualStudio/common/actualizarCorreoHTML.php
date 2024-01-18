@@ -79,7 +79,7 @@ session_start();
             padding-right: 30px; /* Espacio para el ícono del ojo */
         }
 
-        button[type="submit"]  {
+        button[type="button"]  {
             margin: 10px;
             padding: 10px 20px;
             border: none;
@@ -91,7 +91,7 @@ session_start();
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #D2B4DE;
         }
 
@@ -137,7 +137,25 @@ session_start();
     </style>
 </head>
 <body>
-    <?php 
+    <?php
+
+    // Manejo de redirección con mensaje de éxito
+    if (isset($_SESSION['redirect'])) {
+        echo "<script type='text/javascript'>
+                alert('" . addslashes($_SESSION['message']) . "');
+                window.location.href = '" . $_SESSION['redirect'] . "';
+            </script>";
+        unset($_SESSION['message']);
+        unset($_SESSION['redirect']);
+        exit; // Detiene la ejecución del script
+    }
+
+
+    // Mostrar mensaje si está establecido
+    if (isset($_SESSION['message'])) {
+        echo "<script>alert('" . addslashes($_SESSION['message']) . "');</script>";
+        unset($_SESSION['message']);
+    }
 
     if ($_SESSION['user_type'] === 'profesional') {
         include '../profesional/menu.php'; // Incluye el menú para profesionales
@@ -169,15 +187,15 @@ session_start();
         <div class="welcome-message">Actualizar Correo Electrónico</div>
         <form id="actualizarCorreo" action="actualizarCorreo.php" method="post">
             <div class="contenedor">
-                <div><input type="email" id="newEmail" name="newEmail" placeholder="Correo Electrónico" required></div>
-                <div><input type="email" id="confirm_email" name="confirm_email" placeholder="Repetir Correo Electrónico" required></div>
+                <div><input type="email" id="newEmail" name="newEmail" placeholder="Nuevo Correo Electrónico" required></div>
+                <div><input type="email" id="confirm_email" name="confirm_email" placeholder="Repetir Nuevo Correo Electrónico" required></div>
                 <div class="form-field">
                     <input type="password" id="password" name="password" placeholder="Contraseña" required>
                     <i class="fas fa-eye password-icon" onclick="togglePasswordVisibility()"></i>
                 </div>
             </div>
             <div>
-                <button type="submit">Actualizar Email</button>
+                <button type="button" onclick="confirmarAccion('actualizarCorreo')">Aplicar Cambios</button>
             </div>
         </form>
     </div>
