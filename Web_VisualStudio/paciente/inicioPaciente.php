@@ -79,7 +79,7 @@
             max-width: 80%;
         }
 
-        button[type="submit"]  {
+        button[type="button"]  {
             margin: 10px;
             padding: 10px 20px;
             border: none;
@@ -91,7 +91,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #D2B4DE;
         }
 
@@ -169,8 +169,8 @@
             <p>Profesional Asignado: <?php echo implode(", ", $profesionales); ?></p>
         </div>
         <div class="botones-actividades">
-            <button type="submit" onclick="iniciarActividadYRedirigir()">Realizar Actividad</button>
-            <button type="submit" onclick="location.href='../common/consultaActividades.php'">Actividades y Estadísticas</button>
+            <button type="button" onclick="iniciarActividadYRedirigir()">Realizar Actividad</button>
+            <button type="button" onclick="location.href='../common/consultaActividades.php'">Actividades y Estadísticas</button>
         </div>
     </div>
 

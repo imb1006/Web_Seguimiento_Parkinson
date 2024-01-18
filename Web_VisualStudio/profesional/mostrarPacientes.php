@@ -73,7 +73,7 @@ if (isset($_SESSION['message'])) {
             max-width: 100%; /* Máximo ancho de la tabla */
         }
 
-        button[type="submit"]  {
+        button[type="button"]  {
             margin: 10px;
             padding: 10px 20px;
             border: none;
@@ -85,7 +85,7 @@ if (isset($_SESSION['message'])) {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #D2B4DE;
         }
 
@@ -146,7 +146,7 @@ if (isset($_SESSION['message'])) {
                             <td><?php echo htmlspecialchars($paciente['apellidos']); ?></td>
                             <td><?php echo htmlspecialchars($paciente['correo_electronico']); ?></td>
                             <td>
-                                <button type="submit" onclick="confirmarAccionConId('asignarPaciente', '<?php echo htmlspecialchars($paciente['id_usuario']); ?>')">Añadir Paciente</button>
+                                <button type="button" onclick="confirmarAccionConId('asignarPaciente', '<?php echo htmlspecialchars($paciente['id_usuario']); ?>')">Añadir Paciente</button>
                             </td>
                         </tr>
 
@@ -160,7 +160,7 @@ if (isset($_SESSION['message'])) {
                 </tbody>
             </table>
         </div>
-        <button type="submit" onclick="location.href='inicioProfesional.php'">Menú Pacientes</button>
+        <button type="button" onclick="location.href='inicioProfesional.php'">Menú Pacientes</button>
     </div>
 </body>
 </html>

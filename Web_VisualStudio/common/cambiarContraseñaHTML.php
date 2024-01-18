@@ -78,7 +78,7 @@ session_start();
             padding-right: 30px; /* Espacio para el ícono del ojo */
         }
 
-        button[type="submit"]  {
+        button[type="button"]  {
             margin: 10px;
             padding: 10px 20px;
             border: none;
@@ -90,7 +90,7 @@ session_start();
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #D2B4DE;
         }
 
@@ -182,7 +182,7 @@ session_start();
                 </div>
             </div>
             <div>
-                <button type="submit">Aplicar cambios</button>
+                <button type="button">Aplicar cambios</button>
             </div>
         </form>
     </div>

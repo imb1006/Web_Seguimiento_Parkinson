@@ -84,7 +84,7 @@ $id_profesional = $_SESSION['user_id']; // ID del profesional que ha iniciado se
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interior suave */
         }
 
-        button[type="submit"]  {
+        button[type="button"]  {
             margin: 10px;
             padding: 10px 20px;
             border: none;
@@ -96,7 +96,7 @@ $id_profesional = $_SESSION['user_id']; // ID del profesional que ha iniciado se
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #D2B4DE;
         }
 
@@ -157,8 +157,8 @@ $id_profesional = $_SESSION['user_id']; // ID del profesional que ha iniciado se
                     </div>
             </div>
             <input type="hidden" name="id_profesional" value="<?php echo $id_profesional; ?>">
-            <button type="submit" onclick="confirmarAccion('crearPaciente')">Guardar Paciente</button>
-            <button type="submit" onclick="confirmarAccion('descartarPaciente')">Descartar Cambios</button>
+            <button type="button" onclick="confirmarAccion('crearPaciente')">Guardar Paciente</button>
+            <button type="button" onclick="confirmarAccion('descartarPaciente')">Descartar Cambios</button>
         </form>
     </div>
 </body>

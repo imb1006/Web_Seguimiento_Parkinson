@@ -62,7 +62,7 @@
             color: #555; /* Color del icono al pasar el mouse por encima */
         }
 
-        button[type="submit"]  {
+        button[type="button"]  {
             margin: 10px;
             padding: 10px 20px;
             border: none;
@@ -74,7 +74,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #D2B4DE;
         }
 
@@ -142,7 +142,7 @@
                             <td><?php echo htmlspecialchars($paciente['correo_electronico']); ?></td>
                             <td>
                                 <!-- Botón Consultar Paciente -->
-                                <button type="submit" onclick = "location.href='infoPaciente.php?id_paciente=<?php echo htmlspecialchars($paciente['id_usuario']); ?>'">Consultar Paciente</button>
+                                <button type="button" onclick = "location.href='infoPaciente.php?id_paciente=<?php echo htmlspecialchars($paciente['id_usuario']); ?>'">Consultar Paciente</button>
                             </td>
                             <td>
                                 <!-- Botón Eliminar -->
@@ -161,8 +161,8 @@
             </table>
         </div>
         <div class="botones-actividades">
-            <button type="submit" onclick="location.href='mostrarPacientes.php?id_profesional=<?php echo $id_profesional; ?>'">Asignar Paciente Existente</button>
-            <button type="submit" onclick="location.href='nuevoPacienteHTML.php'">Crear Nuevo Paciente</button>
+            <button type="button" onclick="location.href='mostrarPacientes.php?id_profesional=<?php echo $id_profesional; ?>'">Asignar Paciente Existente</button>
+            <button type="button" onclick="location.href='nuevoPacienteHTML.php'">Crear Nuevo Paciente</button>
         </div>
     </div>
 

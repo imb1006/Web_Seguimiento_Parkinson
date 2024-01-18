@@ -76,7 +76,7 @@ if (isset($_GET['id_paciente'])) {
             max-width: 80%;
         }
 
-        button[type="submit"]  {
+        button[type="button"]  {
             margin: 10px;
             padding: 10px 20px;
             border: none;
@@ -88,7 +88,7 @@ if (isset($_GET['id_paciente'])) {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #D2B4DE;
         }
     </style>
@@ -147,9 +147,9 @@ if (isset($_GET['id_paciente'])) {
             <p>Email: <?php echo $email; ?></p>
         </div>
         <div class="botones-actividades">
-            <button type="submit" onclick="location.href='inicioProfesional.php'">Menú Pacientes</button>
-            <button type="submit" onclick="iniciarActividadYRedirigir()">Realizar Actividad</button>
-            <button type="submit" onclick="location.href='../common/consultaActividades.php?id_paciente=<?php echo $id_paciente; ?>'">Actividades y Estadísticas</button>
+            <button type="button" onclick="location.href='inicioProfesional.php'">Menú Pacientes</button>
+            <button type="button" onclick="iniciarActividadYRedirigir()">Realizar Actividad</button>
+            <button type="button" onclick="location.href='../common/consultaActividades.php?id_paciente=<?php echo $id_paciente; ?>'">Actividades y Estadísticas</button>
         </div>
     </div>
 
