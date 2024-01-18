@@ -22,15 +22,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="inicioProfesional.php">Inicio</a>
+                            <a class="nav-link" href="../profesional/inicioProfesional.php">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               Mi cuenta
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="../common/actualizarCorreo.html">Actualizar correo</a></li>
-                              <li><a class="dropdown-item" href="../common/cambiarContraseña.html">Cambiar contraseña</a></li>
+                              <li><a class="dropdown-item" href="../common/actualizarCorreoHTML.php">Actualizar correo</a></li>
+                              <li><a class="dropdown-item" href="../common/cambiarContraseñaHTML.php">Cambiar contraseña</a></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="#" onclick="confirmarAccionConId('eliminarCuenta', <?php echo htmlspecialchars($_SESSION['user_id']); ?>)">Eliminar cuenta</a></li>
                             </ul>

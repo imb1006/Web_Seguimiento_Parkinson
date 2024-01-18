@@ -57,14 +57,21 @@ function confirmarAccion(accion) {
         if (mensaje && confirm(mensaje)) {
             document.getElementById('formCrearUsuario').submit(); // Enviar el formulario
             return; // Salir de la función para evitar la redirección
+        } else {
+            return; 
         }
     } else if (accion === 'crearPaciente') {
         mensaje = "¿Quiere dar de alta al nuevo paciente?";
-        if (confirm(mensaje)) {
+        if (mensaje && confirm(mensaje)) {
             document.getElementById('formNuevoPaciente').submit();
             return;
+        } else {
+            return; 
         }
-    } 
+    } else if (accion === 'descartarPaciente') {
+        mensaje = "¡Atención! Estás a punto de descartar los cambios";
+        urlRedireccion = '../profesional/inicioProfesional.php';
+    }
 
     if (mensaje && confirm(mensaje)) {
         window.location.href = urlRedireccion;
@@ -98,12 +105,16 @@ function confirmarAccionConId(accion, id) {
         if (confirm(mensaje)) {
             window.location.href = '../common/eliminarCuenta.php?id_usuario=' + id;
             return;
+        } else {
+            return; 
         }
     }  else if (accion === 'asignarPaciente') {
         mensaje = "¿Quiere asignarse el paciente seleccionado?";
         if (confirm(mensaje)) {
             window.location.href = '../profesional/asignarPaciente.php?id_paciente=' + id;
             return;
+        } else {
+            return; 
         }
     }
 
@@ -111,3 +122,4 @@ function confirmarAccionConId(accion, id) {
         window.location.href = urlRedireccion;
     }
 }
+
