@@ -1,8 +1,26 @@
 \apendice{Manual de especificación de diseño}
 
 \section{Planos}
+El montaje inicial, del que parte la idea de este proyecto con el objetivo principal de desarrollar un dispositivo completamente autónomo, se presenta en la Figura \ref{fig:arqInicio}.
 
-Si procede
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{img/E1_Planos/planoSara.png}
+    \caption{Esquema de montaje del prototipo de partida. \cite{saragonz91:online}}
+    \label{fig:arqInicio}
+\end{figure}
+
+Durante el trabajo se ha implementado una fuente de alimentación externa, regulada a través de un interruptor, y un módulo Bluetooth destinado a la transmisión de datos. La instalación del módulo HC-05 requiere únicamente cuatro conexiones: conectar Vcc al polo positivo, GND a toma de tierra, y las conexiones TXD (pin de transmisión) y RXD (pin de recepción) a los correspondientes opuestos en la placa Arduino, que en este caso se han configurado como los pines digitales 10 (RX) y 11 (TX). El montaje final se refleja en la Figura \ref{fig:arqFinal}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{img/E1_Planos/EsquemaArduino.png}
+    \caption{Esquema de montaje del dispositivo final.}
+    \label{fig:arqFinal}
+\end{figure}
+
+El protipo final, ilustrado en la Figura X, integra todos los componentes de hardware esenciales para facilitar su manejo.
+
 
 \section{Diseño arquitectónico}
 El diseño de la arquitectura web es el primer paso crítico en el diseño de software. Partiendo de los requisitos del sistema, el diseño arquitectónico proporciona una planificación y organización global de este, establenciendo las relaciones entre sus componentes \cite{castro2015arquitectura}.

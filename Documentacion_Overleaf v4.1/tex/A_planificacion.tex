@@ -16,7 +16,7 @@ En este apartado se presenta la planificación económica del proyecto realizado
 
 \subsection{Coste de personal}
 Ha habido únicamente una persona involucrada en el proyecto, desde el desarrollo hasta el diseño, que para el cálculo de los costos de contratación será considerada Ingeniero de la Salud sin experiencia. 
-En España, un Ingeniero Biomédico recién egresado o con menos de 3 años de experiencia, que es la situación que más se ajusta a este caso, puede aspirar a un salario medio bruto de 29.020 €/año \cite{jobtedIngenieroBiomedico}. Teniendo en cuenta que el contrato necesario para la realización de esté proyecto debe ser de 2 meses de duración a jornada completa, el costo del empleado será de 4.836,66 €, cantidad a la que habrá que añadirle el pago de la Seguridad Social que corre a cargo de la empresa. El cálculo de la cantidad de dinero a pagar según el Régimen General de la Seguridad Social \cite{SeguridaSocial:online} se puede calcular a través de unos porcentajes a aplicar sobre el salario bruto como se muestra en la tabla \ref{tab: costesEmpleado}.
+En España, un Ingeniero Biomédico recién egresado o con menos de 3 años de experiencia, que es la situación que más se ajusta a este caso, puede aspirar a un salario medio bruto de 29.020 €/año \cite{jobtedIngenieroBiomedico}. Teniendo en cuenta que el contrato necesario para la realización de esté proyecto debe ser de 2 meses de duración a jornada completa, el costo del empleado será de 4.836,66 €, cantidad a la que habrá que añadirle el pago de la Seguridad Social que corre a cargo de la empresa. La cantidad de dinero a pagar según el Régimen General de la Seguridad Social \cite{SeguridaSocial:online} se puede calcular a través de unos porcentajes a aplicar sobre el salario bruto como se muestra en la Tabla \ref{tab: costesEmpleado}.
 
 \begin{table}[]
     \centering
@@ -47,7 +47,7 @@ En España, un Ingeniero Biomédico recién egresado o con menos de 3 años de e
 Todas las herramientas software empleadas compartían la característica de ser de código abierto y gratuitas. Visual Studio Code, XAMPP, Node.js y Arduino IDE han sido algunas de las utilizadas.
 
 \subsection{Amortización de los equipos}
-El único equipo indispensable para el desarrollo del proyecto, ha sido un portátil de la marca HP (modelo HP Pavillion Laptop 15-cs2xxx) cuyo precio de compra fue de 849,45€ y al que se le estima una vida útil de 6 años. La amortización \footnote{Amortización es la pérdida de valor de un bien o activo a lo largo del tiempo.} del portatil durante los dos meses y medio que duró el trabajo puede calcularse aplicando la fórmula de la figura \ref{fig:amortizacion-portatil} , obteniendo como resultado 29,49 € \cite{Amortizacion:online}.
+El único equipo indispensable para el desarrollo del proyecto ha sido un portátil de la marca HP (modelo HP Pavillion Laptop 15-cs2xxx), cuyo precio de compra fue de 849,45€ y al que se le estima una vida útil de 6 años. La amortización \footnote{Amortización es la pérdida de valor de un bien o activo a lo largo del tiempo.} del portatil durante los dos meses y medio que duró el trabajo puede calcularse aplicando la fórmula de la Figura \ref{fig:amortizacion-portatil} , obteniendo como resultado 29,49 € \cite{Amortizacion:online}.
 
 \begin{figure}[h]
     \centering
@@ -59,8 +59,8 @@ El único equipo indispensable para el desarrollo del proyecto, ha sido un port�
 \end{figure}
 
 \subsection{Costes de hardware}
-Se va a estimar el precio del prototipo empleado para la realización de pruebas a lo largo del proyecto. En este caso el cálculo de costos se ha limitado al único dispositivo que todavía requiere mejoras pero, si se obtuviera un producto final susceptible de lanzamiento al mercado, además del cálculo del coste por unidad habría que realizar una estimación de la cantidad necesaria de cada material para la producción del número de dispositivos que se pretenda distribuir.
-Tras la búsqueda y comparación de precios de todos los componentes necesarios en las tiendas online de Amazon, turiBOT y AliExpress, se opta por escoger la última de ellas debido a la gran diferencia de precios \cite{AliExpre51:online}. Los resultados se pueden visualizar en la tabla \ref{tab:costesComponentes}.
+Se va a estimar el precio del prototipo empleado para la realización de pruebas a lo largo del proyecto. En este caso el cálculo de costos se ha limitado al único dispositivo que todavía requiere mejoras pero, si se obtuviera un producto final susceptible de lanzamiento al mercado, además del cálculo del coste por unidad habría que realizar una estimación de la cantidad necesaria de cada material para la producción del número de dispositivos que se pretenda distribuir.\\
+Tras la búsqueda y comparación de precios para los componentes necesarios en las tiendas online de Amazon, turiBOT y AliExpress, se concluye que AliExpress ofrece los mejores precios. Sin embargo, debido a los problemas reportados con su distribuidora en España, se ha descartado esta opción. Los precios de Amazon \cite{Amazones75:online} y turiBOT \cite{turi:online} son bastante similares, por lo que se ha optado por elaborar el presupuesto considerando a ambas empresas. Los resultados se pueden visualizar en la Tabla \ref{tab:costesComponentes}.
 
 \begin{table}[]
     \centering
@@ -69,23 +69,37 @@ Tras la búsqueda y comparación de precios de todos los componentes necesarios 
         \rowcolor[HTML]{FFFFFF} 
         \textbf{Componente} & \textbf{Coste (€)} \\ \hline
         \rowcolor[HTML]{EFEFEF} 
-        Microprocesador Arduino UNO R3 & 2,00 \\ \hline
+        Microprocesador Arduino UNO R3 & 24,68 \\ \hline
         \rowcolor[HTML]{FFFFFF} 
-        Cables & 0,70 \\ \hline
+        Cables & 1,57 \\ \hline
         \rowcolor[HTML]{EFEFEF} 
-        Acelerómetro + Giroscopio MPU-6050 & 1,17 \\ \hline
+        Acelerómetro + Giroscopio MPU-6050 & 3,92 \\ \hline
         \rowcolor[HTML]{FFFFFF} 
-        Módulo bluetooth HC-05 & 4,00 \\ \hline
+        Módulo bluetooth HC-05 & 10,00 \\ \hline
         \rowcolor[HTML]{EFEFEF} 
-        Display LCD 16x2 & 0,71 \\ \hline
+        Display LCD 16x2 & 7,5 \\ \hline
         \rowcolor[HTML]{FFFFFF} 
-        Módulo I2C & 0,41 \\ \hline
+        Módulo I2C & 2,66 \\ \hline
         \rowcolor[HTML]{EFEFEF} 
         2 pulsadores & 0,50 \\ \hline
         \rowcolor[HTML]{FFFFFF} 
         2 resistencias & 0,50 \\ \hline
+        \rowcolor[HTML]{EFEFEF} 
+        Caja para prototipos & 7,00 \\ \hline
+        \rowcolor[HTML]{FFFFFF} 
+        Batería recargable 9V & 10,00 \\ \hline
+        \rowcolor[HTML]{EFEFEF} 
+        Conector para batería & 0,35 \\ \hline
+        \rowcolor[HTML]{FFFFFF} 
+        Cable multihilo flexible & 11,99 \\ \hline
+        \rowcolor[HTML]{EFEFEF} 
+        Interruptor & 1,19 \\ \hline
+        \rowcolor[HTML]{FFFFFF} 
+        Proto shield Arduino & 3,19 \\ \hline
+        \rowcolor[HTML]{EFEFEF} 
+        Conector 5 pines macho-hembra & 6,99 \\ \hline
         \rowcolor[HTML]{C0C0C0} 
-        \textbf{Coste Total} & \textbf{9,99 €} \\ \hline
+        \textbf{Coste Total} & \textbf{92,04 €} \\ \hline
     \end{tabular}
     \caption{Desglose de costes de los componentes}
     \label{tab:costesComponentes}
@@ -162,4 +176,4 @@ Se ha hecho uso de una amplia gama de herramientas, todas ellas protegidas con a
 \end{table}
 
 \subsubsection{Licencia de este proyecto}
-Para este proyecto se ha seleccionado la Licencia Apache 2.0. Esta licencia de software libre y código abierto, que destaca por las escasas restricciones, no proporciona ningún tipo de garantía ni establece restricciones de uso \cite{ApacheLi71:online}. No obstante, su cumplimiento de los requisitos mínimos y que no supone ningún coste adicional, han sido razones suficientes para su adopción.
+Para este proyecto se ha seleccionado la Licencia Apache 2.0. Esta licencia de software libre y código abierto, que destaca por las escasas restricciones, no proporciona ningún tipo de garantía ni establece restricciones de uso \cite{ApacheLi71:online}. No obstante, su cumplimiento de los requisitos mínimos y que no supone ningún coste adicional, han sido razones suficientes para su selección.
