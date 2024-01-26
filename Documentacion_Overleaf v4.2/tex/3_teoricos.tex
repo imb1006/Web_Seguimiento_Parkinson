@@ -1,0 +1,111 @@
+\capitulo{3}{Conceptos teóricos}
+
+
+Explicación de los conceptos teóricos básicos necesarios para que cualquier miembro del tribunal pueda entender el trabajo realizado.
+
+Esta sección puede contener el número de subsecciones que sean necesarias.
+
+\section{Sección}
+
+\subsection{Subsección}
+
+\subsubsection{Sub Subsección}
+
+En esta sección y el resto de secciones de la memoria puede ser necesario incluir listas de items.
+
+\begin{itemize}
+    \item item1
+    \item item2
+    \item item3
+    \item item4
+\end{itemize}
+
+Listas enumeradas.
+
+\begin{enumerate}
+    \item item1
+    \item item2
+    \item item3
+\end{enumerate}
+
+Figuras, como la figura \ref{fig:escudo} que aparece en la página \pageref{fig:escudo}. 
+
+Puedes aprender más de las figuras en la dirección \url{https://es.overleaf.com/learn/latex/Inserting_Images}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.25\textwidth]{img/escudoSalud.pdf}
+    \caption{Pie de la figura de la figura bla bla bla}
+    \label{fig:escudo}
+\end{figure}
+
+
+También se pueden insertar tablas como \ref{tab:my-table}, que ha sido generada con \url{https://www.tablesgenerator.com/}.
+
+\begin{table}[]
+\begin{tabular}{lll}
+a & b & c \\
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{tabular}
+\caption{}
+\label{tab:my-table}
+\end{table}
+
+Es necesario que todas las figuras y tablas aparezca referenciadas en el texto, como estos ejemplos.
+
+Todos los conceptos teóricos deben de estar correctamente referenciados en la bibliografía. Por ejemplo, aquí estoy citando la página de \LaTeX{} de Wikipedia.
+
+
+
+
+\section{Estado del arte y trabajos relacionados.}
+La exploración del contexto actual y el análisis de trabajos e investigaciones previas es fundamental para comprender la relevancia del proyecto en el ámbito de las tecnologías médicas. Esta revisión bibliográfica presenta los avances tecnológicos más recientes y analiza los proyectos e investigaciones similares. Realizada con el propósito de entender la relevancia y el potencial impacto del trabajo, proporciona una base sólida para su desarrollo y lo alinea con las necesidades y desafíos del sector.
+
+\subsection{Revisión de tecnologías}
+
+\subsubsection{Sensor MPU-6050 en salud}
+El MPU-6050, uno modelo IMU ampliamente utilizado en aplicaciones portátiles, destaca por su bajo coste, eficiencia energética y alto rendimiento. Su capacidad de rastrear con precisión tanto movimiento rápidos cómo lentos lo hace ideal para su uso en aplicaciones de monitoreo de salud \cite{Jian2016/06}. Los siguientes estudios resaltan la relevancia de este sensor en la mejora de diagnósticos y tratamientos médicos.
+
+\begin{itemize}
+    \item ``Automatic Assessments of Parkinsonian Gait with Wearable Sensors for Human Assistive Systems''\footnote{Evaluaciones autmáticas de la marcha parkinsoniana con sensores portátiles para sistemas de asistencia humana}, artículo de Han et al. (2023), presenta un modelo basado en el aprendizaje automático para la evaluación automática de la marcha en pacientes con enfermedad de Parkinson (EP). Utiliza dos sensores MPU-6050 que sitúa en la espinilla para recopilar los datos de la marcha y proporcionar un valor de la Escala Unificada de Calificación de la Enfermedad de Parkinson (UPDRS). Los resultados obtenidos con este modelo proporcionan una precisión del 84,9\% en la clasificación, hasta un 10\% mayor que las clasificaciones realizadas con otros modelos tradicionales. Este es un avance significativo hacia evaluaciones más objetivas y detalladas de la marcha en pacientes con Parkinson \cite{AutomaticAssessments}.
+    
+    \item El artículo ``A novel sensor-embedded holding device for monitoring upper extremity functions''\footnote{Un novedoso dispositivo de sujeción con sensores incorporados para monitorear las funciones de las extremidades superiores} de Ma et al. (2022) se centra en el desarrollo de un dispositivo de monitoreo para la rehabilitación de las extremidades superiores. En este dispositivo cilíndrico (SEHD\footnote{Sensor-Embedded Holding Device, que se traduce por 'Dispositivo de Sujeción con Sensores Incorporados'}), el MPU-6050 es un sensor clave que permite monitorizar con precisión la funcionalidad de dichas extremidades a través de registros de la destreza manual, la fuerza de agarre, la aceleración y la velocidad angular. En el estudio se pone a prueba el dispositivo desarrollado con diferentes grupos de personas, concluyendo que puede ser utilizado de forma efectiva para evaluar la rehabilitación en pacientes con disfunciones de las extremidades superiores causadas por accidentes cerebrovasculares, traumatismos o envejecimiento \cite{NovelSensor}.
+
+    \item El proyecto NanoStim pretende desarrollar un sistema que permita la electroestimulación en el domicilio del paciente. Dentro de él se enmarca el artículo ``Motion Sensors for Knee Angle Recognition in Muscle Rehabilitation Solutions''\footnote{Sensores de movimiento para el reconocimiento del ángulo de la rodilla en soluciones de rehabilitación muscular} de Franco et al. (2022), en el que se desarrolla un sistema portátil para reconocer el ángulo de la rodilla a través de un sensor MPU-6050 y un microcontrolador ESP32. Para mejorar la precisión del sistema, se implementaron y evaluaron tres filtros de optimización. La aplicación myHealth se desarrolla de forma paralela al dispositivo hardware para mostrar una representación gráfica del movimiento en tiempo real y facilitar a los pacientres la gestión sus sesiones de tratamiento. Para la transmisión de datos, se emplea la tecnología Bluetooth Low Energy (BLE). Además, se llevaron a cabo pruebas con voluntarios en entornos reales para evaluar la efectividad tanto del dispositivo y como de la aplicación \cite{SensorRodilla}.
+\end{itemize}
+
+
+\subsubsection{Bluetooth en la monitorización de la salud}
+La tecnología Bluetooth proporciona una conexión segura que, unida a su bajo precio y consumo, la sitúan entre las tecnologías inalámbricas más populares \cite{zubiete2011review} y que mayores facilidades presentan para su integración en el ámbito médico \cite{francosistemas}. Su empleo en la transmisión de señales biomédicas, sin generar interferencia con otras señales \cite{carranza2011patient}, contribuye a la obtención de sistemas de monitoreo continuo. 
+
+La búsqueda bibliográfica sobre el uso del Bluetooth en el sector sanitario ha revelado una gran cantidad de resultados. Entre ellos, destacan numerosos estudios y artículos enfocados en el desarrollo de dispositivos y aplicaciones para la monitorización del estado de pacientes. Muchos de estos proyectos están relacionados directa o indirectamente con la pandemia de la COVID-19, ya sea directamente con dicha enfermedad o con la necesidad de reducir la dependencia del personal sanitario en procesos como rehabilitaciones y otras actividades \cite{leibold2023smartphone}.
+
+\begin{itemize}
+    \item En el artículo de Müller et al. (2022) se analiza la rápida evolución y aplicación de las tecnologías mHealth (salud móvil) durante la pandemia de COVID-19. Una de las aplicaciones más relevantes es el desarrollo de aplicaciones nacionales de rastreo de contactos. Dichas apps móviles emplean la tecnología Bluetooth para facilitar el rastreo de contactos, manteniendo el anonimato y privacidad de los usuarios al mismo tiempo que notifican posibles exposiciones con alguien que ha dado positivo en la enfermedad \cite{COVID:doi/10.2196/26041}.
+    
+    \item ``A Wearable Inertial Measurement Unit for Long-Term Monitoring in the Dependency Care Area''\footnote{Una Unidad de Medición Inercial vestible para el monitoreo a largo plazo en el área de atención a la dependencia.} es un artículo de Rodríguez-Martín et al. que describe el desarrollo de la Unidad de Medición Inercial (IMU) 9x2, diseñada para el análisis del movimiento en personas dependientes o con EP. El dispositivo recopila datos a través de un acelerómetro, un giroscopio y un magnetómetro. Cuenta con clasificadores en línea integrados en el microcontrolador para el análisis de datos, los cuales pueden ser almacenados en una trajeta microSD. Además, incluye un módulo Bluetooth para la transmisión de datos en tiempo real y la recepción de instrucciones de sistemas externos. La IMU 9x2 destaca por su gran autonomía, portabilidad y capacidad de integrarse con otras tecnologías, lo que amplía su aplicabilidad \cite{IMU}.
+\end{itemize}
+
+\subsubsection{Plataformas web en el seguimiento de enfermedades}
+Debido al fácil acceso a Internet desde diversos dispositivos y las mejoras tecnológicas de los últimos años, las plataformas web para el monitoreo de la salud han ganado importancia y están cada vez más integradas en la vida diaria de la población \cite{field2002telemedicine}. Estas plataformas permiten la interacción con múltiples dispositivos de salud y manejan grandes cantidades de datos de manera eficiente y automatizada. Son, además, económicas y accesibles para la mayor parte de los usuario, ya que no suponen ningún esfuerzo de instalación o configuración y las actualizaciones se realizan de forma automática.
+
+Las características descritas convierten a las aplicaciones web en herramientas útiles en el ámbito de la salud, especialmente en el seguimiento de enfermedades, como se muestra en el siguiente ejemplo.
+
+\begin{itemize}
+    \item ePoint.telemed es una plataforma destinada al monitoreo de pacientes con insuficiencia cardíaca crónica (CHF) desde sus domicilios. El acceso a la plataforma se realiza a través de un navegador web con conexión a Internet, lo que facilita el acceso y su manejo, tanto para los pacientes como para los profesionales de la salud. Dicha conexión, permite el uso de la plataforma en una variedad de dispositivos y asegura la transmisión automática de datos a un servidor central en el hospital. ePoint.telemed maneja y recopila datos de dispositivos de salud, como los medidores de presión arterial y bascular, de forma eficaz. Durante el desarrollo, se contó con la participación de profesionales médicos para garantizar el cumplimineto de objetivos y la utilidad futura del proyecto. En la fase de prueba, los pacientes expresaron su satisfacción con el producto. Tras completar el desarrollo y las pruebas, se inició un ensayo controlado aleatorio (RCT) para evaluar la efectividad clínica y la rentabilidad de ePoint.telemed en el norte de Noruega \cite{ePoint}.
+\end{itemize}
+
+
+\subsection{Revisión de proyectos similares}
+La búsqueda de información sobre proyectos previos en el mismo ámbito es esencial para entender las consideraciones actuales e identificar brechas y carencias en la investigación disponible. Este análisis permitirá una mejor comprensión de las necesidades de los usuarios, orientando el desarrollo del nuevo proyecto hacia aportes más relevantes y específicos. 
+
+Los descritos a continuación son aquellos proyectos considerados más afines y cuyo análisis puede ser de mayor relevancia en el desarrollo del nuevo proyecto.
+\begin{itemize}
+    \item El artículo ``A Non-Invasive Medical Device for Parkinson's Patients with Episodes of Freezing of Gait'' de Punin et al. se centra en el desarrollo de un dispositivo económico de monitoreo de la marcha parkinsoniana, con el objetivo de reducir la frecuencia y la duración de episodios de Freezing of Gait\footnote{congelación de la marcha} (FOG) mediante la aplicación de vibración en las extremidades inferiores. El sistema utiliza dos dispositivos, uno para cada tobillo, que incorporan la IMU MPU-6050 para la obtención de los datos de la marcha. Estos datos son procesados mediante un algoritmo basado en la Transformada Wavelet Discreta. \\
+    Además del hardware, se diseñó una aplicación móvil que recibe, a través de Bluetooth, información sobre los datos de aceleración registrados por el módulo MPU-6050. La aplicación muestra una representación gráfica de dicha aceleración, permite al usuario comprobar la energía de la señal y controlar manualmente la activación del estímulo vibratorio. Este proyecto proporciona a los pacientes con EP una forma accesible de manejar los episodios de FOG, mejorando su calidad de vida \cite{punin2019noninvasive}.
+    
+    \item El andador inteligente descrito en el artículo ``ROS-Based Smart Walker with Fuzzy Posture Judgement and Power Assistance''\footnote{Andador inteligente basado en ROS con juicio de postura y asistencia de potencia.} está diseñado asistir a personas mayores o con dificultades motoras, como las que padecen EP. Este dispositivo utiliza un Sistema Operativo Robótico (ROS) y una variedad de sensores junto a un controlador difuso, para controlar automáticamente la velocidad del andador y ayudar al usuario a ajustar su postura en función de las condiciones del entorno. Los principales componentes hardware son un procesador Raspberry Pi 3 B+, que integra tanto WiFi como Bluetooth, y un microcontrolador PIC. Los múltiples sensores utilizados, como el MPU-6050, sirven para monitorear tanto las acciones del usuario como el entorno. Por otro lado, la aplicación móvil asociada al andador, permite a una persona externa recibir información en tiempo real del estado y la ubicación del paciente. También incorpora una base de datos, desarrollada con MySQL, para almacenar los datos recopilados por los sensores, facilitando el seguimiento y evaluación de la salud del paciente \cite{andador}.
+    
+    \item PAGAS, acrónimo de `Portable and Accurate Gait Analysis System'\footnote{Sistema portátil y preciso de análisis de la marcha}, es un sistema de análisis de la marcha especialmente útil para personas con EP. El dispositivo esta formado por dos sensores ubicados en las plantillas de los zapatos para registrar el apoyo del talón y despegue de los dedos, además de un microcontrolador Arduino BT con ATmega328 que incorpora tecnología Bluetooth. El microcontrolador se encarga de gestionar la recopilación de datos y su transmisión vía Bluetooth, pero el procesamiento de estos datos para la obtención de los parámetros de la marcha se realiza a través de una aplicación Android. Esta aplicación, que presenta una interfaz gráfica de usuario (GUI) muy básica, permite visualizar los parámetros de la marcha en tiempo real, controlar el sistema, y almacenar los resultados para un seguimiento a largo plazo. PAGAS es una solución innovadora y accesible que permite analizar la marcha en diversos entornos, favoreciendo la supervisión continua y la reducción del gasto sanitario \cite{pagas}.
+\end{itemize}
