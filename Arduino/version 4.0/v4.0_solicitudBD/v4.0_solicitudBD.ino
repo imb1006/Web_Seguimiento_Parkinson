@@ -26,10 +26,9 @@ const float accEscala = (2.0 * 9.81 )/ 32768.0;
 const float gyroEscala = 250.0 / 32768.0;
 
 ////////////////////////////////// VARIABLES /////////////////////////////////////
-String command; // Variable para almacenar el comando recibido
+String command; // Variable para almacenar el comando recibido por Bluetooth
 
-//String texto = "";  // texto de entrada
-int boton1 = 3;     // flag para el botón START
+int estado = 0;     // flag para el botón START
 float contP = 0;    // numero de pasos entre bloqueos
 float Ptotal = 0;   // numero total de pasos
 int bloqueos = 0;   // numero de bloqueos
@@ -42,8 +41,8 @@ unsigned long tiempo = 0;           // tiempo transcurrido
 unsigned long tiempo_actividad = 0; // tiempo de actividad total
 
 float cont_espera = 0;  // tiempo entre un paso y el siguiente
-int altura = 0;         // altura del paciente
-float cte = 0.000f;     // constante para obtener la longitud del paso
+int altura = 165;         // altura del usuario propietario del prototipo
+float cte = 0.413f;     // constante para obtener la longitud del paso según el sexo (mujer) del usuario propietario del prototipo
 float velocidad = 0.0;  // velocidad
 float sum_vel = 0.0;    // sumatorio de la velocidad
 int cont_vel = 0;       // contador de lecturas de la velocidad
@@ -189,12 +188,12 @@ void loop(){
     }
     
     // Control de la actividad
-    if (command == "1") {
-      boton1 = 1; // Iniciar la actividad como si se presionara el botón físico
+    if (command == "1" && estado == 0) {
+      estado = 1; // Iniciar la actividad como si se presionara el botón físico
       tiempo1 = millis() / 1000;
       lcd.clear();
-    } else if (command == "0") {
-      boton1 = 0; // Finalizar la actividad como si se presionara el botón físico
+    } else if (command == "0" && estado == 1) {
+      estado = 0; // Finalizar la actividad como si se presionara el botón físico
       lcd.clear();
       finalizarActividad();
     }
@@ -202,14 +201,14 @@ void loop(){
 
   // Verificar si hay acción disponible a través de hardware
    
-  if (digitalRead(8) == HIGH){  // botón START presionado 
-    boton1 = 1;                 // cambiar el estado del boton
+  if (digitalRead(8) == HIGH && estado == 0){  // botón START presionado y no se está realizando actividad
+    estado = 1;                 // cambiar el estado del boton
     btSerial.println('1');      // Enviar estado al script de Python
     tiempo1 = millis()/1000;    // inicializamos el tiempo
     lcd.clear();                // borrar el contenido del lcd   
   } 
-  if (digitalRead(7) == HIGH){  // botón STOP presionado
-    boton1 = 0;                 // cambiar el estado del boton
+  if (digitalRead(7) == HIGH && estado == 1){  // botón STOP presionado y se está realizando actividad
+    estado = 0;                 // cambiar el estado del boton
     btSerial.println('0');      // Enviar estado al script de Python
     lcd.clear();                // borrar el contenido del lcd
     finalizarActividad();
@@ -217,7 +216,7 @@ void loop(){
 
   // Funcionamiento según el estado del botón
   
-  if (boton1 == 1){ // INICIO DE LA MARCHA
+  if (estado == 1){ // INICIO DE LA MARCHA
     // Leer el tiempo en ese instante y dividirlo entre 1000 para obtener el tiempo en segundos
     tiempo2 = millis()/1000;
     mpu.getAcceleration(&ax, &ay, &az); // leer ejes del acelerometro
