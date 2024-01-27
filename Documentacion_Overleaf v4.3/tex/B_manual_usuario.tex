@@ -28,7 +28,7 @@ Para el correcto funcionamiento de todos los softwares mencionados, se requiere 
     \item Paquetes Node.js: Express, MySQL, Body-Parser y CORS.
 \end{itemize}
 
-Se procede a la descripción detallada mediante tablas de los requisitos funcionales específicos del proyecto software que se desarrolla en este proyecto. Van desde la Tabla RF-01 (Tabla \ref{RF-01}) hasta la Tabla RF-08 (Tabla \ref{RF-08}) e incluyen información del funcionamiento de la web y las interacciones con los usuarios.
+Se procede a la descripción detallada mediante tablas, de los requisitos funcionales específicos del proyecto software que se desarrolla. Van desde la Tabla RF-01 (Tabla \ref{RF-01}) hasta la Tabla RF-08 (Tabla \ref{RF-08}) e incluyen información del funcionamiento de la web y las interacciones con los usuarios.
 
 \begin{table}[p]
     \centering
@@ -143,7 +143,7 @@ Se procede a la descripción detallada mediante tablas de los requisitos funcion
 \end{table}
 
 \subsection{Hardware}
-El funcionamiento correcto de todo el proyecto requiere del dispositivo físico adecuado que trabaje en concordancia con el software desarrollado, fin con el que se han realizado cambios y adiciones de componentes sobre el hardware del prototipo inicial. En la Tabla \ref{tab:componentes} se muestran todos los componentes que se emplean en el desarrollo de este proyecto.
+El funcionamiento correcto de todo el proyecto requiere del dispositivo físico adecuado que trabaje en concordancia con el software desarrollado, fin con el que se han realizado cambios y adiciones de componentes sobre el hardware del prototipo inicial. En la Tabla \ref{tab:componentes} se muestran todos los componentes empleados.
 
 \begin{table}[]
     \begin{tabular}{|c|c|}
@@ -230,14 +230,67 @@ Los requisitos hardware se basan en el principal elemento que da pie a este proy
 \end{table}
 
 
-\section{Puesta en marcha}
-Para el funcionamiento del prototipo y su control a través de la web, no debería ser necesario instalar ningún programa específico salvo, en este caso, los indicados en el apartado de software necesario.
+\section{Instalación / Puesta en marcha}
+Esta sección proporciona una guía detallada para que cualquier usuario pueda instalar y comenzar a utilizar el producto final de este proyecto. Se explican los procedimientos necesarios para la preparación del dispositivo y el despliegue de la web.
 
-Añadir proceso de calibración.
+Antes de inicar cualquier proceso detallado en esta sección, es imprescindible tener instalados y configurados correctamente los siguientes programas software con sus respectivas librerías y paquetes: VS Code, Node.js, XAMPP y Arduino IDE. Para más información detallada, consultar el anexo \textit{B.1. Requisitos software y hardware para ejecutar el proyecto} y el apartado \textit{4.2. Técnicas y herramientas} de la memoria.
 
-\subsection{Software}
-\subsection{Hardware}
+\subsection{Configuración del dispositivo}
+\begin{enumerate}
+    \item Proceso de calibración. Abrir el archivo \textit{Arduino/version 4.0/v4.0\_soli-\\citudBD/v4.0\_solicitudBD.ino} y realizar carga del programa en la placa Arduino. Una vez completada la carga, se debe abrir el monitor serial, asegurándose que esté configurado para una velocidad de transmición de 115200 baudios. Para completar con éxito el proceso de calibración, el usuario debe seguir todas las instrucciones que aparecen en el monitor serial. La Figura \ref{fig:calibrado} muestra el ejemplo de un proceso de calibración adecuado, en el que los offsets presentan valores similares a la referencia.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{img/B2_InstalacionPuestaMarcha/calibrado_subrayado.png}
+        \caption{Proceso de calibrado.}
+        \label{fig:calibrado}
+    \end{figure}
+    
+    \item Carga del programa principal. Realizar la subida del archivo \textit{Arduino/version 4.0/v4.0\_solicitudBD/v4.0\_solicitudBD.ino} desde Arduino IDE a la placa de Arduino.
+\end{enumerate}
 
+\subsection{Despliegue de la aplicación web en entorno local}
+\begin{enumerate}
+    \item Acciones necesarias con XAMPP.\\
+    Únicamente es necesario seguir los pasos a continuación descritos, la primera vez que se descargan los archivos y se quiere desplegar la web.
+    \begin{enumerate}
+        \item Incluir la carpeta \textit{Web\_VisualStudio/} en el directorio \textit{xampp/htdocs} del equipo. La localización de dicho directorio puede variar según lo seleccionado durante el proceso de instalación. El repositorio de \href{https://github.com/imb1006/Web_Seguimiento_Parkinson}{GitHub} del proyecto contiene el archivo \textit{Web\_VisualStudio.zip} para facilitar la descarga.
+        
+        \item Iniciar Apache y MySQL desde XAMPP Control Panel (Figura \ref{fig:xampp}). Este paso sí se va a tener que realizar siempre que se quiera utilizar la plataforma web.
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=1\textwidth]{img/B2_InstalacionPuestaMarcha/xampp.png}
+                \caption{XAMPP Control Panel.}
+                \label{fig:xampp}
+            \end{figure}
+            
+        \item Crear la base de datos. Para realizar este proceso se debe navegar a la dirección \textit{localhost/phpmyadmin}, crear una nueva base de datos bajo el nombre 'WebParkinson' e importar el archivo \textit{DataBase/DataBase.sql}.
+    \end{enumerate}
+    
+    \item Iniciar el servidor. El usuario debe dirigirse al directorio \textit{bluetooth/Ard-\\uinoServer/} y, una vez entre en él, debe abrir el terminal de comandos (cdm) haciendo clic derecho y seleccionando la opción correspondiente. Dentro del terminal, ejecutar el comando 'node server.js'. Si el proceso se realiza correctamente, aparecerá un mensaje similar al mostrado en la Figura \ref{fig:server}. En caso de que no se haya instalado MySQL en el servidor, se mostrará un mensaje de error y se deberá proceder a ejecutar el comando 'npm install mysql', tal y como se indica en la Figura \ref{fig:mysql}.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{img/B2_InstalacionPuestaMarcha/server_subrayado.png}
+        \caption{Éxito en la inicialización del servidor.}
+        \label{fig:server}
+    \end{figure}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{img/B2_InstalacionPuestaMarcha/mysql_subrayado.png}
+        \caption{Instalación de MySQL en el servidor.}
+        \label{fig:mysql}
+    \end{figure}
+    
+    \item Ejecutar \textit{bluetooth/ArduinoBridge/bridge.py}. La ejecución se debe realizar desde VS Code. Es importante verificar siempre el número del puerto COM asignado al Bluetooth, porque puede variar y entonces será necesario modificar el script (Figura \ref{fig:com}). En el 'Administrador de dispositivos' de Windows se puede observar el número de puerto.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{img/B2_InstalacionPuestaMarcha/com.png}
+        \caption{Fragmento del script \textit{bridge.py} en el que se debe modificar el puerto COM.}
+        \label{fig:com}
+    \end{figure}
+    
+\end{enumerate}
 
 
 \section{Manuales y/o Demostraciones prácticas}

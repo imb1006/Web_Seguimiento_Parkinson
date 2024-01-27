@@ -2,7 +2,7 @@
 
 \section{Estructura de directorios}
 
-Todos los ficheros que forman parte de este trabajo se encuentran alojados en el repositorio de GitHub disponible \href{https://github.com/imb1006/Web_Seguimiento_Parkinson}{aquí}. En este apartado se detalla el contenido de cada uno de ellos para facilitar la comprensión y el análisis del trabajo.
+Todos los ficheros que forman parte de este trabajo se encuentran alojados en el repositorio de GitHub disponible en \href{https://github.com/imb1006/Web_Seguimiento_Parkinson}{aquí}. En este apartado se detalla el contenido de cada uno de ellos para facilitar la comprensión y el análisis del trabajo.
 
 \begin{itemize}
     \item \textbf{\textit{README.md}}.\\
@@ -49,7 +49,12 @@ Todos los ficheros que forman parte de este trabajo se encuentran alojados en el
             \item \textbf{\textit{/v3.1\_mostrarDatos/v3.1\_mostrarDatos.ino}}: modifica el script proporciona al script \textit{/version 2.0/MPU6050-lcd16\_ic2/MPU6050-lcd16\_ic2.ino} para que, tanto durante la realización de la actividad como tras su finalización, los datos correspondientes sean enviados por Bluetooth.
             \item \textit{/v3.2\_ControlBotones-y-MostrarDatos/v3.2\_ControlBotones-y-MostrarDatos.ino}: combina en un solo script las funcionalidades implementadas por separado en los dos anteriores (\textit{v3.0\_botonesHTML.ino} y \textit{v3.1\_mostrarDatos.ino}). Por último, añade el número total de pasos a los datos que se envían al finalizar la actividad.
         \end{itemize}
-        \item \textbf{\textit{/version 4.0/v4.0\_solicitudBD/v4.0\_solicitudBD.ino}}: es el script final del proyecto para Arduino, el que contiene la implementación de todas las funcionalidades requeridas y el que hay que cargar en la placa de Arduino UNO para el correcto funcionamiento del dispositivo en conjunto con la página web. Parte del archivo \textit{/version 3.0/v3.2\_ControlBotones-y-MostrarDatos/v3.2\_ControlBotones-y-MostrarDatos.ino}, sobre el que se realizan cambios en el código para que los datos específicos del paciente como la altura y el sexo se reciban por Bluetooth (serán obtenidos de la base de datos). 
+        \item \textbf{\textit{/version 4.0/}}
+        \begin{itemize}
+            \item \textbf{\textit{/calibracionDMP/calibracionDMP.ino}}: no tiene modificaciones respecto al script desarrollado por \cite{saragonz91:online}. Se incluye en la carpeta \textit{/version 4.0/} con el único propósito de agrupar en el mismo directorio todos los archivos Arduino requeridos para el funcionamiento del producto final del proyecto.
+            \item \textbf{\textit{v4.0\_solicitudBD/v4.0\_solicitudBD.ino}}: es el script final del proyecto para Arduino, el que contiene la implementación de todas las funcionalidades requeridas y el que hay que cargar en la placa de Arduino UNO para el correcto funcionamiento del dispositivo en conjunto con la página web. Parte del archivo \textit{/version 3.0/v3.2\_ControlBotones-y-MostrarDatos/v3.2\_ControlBotones-y-MostrarDatos.ino}, sobre el que se realizan cambios en el código para que los datos específicos del paciente como la altura y el sexo se reciban por Bluetooth (serán obtenidos de la base de datos).
+        \end{itemize}
+        
     \end{itemize}
     \item \textbf{\textit{Documentacion\_Overleaf/}}.\\
     Carpeta que contiene todos los archivos empleados en el desarrollo de la memoria con la herramienta Overleaf. Incluye los documentos pdf de la memoria y anexos.
@@ -71,7 +76,9 @@ Todos los ficheros que forman parte de este trabajo se encuentran alojados en el
             \item \textbf{\textit{/sinNode\_no funciona/}}: se intentó regular la comunicación entre la web y Arduino sin emplear un servidor Node.js pero no se logró llevar a cabo esta opción.
         \end{itemize}
     \end{itemize}
-    \item \textbf{\textit{Web\_VisualStudio/}}.\\ 
+    \item \textbf{\textit{Web\_VisualStudio.zip}}.\\ 
+    Archivo comprimido que tiene el mismo contenido que la carpeta \textit{Web\_VisualStudio/}. Se incluye para facilitar la descarga de todos los documentos necesarios para el despliegue de la aplicación web.
+    \item \textbf{\textit{Web\_VisualStudio/}.}.\\ 
     Contiene, almacenados en subcarpetas, todos los archivos y scripts de código necesarios para la creación de la página web.
     \begin{itemize}
         \item \textbf{\textit{/admin/}}.\\
@@ -91,8 +98,8 @@ Todos los ficheros que forman parte de este trabajo se encuentran alojados en el
             Directorio del proyecto Node.js.
             \begin{itemize}
                 \item \textbf{\textit{/node\_modules/}}: carpeta que almacena todas las dependencias requeridas para el proyecto, incluye bibliotecas y frameworks instalados en Node.js.
-                \item \textbf{\textit{package-lock.json}}: esencial para el bloqueo de versiones, optimización de la instalación y registro de la estructura de \textit{/node\_modules/}. Se genera de forma automática por Node Package Manager (nmp).
-                \item \textbf{\textit{package.json}}: se crea de forma automática al iniciar el proceso de creación del proyecto. Contiene configuración y dependencias necesarias para el proyecto de Node.js creado.
+                \item \textbf{\textit{package-lock.json}}: esencial para el bloqueo de versiones, optimización de la instalación y registro de la estructura de \textit{/node\_modules/}. Se genera de forma automática por Node Package Manager (nmp) durante la creación del archivo \textit{package.json}.
+                \item \textbf{\textit{package.json}}: creado de forma automática al iniciar el proceso de creación del proyecto, ejecutando 'npm init' desde el terminal cdm estando situado dentro de \textit{/ArduinoServer/}. Contiene configuración y dependencias necesarias para el proyecto de Node.js creado.
                 \item \textbf{\textit{server.js}}: archivo del servidor principal, encargado de la gestión de la aplicación web. Define rutas para solicitudes GET y POST que le permiten manejar la lógica del servidor, la interacción con la base de datos y el procesamiento de datos de entrada/salida, almacenando los datos recibidos (datos de actividades y estados de comandos) en variables esenciales para la lógica de la aplicación.
             \end{itemize}
         \end{itemize}
@@ -132,12 +139,6 @@ Todos los ficheros que forman parte de este trabajo se encuentran alojados en el
         \end{itemize}
     \end{itemize}
 \end{itemize}
-
-
-\section{Compilación, instalación y ejecución del proyecto}
-
-En caso de ser necesaria esta sección, porque la compilación o ejecución no sea directa.
-
 
 \section{Pruebas del sistema}
 Esta sección puede ser opcional.
