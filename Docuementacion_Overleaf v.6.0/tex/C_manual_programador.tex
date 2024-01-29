@@ -149,4 +149,31 @@ Puede tratarse de validación de la interfaz por parte de los usuarios, mediante
 
 \section{Instrucciones para la modificación o mejora del proyecto.}
 
-Instrucciones y consejos para que el trabajo pueda ser mejorado en futuras ediciones.
+Este anexo comenta una serie de puntos que se deben tener en cuenta para continuar el desarrollo del proyecto software según se ha comentado en el apartado \textit{`Lineas de trabajo futuras'} de la memoria.
+
+En cuanto a la realización de mejoras en la plataforma web, será imprescindible prestar atención a las siguientes áreas:
+\begin{itemize}
+    \item Implementar protocolos de seguridad avanzados como HTTPS, medidas de protección contra ataqes de inyección SQL y encriptado de contraseñas.
+    \item Analizar la obtención de un diseño web que proporcione al usuario una experiencia más satisfactoria. Además, la plataforma desarrollada tiene un diseño responsivo que puede ser optimizado.
+    \item Facilitar el acceso desde dispositivos externos migrando la web a un servidor en la nube. Al escoger el servidor se debe considerar la capacidad de escalabilidad que proporciona.
+    \item Explorar la implementación de WebSockets para mejorar la comunicación en tiempo real. La plataforma actual implementa API REST como tecnología de comunicación.
+    \item Complementar el sistema con el desarrollo de una aplicación móvil que funciona en paralelo con la plataforma web.
+\end{itemize}
+
+Respecto a las funcionalidades del sistema, sería interesante trabajar en las siguientes direcciones:
+\begin{itemize}
+    \item Incrementar el procesamiento de datos para obtener estadísticas más detalladas y útiles para su uso en el ámbito clínico.
+    \item Registrar las fechas y horas de las actividades realizadas, así como los horarios de administración de la medicación, para evaluar con mayor precisión el efecto del tratamiento farmacológico en el paciente.
+    \item Integrar en el software el proceso de calibración del sensor que registra los datos de la actividad, posibilitando al usuario resolver posibles problemas si dicho sensor comienza a presentar errores de lectura.
+    \item Implementar una funcionalidad para el registro de datos de actividad sin conexión, permitiendo el almacenamiento posterior de datos en la base de datos. Esto podría lograrse añadiendo una tarjeta microSD en la que se almacena la información de forma temporal.
+    \item Realizar la combinación con un sistema de control postural, como el desarrollado por \cite{NaiaraGa53:online}. El proyecto mencionado emplea las mismas herramientas que este, y requiere una conexión bluetooth, desarrollo de software y mejoras hardware, todo ello al mismo nivel que requería la versión previa de este proyecto. Esta integración estaría justificada por el objetivo de obtener un dispositivo de monitoreo integral de pacientes con EP que sea económicamente accesible.
+\end{itemize}
+
+ Los trabajos futuros de mejoras hardware pueden centrarse en los siguientes aspectos: 
+\begin{itemize}
+    \item Implementar un sistema de alerta eficaz para episodios de congelación de la marcha. Se podría considerar el uso de vibraciones o alarmas sonoras, y la adición de un laser que proyecte una referencia visual en el suelo para ayudar al paciente a superar la situación.
+    \item Mejorar la precisión y fiabilidad en la lectura de datos del sensor MPU6050, mediante el uso del procesador digital de movimiento (DMP) integrado \cite{saragonz91:online}.
+    \item Ampliar el sistema añadiendo un sensor MPU6050 para la pierna derecha \cite{saragonz91:online}.
+    \item Realizar cambios para mejorar la portabilidad y comodidad del prototipo, aproximandolo a un dispositivo de uso cotidiano.
+    \item Estudiar alternativas de microcontroladores con Bluetooth integrado, podría reducir el tamaño del hardware y mejorar el procesamiento.
+\end{itemize}
