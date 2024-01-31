@@ -1,63 +1,52 @@
 \capitulo{3}{Conceptos teóricos}
 
+\section{Conceptos teóricos básicos}
 
-Explicación de los conceptos teóricos básicos necesarios para que cualquier miembro del tribunal pueda entender el trabajo realizado.
 
-Esta sección puede contener el número de subsecciones que sean necesarias.
+\subsection{Introducción a la enfermedad de Párkinson}
 
-\section{Sección}
+La enfermedad de Párkinson es el segundo trastorno neurodegenerativo más común a nivel global \cite{Art2}, afectando a 1-2 personas por cada 1000 y con una prevalencia que aumenta con la edad (el 1\% de la población mayor de 60 años padece EP) \cite{Art4}.
 
-\subsection{Subsección}
+Los mecanismos patogénicos de esta enfermedad neurológica incluyen la aparición de agregados de cuerpos de Lewy y neuritas de Lewy, que interfieren con el funcionamiento normal de las células nerviosas, la degeneración de neuronas dopaminérgicas en la sustancia negra del cerebro, y pérdida de terminales dopaminérgicos en los ganglio basales \cite{Art1}. Como consecuencia de la falta de dopamina, necesaria para la transmisión adecuada en el proceso de generar el movimiento, se manifiesta principalmente a través de síntomas motores como bradicinesia, rigidez y temblor de reposo \cite{Art4}, pero también presenta alteraciones no motoras que incluyen problemas cognitivos, psicológicos y del sueño \cite{Art5} \cite{Art6}. Estas alteraciones no motoras comienzan a desarrollarse antes que las motoras, pero las similitudes sintomáticas con otras enfermedades añaden complejidad al diagnóstico \cite{Art1}.
 
-\subsubsection{Sub Subsección}
+El Párkinson tiene un impacto significativo en la actividad muscular, afectando gravemente en la capacidad de movilidad de las personas que lo padecen. La marcha parkinsoniana se caracteriza por pasos pequeños y arrastrado. Este sintoma puede presentar, en etapas más avanzadas de la enfermedad \cite{Art2}, episodios de bloqueo de la marcha o `freezing of gait' (FOG), donde las extremidades inferiores del paciente se encuentran temporalmente inmovilizadas, aumentando el riesgo de caídas \cite{Art5} \cite{Art6}.
 
-En esta sección y el resto de secciones de la memoria puede ser necesario incluir listas de items.
+En la actualidad, el tratamiento de la EP es síntomatico\\ \cite{Art6}, lo que genera la necesidad de una monitorización continua y eficaz de los pacientes para gestionar adecuadamente la evolución de la enfermedad \cite{Art3}. Este control permite realizar los ajustes oportunos en la terapia para abordar síntomas motores y no motores, y demuestra ser esencial para ralentizar el deterioro de la movilidad \cite{Art6}.
 
+\subsection{Desarrollo web}
+
+Para el proceso de desarrollo de una aplicación web, o cualquier otro proyecto software, es imprescindible conocer y diferenciar los conceptos de front-end y back-end. Cada uno de estos ámbitos emplea diferentes lenguajes de programación, y una conexión e interacción eficaz entre ambos es esencial para obtener un software funcional \cite{FrontBack76:online}.
 \begin{itemize}
-    \item item1
-    \item item2
-    \item item3
-    \item item4
+    \item \textbf{Front-end}. Se refiere a la codificación o diseño de la interfaz de usuario. Este aspecto considera elementos como la accesibilidad, estructura de navegación, capacidad de respuesta y animaciones. Utiliza lenguajes como CSS, HTML y JavaScript, pero también puede incluir frameworks\footnote{Conjuntos de herramientas y reglas que agilizan el desarrollo de software} como Bootstrap \cite{Frontend43:online} \cite{FrontBack76:online}.
+    \item \textbf{Back-end}. En este campo, centrado en la funcionalidad, se programa con el objetivo de lograr eficazmente las acciones disponibles para el usuario desde el front-end. Gestiona los recursos, implementa la lógica del sistema e integra componentes como servidores web, APIs y bases de datos. Entre los lenguajes de programación empleados están Java, Python y PHP \cite{Frontend43:online} \cite{FrontBack76:online}.
 \end{itemize}
 
-Listas enumeradas.
+Otro aspecto fundamental es la creación de una base de datos que almacene todos los datos obtenidos durante la monitorización del paciente. En el proceso de diseño, será necesario determinar el propósito de la base de datos y organizar la información que va a almacenar por temas (tablas). Para cada tabla, hay que establecer las claves principales (qué columna) que identificarán a cada fila y las relaciones de interacción con otras tablas \cite{DBMicrosoft:online}. Según los intereses del proyecto, la base de datos empleada será:
+\begin{itemize}
+    \item \textbf{Relacional}. Prima la integridad y exactitud de la información, lo que supone mayor lentitud debido al procesado previo al almacenamiento que permite obtener estas características. Se enfoca en la eficiencia y veracidad sobre velocidad. PostgreSQL y MySQL son ejemplos de este tipo de bases de datos \cite{DB:online}.
+    \item \textbf{No relacional}. Prioriza el almacenamiento rápido de los datos sobre la exactitud, reduciendo las restricciones y sacrificando veracidad. El análisis de los datos se realiza de forma posterior. Firebase es un ejemplo de este tipo de bases de datos \cite{DB:online}.
+\end{itemize}
 
-\begin{enumerate}
-    \item item1
-    \item item2
-    \item item3
-\end{enumerate}
+\subsection{Comunicación inalámbrica}
 
-Figuras, como la figura \ref{fig:escudo} que aparece en la página \pageref{fig:escudo}. 
+La comunicación inalámbrica emplea ondas de radiofrecuencia para transmitir datos, eliminando la necesidad de cables y facilitando la movilidad en su uso. Su aplicación ha revolucionado diversos sectores, incluyendo el de la salud, donde el Internet de las Cosas (IoT) ha impulsado el desarrollo de dispositivos para la monitorización de pacientes \cite{Creation:online} \cite{gardasevic2020emerging}.
 
-Puedes aprender más de las figuras en la dirección \url{https://es.overleaf.com/learn/latex/Inserting_Images}
+En medicina, la movilidad es una necesidad que, una vez cubierta, conlleva mejoras en la eficiencia y precisión de las actividades del sector, repercutiendo positivamente en la salud de los pacientes. Procede resaltar la especial relevancia de las tecnologías inalámbricas de corto alcance, ideales para la monitorización y facilitar el procesamiento de datos procedentes de dispositivos como glucómetros, estetoscopios y diversos tipos de sensores \cite{gutierrez2013diseno}.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.25\textwidth]{img/escudoSalud.pdf}
-    \caption{Pie de la figura de la figura bla bla bla}
-    \label{fig:escudo}
-\end{figure}
+Entre las tecnologías inalámbricas más relevantes y con mayor presencia en el ámbito de la salud se encuentran Bluetooth y Wi-Fi \cite{tec}. Las redes móviles 5G y la tecnología NFC (Near Field Communication) también se encuentran presentes y están comenzando a adquirir una mayor importancia.
+\begin{itemize}
+    \item Bluetooth: Utilizado en dispositivos portátiles por su bajo consumo energético y bajo precio. Permite la transmisión eficiente de datos a corta distancia \cite{wang2006bluetooth}.
+    \item Wi-Fi: Empleado en hogares y establecimientos sanitarios para la transmisión de contenido multimedia como registros médicos o imágenes \cite{tec}.
+\end{itemize}
 
+\subsection{Protocolos y arquitecturas para transmisión de datos}
 
-También se pueden insertar tablas como \ref{tab:my-table}, que ha sido generada con \url{https://www.tablesgenerator.com/}.
+Los protocolos y arquitecturas de transmisión de datos son fundamentales, especialmente en el ámbito médico si se tiene en cuenta la sensibilidad de los datos manejados. Su implementación permite asegurar la eficacia y seguridad en el intercambio de información, facilitando la interoperabilidad entre sistemas para obtener una visión global y detallada de los datos sometidos a análisis.
 
-\begin{table}[]
-\begin{tabular}{lll}
-a & b & c \\
-1 & 2 & 3 \\
-4 & 5 & 6
-\end{tabular}
-\caption{}
-\label{tab:my-table}
-\end{table}
-
-Es necesario que todas las figuras y tablas aparezca referenciadas en el texto, como estos ejemplos.
-
-Todos los conceptos teóricos deben de estar correctamente referenciados en la bibliografía. Por ejemplo, aquí estoy citando la página de \LaTeX{} de Wikipedia.
-
-
-
+\begin{itemize}
+    \item \textbf{API REST}\footnote{API: Interfaz de Programación de Aplicaciones} (Representational State Transfer): conjunto de reglas que definen la comunicación entre aplicaciones y dispositivos a través de la arquitectura REST. Se caracteriza por interactuar a través de solicitudes HTTP (Protocolo de Transferencia de Hipertexto) estándar para realizar operaciones específicas como la obtención de datos, envío de comandos o almacenamiento de información. Proporcionan interacciones rápidas y eficientes que las convierten en una opción adecuada para la comunicación en tiempo real pero caracterizada por se unidireccional \cite{IBMrest:online}.
+    \item \textbf{WebSocket}: protocolo que permite comunicaciones bidireccionales entre un cliente y un servidor, facilitando la interacción continua y simultánea ideal en aplicaciones donde la comunicación en tiempo real es clave. Su compatibilidad con SSL permite conexiones seguras, lo que se ve reforzado por su forma de trabajo a través de un cortafuegos y proxies \cite{WebSocke46:online}.
+\end{itemize}
 
 \section{Estado del arte y trabajos relacionados.}
 La exploración del contexto actual y el análisis de trabajos e investigaciones previas es fundamental para comprender la relevancia del proyecto en el ámbito de las tecnologías médicas. Esta revisión bibliográfica presenta los avances tecnológicos más recientes y analiza los proyectos e investigaciones similares. Realizada con el propósito de entender la relevancia y el potencial impacto del trabajo, proporciona una base sólida para su desarrollo y lo alinea con las necesidades y desafíos del sector.
@@ -68,7 +57,7 @@ La exploración del contexto actual y el análisis de trabajos e investigaciones
 El MPU-6050, uno modelo IMU ampliamente utilizado en aplicaciones portátiles, destaca por su bajo coste, eficiencia energética y alto rendimiento. Su capacidad de rastrear con precisión tanto movimiento rápidos cómo lentos lo hace ideal para su uso en aplicaciones de monitoreo de salud \cite{Jian2016/06}. Los siguientes estudios resaltan la relevancia de este sensor en la mejora de diagnósticos y tratamientos médicos.
 
 \begin{itemize}
-    \item ``Automatic Assessments of Parkinsonian Gait with Wearable Sensors for Human Assistive Systems''\footnote{Evaluaciones autmáticas de la marcha parkinsoniana con sensores portátiles para sistemas de asistencia humana}, artículo de Han et al. (2023), presenta un modelo basado en el aprendizaje automático para la evaluación automática de la marcha en pacientes con enfermedad de Parkinson (EP). Utiliza dos sensores MPU-6050 que sitúa en la espinilla para recopilar los datos de la marcha y proporcionar un valor de la Escala Unificada de Calificación de la Enfermedad de Parkinson (UPDRS). Los resultados obtenidos con este modelo proporcionan una precisión del 84,9\% en la clasificación, hasta un 10\% mayor que las clasificaciones realizadas con otros modelos tradicionales. Este es un avance significativo hacia evaluaciones más objetivas y detalladas de la marcha en pacientes con Parkinson \cite{AutomaticAssessments}.
+    \item ``Automatic Assessments of Parkinsonian Gait with Wearable Sensors for Human Assistive Systems''\footnote{Evaluaciones autmáticas de la marcha parkinsoniana con sensores portátiles para sistemas de asistencia humana}, artículo de Han et al. (2023), presenta un modelo basado en el aprendizaje automático para la evaluación automática de la marcha en pacientes con enfermedad de Párkinson (EP). Utiliza dos sensores MPU-6050 que sitúa en la espinilla para recopilar los datos de la marcha y proporcionar un valor de la Escala Unificada de Calificación de la Enfermedad de Párkinson (UPDRS). Los resultados obtenidos con este modelo proporcionan una precisión del 84,9\% en la clasificación, hasta un 10\% mayor que las clasificaciones realizadas con otros modelos tradicionales. Este es un avance significativo hacia evaluaciones más objetivas y detalladas de la marcha en pacientes con Párkinson \cite{AutomaticAssessments}.
     
     \item El artículo ``A novel sensor-embedded holding device for monitoring upper extremity functions''\footnote{Un novedoso dispositivo de sujeción con sensores incorporados para monitorear las funciones de las extremidades superiores} de Ma et al. (2022) se centra en el desarrollo de un dispositivo de monitoreo para la rehabilitación de las extremidades superiores. En este dispositivo cilíndrico (SEHD\footnote{Sensor-Embedded Holding Device, que se traduce por 'Dispositivo de Sujeción con Sensores Incorporados'}), el MPU-6050 es un sensor clave que permite monitorizar con precisión la funcionalidad de dichas extremidades a través de registros de la destreza manual, la fuerza de agarre, la aceleración y la velocidad angular. En el estudio se pone a prueba el dispositivo desarrollado con diferentes grupos de personas, concluyendo que puede ser utilizado de forma efectiva para evaluar la rehabilitación en pacientes con disfunciones de las extremidades superiores causadas por accidentes cerebrovasculares, traumatismos o envejecimiento \cite{NovelSensor}.
 
