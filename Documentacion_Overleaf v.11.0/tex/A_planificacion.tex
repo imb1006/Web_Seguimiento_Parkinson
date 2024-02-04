@@ -4,6 +4,131 @@
 Antes de iniciar un proyecto, es fundamental considerar los aspectos relativos al tiempo de desarrollo, los costes económicos y el marco legal que le afecta. Una planificación detallada previene complicaciones tras el inicio, permite la adopción de estrategias efectivas para gestionar tiempo y recursos, y asegura la viabilidad del proyecto conforme a la ley.
 
 \section{Planificación temporal}
+GitHub fue la herramienta empleada para controlar el avance del proyecto. En el repositorio se establecieron una serie de tareas (issues), agrupándolas en hitos (milestones). También se definieron diversas etiquetas (labels) para su categorización, destinadas a indicar el tipo de tarea y su estado.
+
+Desglose de milestones e issues definidos:
+\begin{enumerate}
+    \item Investigación y planificación.
+    \begin{itemize}
+        \item Definir objetivos y comprender requisitos del proyecto
+        \item Comprender TFG Detección Actividad Muscular
+        \item Investigar sensor MPU6050
+        \item 1er contacto con métodos de conexión
+        \item Crear un plan de trabajo
+        \item Añadir licencia al proyecto
+    \end{itemize}
+    \item Configuración del sensor y pruebas de conexión.\\
+    El objetivo principal es replicar el TFG Detección de Actividad Muscular de Sara González \cite{saragonz91:online}. 
+    \begin{itemize}
+        \item Montaje hardware
+        \item Configuración software
+        \item Pruebas correcto funcionamiento del dispositivo
+        \item Evaluación, comparación y selección del método de conexión
+    \end{itemize}
+    \item Diseño de la aplicación.
+    \begin{itemize}
+        \item Descripción Casos de Uso (CU)
+        \item Diagramas Casos de Uso
+        \item Descripción Requisitos Funcionales (RF)
+        \item Diseño de la Interfaz de Usuario (UI). Creación de wireframes y mockups
+    \end{itemize}
+    \item Desarrollo página web.
+    \begin{itemize}
+        \item Cambiar contraseña
+        \item Actualizar correo
+        \item Realizar actividad como profesional
+        \item Consultar actividades
+        \item Incluir paciente (profesional)
+        \item Inicio profesional
+        \item Listado pacientes de cada profesional
+        \item Eliminar usuario (admin)
+        \item Usuario registrado elimina su cuenta
+        \item Quitar paciente
+        \item Consultar paciente
+        \item Crear usuario (admin)
+        \item Inicio admin
+        \item Crear base de datos
+        \item Menú usuarios
+        \item Inicio paciente
+        \item Finalizar actividad
+        \item Inicio actividad
+        \item Confirmar operación
+        \item Cerrar sesión
+        \item Login (1)
+        \item Login (2)
+    \end{itemize}
+    \item Protocolo de conexión.\\
+    Incluye las tareas necesarias para realizar con éxito la conexión y envío de datos entre el dispositivo hardware y la página web.
+    \begin{itemize}
+        \item Enviar datos bluetooth (base)
+        \item Recibir datos bluetooth (base)
+        \item Iniciar actividad desde la web
+        \item Finalizar actividad desde la web
+        \item Ver datos actividad en tiempo real en la web
+        \item Almacenar datos actividad en BD
+        \item Obtener datos para la actividad BD
+    \end{itemize}
+    \item Pruebas finales, análisis y mejoras.
+    \begin{itemize}
+        \item Funcionamiento del sistema (sin las mejoras hardware)
+        \item Mejoras hardware
+        \item Funcionamiento del sistema (hardware mejorado)
+    \end{itemize}
+    \item Redacción de memoria.
+    \begin{itemize}
+        \item 0.Resumen y abstract
+        \item 1. Introducción
+        \item 2. Objetivos
+        \item 3.1 Conceptos teóricos
+        \item 3.2 Conceptos teóricos. Estado del arte y trabajos relacionados
+        \item 4.1 Metodología. Descripción de los datos
+        \item 4.2 Metodología. Técnicas y herramientas
+        \item 5.1 Resultados. Resumen
+        \item 5.2 Resultados. Discusión
+        \item 6. Conclusiones
+        \item 6.1 Conclusiones. Aspectos relevantes
+        \item 7. Líneas de trabajo futuras
+        \item 8. Bibliografía
+    \end{itemize}
+    \item Redacción de anexos.
+    \begin{itemize}
+        \item A.1 Introducción
+        \item A.2 Planificación temporal
+        \item A.3 Planificación ecoómica
+        \item A.4 Viabilidad legal
+        \item B.1 Requisitos software y hardware para ejecutar el proyecto
+        \item B.2 Instalación/Puesta en marcha
+        \item B.3 Manuales y/o Demostraciones prácticas
+        \item C.1 Estructura de directorios
+        \item C.3 Pruebas del sistema.
+        \item C.4 Instrucciones para la modificación o mejora del proyecto
+        \item D Descripción de adquisición y tratamiento de datos
+        \item E.1 Planes
+        \item E.2 Diseño arquitectónico
+        \item F Especificación de requisitos (completar)
+        \item H Anexo de sostenibilización curricular
+    \end{itemize}
+    \item Preparación de la presentación.
+\end{enumerate}
+
+\subsubsection{Diagrama de Gantt}
+Para la planificación temporal del proyecto, se elaboró un diagrama de Gantt. Esta herramienta permite visualizar los hitos del proyecto y su duración en el tiempo.
+
+El planteamiento inicial está representado en la Figura \ref{fig:gantt1}. Con el trancurso del tiempo, se hicieron evidentes la imposibilidad de cumplir los plazos y la necesidad de modificar esta planificación, ya que no se había realizado de manera realista debido a la falta de experiencia y a la aparición de imprevistos. Se llevó a cabo una segunda planificación, que se ilustra en la Figura \ref{fig:gantt2}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{img/A2_PlanTemporal/Gantt_Inicial.png}
+    \caption{Diagrama de Gantt inicial}
+    \label{fig:gantt1}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{img/A2_PlanTemporal/Gantt_Final.png}
+    \caption{Diagrama de Gantt final}
+    \label{fig:gantt2}
+\end{figure}
 
 
 \section{Planificación económica}
