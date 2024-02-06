@@ -28,7 +28,7 @@ const float gyroEscala = 250.0 / 32768.0;
 ////////////////////////////////// VARIABLES /////////////////////////////////////
 String command; // Variable para almacenar el comando recibido por Bluetooth
 
-int estado = 0;     // flag para el botón START
+int estado = 3;     // flag para el botón START
 float contP = 0;    // numero de pasos entre bloqueos
 float Ptotal = 0;   // numero total de pasos
 int bloqueos = 0;   // numero de bloqueos
@@ -157,6 +157,7 @@ void setup(){
     
   lcd.setCursor(0, 0);  
   lcd.print("Presionar START");
+  btSerial.println('3');      // Enviar estado al script de Python
 }
 
 
@@ -188,11 +189,11 @@ void loop(){
     }
     
     // Control de la actividad
-    if (command == "1" && estado == 0) {
+    if ((command == "1") && (estado == 0 || estado == 3)) {
       estado = 1; // Iniciar la actividad como si se presionara el botón físico
       tiempo1 = millis() / 1000;
       lcd.clear();
-    } else if (command == "0" && estado == 1) {
+    } else if ((command == "0") && (estado == 1 || estado == 3)) {
       estado = 0; // Finalizar la actividad como si se presionara el botón físico
       lcd.clear();
       finalizarActividad();
@@ -201,13 +202,13 @@ void loop(){
 
   // Verificar si hay acción disponible a través de hardware
    
-  if (digitalRead(8) == HIGH && estado == 0){  // botón START presionado y no se está realizando actividad
+  if ((digitalRead(8) == HIGH) && (estado == 0 || estado == 3)){  // botón START presionado y no se está realizando actividad
     estado = 1;                 // cambiar el estado del boton
     btSerial.println('1');      // Enviar estado al script de Python
     tiempo1 = millis()/1000;    // inicializamos el tiempo
     lcd.clear();                // borrar el contenido del lcd   
   } 
-  if (digitalRead(7) == HIGH && estado == 1){  // botón STOP presionado y se está realizando actividad
+  if ((digitalRead(7) == HIGH) && (estado == 1 || estado == 3)){  // botón STOP presionado y se está realizando actividad
     estado = 0;                 // cambiar el estado del boton
     btSerial.println('0');      // Enviar estado al script de Python
     lcd.clear();                // borrar el contenido del lcd

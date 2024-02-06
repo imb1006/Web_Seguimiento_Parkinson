@@ -39,26 +39,29 @@ let estadoActividad = 'esperando'; // Estado inicial de la actividad
 let commandToSend = "";
 let izquierdaFlag = false; // Manejar bloqueos "IZQUIERDA"
 
-app.post('/actividad', (req, res) => {
-    estadoActividad = req.body.estado;
-    res.status(200).send(`Estado de la actividad actualizado a ${estadoActividad}`);
-});
-
-app.get('/actividad', (req, res) => {
-    res.json({ estado: estadoActividad, izquierda: izquierdaFlag });
-});
 
 // Ruta para recibir comandos
 app.post('/command', (req, res) => {
     commandToSend = req.body.command;
+    estadoActividad = commandToSend === '1' ? 'iniciada' : commandToSend === '0' ? 'finalizada' : estadoActividad;
     console.log(`Comando recibido: ${commandToSend}`); // Verifica que se recibe el comando
     res.status(200).send(`Comando ${commandToSend} recibido`);
 });
 
 // Ruta para enviar comandos
 app.get('/command', (req, res) => {
-    res.json({ command: commandToSend });
-    commandToSend = ""; // Opcional: resetear el comando después de enviarlo
+    res.json({ command: commandToSend, estadoActividad: estadoActividad});
+    //commandToSend = ""; // Opcional: resetear el comando después de enviarlo
+});
+
+// Nuevo endpoint para confirmar la recepción del comando
+app.post('/confirmCommand', (req, res) => {
+    if (req.body.received) {
+        commandToSend = ""; // Resetea el comando solo después de la confirmación
+        res.status(200).send('Comando confirmado y reseteado');
+    } else {
+        res.status(400).send('Confirmación no recibida');
+    }
 });
 
 // Rutas para recibir cada tipo de dato

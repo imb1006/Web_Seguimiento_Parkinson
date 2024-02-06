@@ -12,6 +12,17 @@ def send_command_to_arduino(command):
     command_saltoLinea = command + '\n'
     ser.write(command_saltoLinea.encode())
     
+def confirm_command_to_server():
+    """Envía una confirmación de recepción del comando al servidor."""
+    try:
+        response = requests.post('http://localhost:3000/confirmCommand', json={'received': True})
+        if response.status_code == 200:
+            print("Comando confirmado y reseteado en el servidor")
+        else:
+            print("Error al confirmar el comando")
+    except requests.exceptions.RequestException as e:
+        print(f"Error al conectar con el servidor para confirmar el comando: {e}")
+    
 def send_data_to_server(endpoint, data):
     """Envía datos al servidor."""
     url = f'http://localhost:3000/{endpoint}'
@@ -34,7 +45,7 @@ while True:
             send_data_to_server('izquierda', False)
 
         if line in ['0', '1']:  # Si es un mensaje de inicio/fin de actividad
-            send_data_to_server('actividad', {'estado': 'detenida' if line == '0' else 'iniciada'})
+            send_data_to_server('command', line)
 
         # Extraer el tipo de dato y el valor
         parts = line.split(":")
@@ -54,6 +65,7 @@ while True:
                 if data:
                     print(f"Comando recibido del servidor: {data}")
                     send_command_to_arduino(data)
+                    confirm_command_to_server() 
                 else:
                     print("No hay comando para enviar al Arduino")
             else:

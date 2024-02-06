@@ -29,18 +29,9 @@
 
     <script>
         let estadoActividad = 'esperando'; // Almacena el estado de la actividad (si se está realizando o no)
-
-        function actualizarEstado() {
-            fetch('http://localhost:3000/actividad')
-                .then(response => response.json())
-                .then(data => {
-                    //document.getElementById('estadoActividad').innerText = data.estado;
-                    actividadIniciada = data.estado;
-                    actualizarDatosRecuadro();
-                });
-        }
         
         function sendCommand(command) {
+            // Actualiza el endpoint /command
             fetch('http://localhost:3000/command', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json',},
@@ -49,10 +40,19 @@
             .then(response => response.text())
             .then(data => {
                 console.log(data); // Confirmación de envío del comando
-                estadoActividad = command === '1' ? 'iniciada' : 'finalizada';
-                actualizarDatosRecuadro(); // Actualizar el estado después de enviar el comando
+                getArduinoState();
             });
         }
+
+        function getArduinoState() {
+            fetch('http://localhost:3000/command')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); 
+                    estadoActividad = data.estadoActividad; // Actualiza el estado de la actividad basado en el servidor
+                    actualizarDatosRecuadro();
+                });
+        } 
 
         function getArduinoData() {
             fetch('http://localhost:3000/datos')
@@ -87,7 +87,7 @@
         }
 
         setInterval(getArduinoData, 1000); // Actualiza los datos cada segundo
-        setInterval(actualizarEstado, 1000); // Actualiza el estado de la actividad cada segundo
+        setInterval(getArduinoState, 1000); // Actualiza el estado de la actividad cada segundo
 
         function finalizarYConfirmarActividad() {
             sendCommand('0'); // Enviar comando para finalizar la actividad

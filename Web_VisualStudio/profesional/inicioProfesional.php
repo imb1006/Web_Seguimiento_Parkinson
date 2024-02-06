@@ -84,6 +84,10 @@
 <body>
     
     <?php 
+    // Verifica si la sesión ya está iniciada
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }; 
     include 'menu.php'; // Incluye el menú
 
     // Conexión a la base de datos
