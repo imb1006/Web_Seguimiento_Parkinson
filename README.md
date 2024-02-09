@@ -1,4 +1,4 @@
-# Web_Seguimiento_Parkinson
+# Web_Seguimiento_Párkinson
 
 Este repositorio contiene los materiales necesarios para seguir el desarrollo del Trabajo de Fin de Grado de Ingeniería de la Salud, elaborado por Inés Martos Barbero.
 
@@ -13,6 +13,7 @@ Esta breve explicación pretende ayudar a cualquier persona interesada en el pro
 - **Pruebas_Comunicación/**. Incluye una serie de archivos y carpetas utilizados en la realización de pruebas de comunicación entre el servidor Node.js y Arduino, un proceso coordinado por el archivo bridge.py.
 - **Web_VisualStudio.zip**. Archivo comprimido que tiene el mismo contenido que la carpeta Web_VisualStudio/. Se incluye para facilitar la descarga de todos los documentos necesarios para el despliegue de la aplicación web.
 - **Web_VisualStudio/**. Contiene, almacenados en subcarpetas, todos los archivos y scripts de código necesarios para la creación de la página web.
+- **videos_demostracion.md**. Fichero de texto que contiene el enlace a los vídeos que sirven como manual de funcionamiento del sistema.
 
 ## Resumen
 Los problemas motores característicos de la Enfermedad de Párkinson (EP) afectan significativamente la función de la marcha, provocando episodios de congelación de la marcha en las etapas más críticas. Esto repercute considerablemente en la calidad de vida de las personas con EP.
