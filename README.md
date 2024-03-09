@@ -14,6 +14,9 @@ Esta breve explicación pretende ayudar a cualquier persona interesada en el pro
 - **Web_VisualStudio.zip**. Archivo comprimido que tiene el mismo contenido que la carpeta Web_VisualStudio/. Se incluye para facilitar la descarga de todos los documentos necesarios para el despliegue de la aplicación web.
 - **Web_VisualStudio/**. Contiene, almacenados en subcarpetas, todos los archivos y scripts de código necesarios para la creación de la página web.
 - **videos_demostracion.md**. Fichero de texto que contiene el enlace a los vídeos que sirven como manual de funcionamiento del sistema.
+- **Anexos_v12_1.pdf**. Documento PDF de la documentación técnica del proyecto.
+- **Memoria_v12.1.pdf**. Documento PDF con el desarrollo principal del trabajo.
+- **PresentaciónTFG.pdf**. Diapositivas empleadas como apoyo en la defensa del proyecto final de grado.
 
 ## Resumen
 Los problemas motores característicos de la Enfermedad de Párkinson (EP) afectan significativamente la función de la marcha, provocando episodios de congelación de la marcha en las etapas más críticas. Esto repercute considerablemente en la calidad de vida de las personas con EP.
