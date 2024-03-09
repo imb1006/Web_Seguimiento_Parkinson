@@ -1,8 +1,8 @@
-# Web_Seguimiento_Párkinson
+# Sistema_Seguimiento_Párkinson
 
 Este repositorio contiene los materiales necesarios para seguir el desarrollo del Trabajo de Fin de Grado de Ingeniería de la Salud, elaborado por Inés Martos Barbero.
 
-El proyecto se basa un trabajo previo desarrollado por Sara González Bárcena (disponible en [este enlace](https://github.com/saragonzalezbarcena/TFG_Deteccion_Activ_Muscular)), para lograr la creación de un sitio web que se comunica en tiempo real y permite el manejo de un dispositivo de monitorización de la marcha en personas con Párkinson.
+El proyecto se basa un trabajo previo desarrollado por Sara González Bárcena (disponible en [este enlace](https://github.com/saragonzalezbarcena/TFG_Deteccion_Activ_Muscular)), para lograr la creación de un sitio web que se comunica en tiempo real y permite el manejo de un dispositivo de monitorización de la marcha en personas con Párkinson. Además, se trabaja en una mejora sustancial del hardware para facilitar la realización de pruebas.
 
 ## Estructura del repositorio
 Esta breve explicación pretende ayudar a cualquier persona interesada en el proyecto a navegar por este repositorio. El usuario podrá encontrar información detallada sobre cada directorio y archivo en el documento **anexos.pdf** (*Anexo C.1 Estructura de directorios*).
